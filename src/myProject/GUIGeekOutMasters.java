@@ -21,6 +21,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos;
     private JTextArea numeroRonda, puntaje;
     public static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n";
+    private Escucha escucha;
 
     /**
      * Constructor of GUI class
@@ -49,6 +50,7 @@ public class GUIGeekOutMasters extends JFrame {
         this.getContentPane().setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
         //Create Listener Object and Control Object
+        escucha = new Escucha();
         //Set up JComponents
         headerProject = new Header("Geek Out Masters", Color.GRAY);
         constraints.gridx = 0;
@@ -61,7 +63,7 @@ public class GUIGeekOutMasters extends JFrame {
         ayuda = new JButton(" ? ");
         ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         ayuda.setForeground(Color.white);
-        //ayuda.addMouseListener(escucha);
+        ayuda.addActionListener(escucha);
         ayuda.setBackground(new Color(0, 102, 255));
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -98,7 +100,7 @@ public class GUIGeekOutMasters extends JFrame {
         salir = new JButton("Salir");
         salir.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         salir.setForeground(Color.WHITE);
-        //salir.addMouseListener(escucha);
+        salir.addActionListener(escucha);
         salir.setBackground(new Color(255, 81, 51));
         constraints.gridx = 4;
         constraints.gridy = 1;
@@ -176,7 +178,7 @@ public class GUIGeekOutMasters extends JFrame {
         lanzar = new JButton("Lanzar");
         lanzar.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         lanzar.setForeground(Color.WHITE);
-        //lanzar.addMouseListener(escucha);
+        lanzar.addActionListener(escucha);
         lanzar.setBackground(new Color(63, 255, 51));
 
         this.add(lanzar, constraints);
@@ -211,7 +213,17 @@ public class GUIGeekOutMasters extends JFrame {
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
-    private class Escucha {
+    private class Escucha implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource()==lanzar){
+            }
+            else if(e.getSource()==ayuda){
+                JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
+            }else{
+                System.exit(0);
+            }
+        }
     }
 }
