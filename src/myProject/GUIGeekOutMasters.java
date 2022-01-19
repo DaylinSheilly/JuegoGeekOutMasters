@@ -31,9 +31,9 @@ public class GUIGeekOutMasters extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("GeekOutMasterGame");
-        this.setSize(200,100);
-        //this.pack();
-        //this.setUndecorated(true);
+        //this.setSize(200,100);
+        this.pack();
+        //th/is.setUndecorated(true);
         this.setResizable(true);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
@@ -110,8 +110,8 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(salir, constraints);
 
-        /*imageDado = new ImageIcon(getClass().getResource("/resources/dado.png"));
-        imagenOtroTamanho = imageDado.getImage().getScaledInstance(200, 200, Image.SCALE_SMOOTH);
+        imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
+        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado1 = new JLabel(imagenNuevoTamanho);
         dado2 = new JLabel(imagenNuevoTamanho);
@@ -122,13 +122,12 @@ public class GUIGeekOutMasters extends JFrame {
         dado7 = new JLabel(imagenNuevoTamanho);
         dado8 = new JLabel(imagenNuevoTamanho);
         dado9 = new JLabel(imagenNuevoTamanho);
-        dado10 = new JLabel(imagenNuevoTamanho);*/
+        dado10 = new JLabel(imagenNuevoTamanho);
 
         panelDadosUtilizados = new JPanel();
-        panelDadosUtilizados.setPreferredSize(new Dimension(450, 250));
+        panelDadosUtilizados.setPreferredSize(new Dimension(300, 600));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
-        //panelDadosUtilizados.add(dado1);
 
         constraints.gridx = 0;
         constraints.gridy = 2;
@@ -139,10 +138,13 @@ public class GUIGeekOutMasters extends JFrame {
         this.add(panelDadosUtilizados, constraints);
 
         panelDadosInactivos = new JPanel();
-        panelDadosInactivos.setPreferredSize(new Dimension(450, 250));
+        panelDadosInactivos.setPreferredSize(new Dimension(400, 200));
         panelDadosInactivos.setBorder(BorderFactory.createTitledBorder("Dados inactivos"));
         panelDadosInactivos.setBackground(Color.WHITE);
-        //panelDadosInactivos.add(dado1);
+        panelDadosInactivos.add(dado1);
+        panelDadosInactivos.add(dado2);
+        panelDadosInactivos.add(dado3);
+
 
         constraints.gridx = 2;
         constraints.gridy = 2;
@@ -153,23 +155,81 @@ public class GUIGeekOutMasters extends JFrame {
         this.add(panelDadosInactivos, constraints);
 
         panelDadosActivos = new JPanel();
-        panelDadosActivos.setPreferredSize(new Dimension(450, 250));
+        panelDadosActivos.setPreferredSize(new Dimension(1000, 1000));
         panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados activos"));
         panelDadosActivos.setBackground(Color.WHITE);
-        /*panelDadosUtilizados.add(dado1);
-        panelDadosUtilizados.add(dado2);
-        panelDadosUtilizados.add(dado3);
-        panelDadosUtilizados.add(dado4);
-        panelDadosUtilizados.add(dado5);
-        panelDadosUtilizados.add(dado6);
-        panelDadosUtilizados.add(dado7);
-        panelDadosUtilizados.add(dado8);
-        panelDadosUtilizados.add(dado9);
-        panelDadosUtilizados.add(dado10);*/
+        panelDadosActivos.setLayout(new GridBagLayout());
+        GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
+
+        constraintsPanelActivos.gridx = 0;
+        constraintsPanelActivos.gridy = 0;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+
+        this.add(dado4, constraintsPanelActivos);
+        panelDadosActivos.add(dado4);
+
+
+        constraintsPanelActivos.gridx = 0;
+        constraintsPanelActivos.gridy = 0;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado5);
+        this.add(dado5, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 0;
+        constraintsPanelActivos.gridy = 1;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado6);
+        this.add(dado6, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 0;
+        constraintsPanelActivos.gridy = 1;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado7);
+        this.add(dado7, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 5;
+        constraintsPanelActivos.gridy = 3;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado8);
+        this.add(dado8, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 1;
+        constraintsPanelActivos.gridy = 4;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado9);
+        this.add(dado9, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 3;
+        constraintsPanelActivos.gridy = 4;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        dado10.add(panelDadosActivos);
+        this.add(dado10, constraintsPanelActivos);
 
         constraints.gridx = 0;
         constraints.gridy = 3;
         constraints.gridwidth = 5;
+        constraints.gridheight = 6;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
 
@@ -191,7 +251,7 @@ public class GUIGeekOutMasters extends JFrame {
         nuevaRonda.setBackground(new Color(63, 255, 51));
 
         constraints.gridx = 0;
-        constraints.gridy = 4;
+        constraints.gridy = 7;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.CENTER;
