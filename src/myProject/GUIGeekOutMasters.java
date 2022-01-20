@@ -82,7 +82,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 1;
         constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.CENTER;
-        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.anchor = GridBagConstraints.CENTER;
         add(numeroRonda, constraints);
 
         puntaje = new JTextArea(1, 5);
@@ -106,7 +106,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 1;
         constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.LINE_START;
+        constraints.anchor = GridBagConstraints.LINE_END;
 
         this.add(salir, constraints);
 
@@ -131,7 +131,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         constraints.gridx = 0;
         constraints.gridy = 2;
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_START;
 
@@ -150,7 +150,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 2;
         constraints.gridwidth = 2;
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.LINE_END;
+        constraints.anchor = GridBagConstraints.LINE_START;
 
         this.add(panelDadosInactivos, constraints);
 
@@ -160,53 +160,54 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosActivos.setBackground(Color.WHITE);
         panelDadosActivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
-
-        constraintsPanelActivos.gridx = 0;
-        constraintsPanelActivos.gridy = 0;
-        constraintsPanelActivos.gridwidth = 1;
-        constraintsPanelActivos.fill = GridBagConstraints.NONE;
-        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-
-        this.add(dado4, constraintsPanelActivos);
         panelDadosActivos.add(dado4);
-
-
-        constraintsPanelActivos.gridx = 0;
-        constraintsPanelActivos.gridy = 0;
-        constraintsPanelActivos.gridwidth = 1;
-        constraintsPanelActivos.fill = GridBagConstraints.NONE;
-        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
         panelDadosActivos.add(dado5);
-        this.add(dado5, constraintsPanelActivos);
-
-        constraintsPanelActivos.gridx = 0;
-        constraintsPanelActivos.gridy = 1;
-        constraintsPanelActivos.gridwidth = 1;
-        constraintsPanelActivos.fill = GridBagConstraints.NONE;
-        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
         panelDadosActivos.add(dado6);
-        this.add(dado6, constraintsPanelActivos);
+        panelDadosActivos.add(dado7);
+        panelDadosActivos.add(dado8);
+        panelDadosActivos.add(dado9);
+        panelDadosActivos.add(dado10);
 
         constraintsPanelActivos.gridx = 0;
-        constraintsPanelActivos.gridy = 1;
-        constraintsPanelActivos.gridwidth = 1;
-        constraintsPanelActivos.fill = GridBagConstraints.NONE;
-        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-        panelDadosActivos.add(dado7);
-        this.add(dado7, constraintsPanelActivos);
-
-        constraintsPanelActivos.gridx = 5;
         constraintsPanelActivos.gridy = 3;
         constraintsPanelActivos.gridwidth = 1;
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado8);
-        this.add(dado8, constraintsPanelActivos);
+        panelDadosActivos.add(dado4, constraintsPanelActivos);
+
+
+        constraintsPanelActivos.gridx = 1;
+        constraintsPanelActivos.gridy = 3;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado5, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 2;
+        constraintsPanelActivos.gridy = 3;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado6, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 3;
+        constraintsPanelActivos.gridy = 3;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(dado7, constraintsPanelActivos);
+
+        constraintsPanelActivos.gridx = 4;
+        constraintsPanelActivos.gridy = 3;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
+
+        panelDadosActivos.add(dado8, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 1;
         constraintsPanelActivos.gridy = 4;
@@ -214,8 +215,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado9);
-        this.add(dado9, constraintsPanelActivos);
+        panelDadosActivos.add(dado9, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 3;
         constraintsPanelActivos.gridy = 4;
@@ -223,17 +223,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        dado10.add(panelDadosActivos);
-        this.add(dado10, constraintsPanelActivos);
-
-        constraints.gridx = 0;
-        constraints.gridy = 3;
-        constraints.gridwidth = 5;
-        constraints.gridheight = 6;
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
-
-        this.add(panelDadosActivos, constraints);
+        panelDadosActivos.add(dado10, constraintsPanelActivos);
 
         lanzar = new JButton("Lanzar");
         lanzar.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -241,8 +231,21 @@ public class GUIGeekOutMasters extends JFrame {
         lanzar.addActionListener(escucha);
         lanzar.setBackground(new Color(63, 255, 51));
 
-        this.add(lanzar, constraints);
-        panelDadosActivos.add(lanzar);
+        constraintsPanelActivos.gridx = 2;
+        constraintsPanelActivos.gridy = 5;
+        constraintsPanelActivos.gridwidth = 1;
+        constraintsPanelActivos.fill = GridBagConstraints.NONE;
+        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosActivos.add(lanzar, constraintsPanelActivos);
+
+        constraints.gridx = 0;
+        constraints.gridy = 3;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
+
+        this.add(panelDadosActivos, constraints);
 
         nuevaRonda = new JButton("Nueva ronda");
         nuevaRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -251,7 +254,7 @@ public class GUIGeekOutMasters extends JFrame {
         nuevaRonda.setBackground(new Color(63, 255, 51));
 
         constraints.gridx = 0;
-        constraints.gridy = 7;
+        constraints.gridy = 6;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.CENTER;
