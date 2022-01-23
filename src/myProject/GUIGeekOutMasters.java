@@ -1,3 +1,4 @@
+
 package myProject;
 
 import javax.swing.*;
@@ -336,3 +337,4 @@ public class GUIGeekOutMasters extends JFrame {
         }
     }
 }
+
