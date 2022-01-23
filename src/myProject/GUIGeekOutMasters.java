@@ -9,12 +9,13 @@ import java.awt.event.ActionListener;
 /**
  * This class is used for to show game on screen and allow to play.
  * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
+ *        Juan Mazuera, juan.yunda@correounivalle.edu.co
  * @version v.1.0.0 date:11/01/2022
  */
 public class GUIGeekOutMasters extends JFrame {
 
     private Header headerProject;
-    private JLabel dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
+    private JLabel dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10, dado11, dado12, dado13, dado14, dado15, dado16, dado17, dado18, dado19, dado20, dado21, dado22, dado23, dado24, dado25;
     private ImageIcon imageDado;
     private Image imagenOtroTamanho;
     private ImageIcon imagenNuevoTamanho;
@@ -54,6 +55,7 @@ public class GUIGeekOutMasters extends JFrame {
         //Create Listener Object and Control Object
         escucha = new Escucha();
         //Set up JComponents
+
         headerProject = new Header("Geek Out Masters", Color.GRAY);
         constraints.gridx = 0;
         constraints.gridy = 0;
@@ -61,6 +63,8 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.fill = GridBagConstraints.HORIZONTAL;
 
         this.add(headerProject, constraints); //Change this line if you change JFrame Container's Layout
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelEspacioEnBlanco1 = new JPanel();
 
@@ -71,6 +75,8 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco1, constraints);
 
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
         ayuda = new JButton(" ? ");
         ayuda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         ayuda.setForeground(Color.white);
@@ -79,10 +85,12 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridx = 0;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.NONE;
+        constraints.fill = GridBagConstraints.WEST;
         constraints.anchor = GridBagConstraints.LINE_START;
 
         this.add(ayuda, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         numeroRonda = new JTextArea(1, 5);
         numeroRonda.setText("Ronda: ");
@@ -92,9 +100,11 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridx = 1;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.WEST;
+        constraints.anchor = GridBagConstraints.WEST;
         add(numeroRonda, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         puntaje = new JTextArea(1, 5);
         puntaje.setText("Puntaje: ");
@@ -107,6 +117,8 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.fill = GridBagConstraints.CENTER;
         constraints.anchor = GridBagConstraints.CENTER;
         add(puntaje, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         salir = new JButton("Salir");
         salir.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -121,6 +133,8 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(salir, constraints);
 
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
         panelEspacioEnBlanco2 = new JPanel();
 
         constraints.gridx = 0;
@@ -129,6 +143,8 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridheight = 1;
 
         this.add(panelEspacioEnBlanco2, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -143,46 +159,221 @@ public class GUIGeekOutMasters extends JFrame {
         dado8 = new JLabel(imagenNuevoTamanho);
         dado9 = new JLabel(imagenNuevoTamanho);
         dado10 = new JLabel(imagenNuevoTamanho);
+        dado11 = new JLabel(imagenNuevoTamanho);
+        dado12 = new JLabel(imagenNuevoTamanho);
+        dado13 = new JLabel(imagenNuevoTamanho);
+        dado14 = new JLabel(imagenNuevoTamanho);
+        dado15 = new JLabel(imagenNuevoTamanho);
+        dado16 = new JLabel(imagenNuevoTamanho);
+        dado17 = new JLabel(imagenNuevoTamanho);
+        dado18 = new JLabel(imagenNuevoTamanho);
+        dado19 = new JLabel(imagenNuevoTamanho);
+        dado20 = new JLabel(imagenNuevoTamanho);
+        dado21 = new JLabel(imagenNuevoTamanho);
+        dado22 = new JLabel(imagenNuevoTamanho);
+        dado23 = new JLabel(imagenNuevoTamanho);
+        dado24 = new JLabel(imagenNuevoTamanho);
+        dado25 = new JLabel(imagenNuevoTamanho);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelDadosUtilizados = new JPanel();
         panelDadosUtilizados.setPreferredSize(new Dimension(1000, 1000));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
-
+        panelDadosUtilizados.setLayout(new GridBagLayout());
+        GridBagConstraints constraintsPanelUtilizados = new GridBagConstraints();
         panelDadosUtilizados.add(dado1);
         panelDadosUtilizados.add(dado2);
         panelDadosUtilizados.add(dado3);
         panelDadosUtilizados.add(dado4);
         panelDadosUtilizados.add(dado5);
         panelDadosUtilizados.add(dado6);
+        panelDadosUtilizados.add(dado7);
+        panelDadosUtilizados.add(dado8);
+        panelDadosUtilizados.add(dado9);
 
+        constraintsPanelUtilizados.gridx = 0;
+        constraintsPanelUtilizados.gridy = 4;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado1, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 1;
+        constraintsPanelUtilizados.gridy = 4;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado2, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 2;
+        constraintsPanelUtilizados.gridy = 4;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado3, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 0;
+        constraintsPanelUtilizados.gridy = 5;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado4, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 1;
+        constraintsPanelUtilizados.gridy = 5;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado5, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 2;
+        constraintsPanelUtilizados.gridy = 5;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado6, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 0;
+        constraintsPanelUtilizados.gridy = 6;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado7, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 1;
+        constraintsPanelUtilizados.gridy = 6;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado8, constraintsPanelUtilizados);
+
+        constraintsPanelUtilizados.gridx = 2;
+        constraintsPanelUtilizados.gridy = 6;
+        constraintsPanelUtilizados.gridwidth = 1;
+        constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
+        constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
+
+        panelDadosUtilizados.add(dado9, constraintsPanelUtilizados);
 
         constraints.gridx = 0;
         constraints.gridy = 4;
         constraints.gridwidth = 3;
+        constraints.gridheight = 1;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_START;
 
         this.add(panelDadosUtilizados, constraints);
 
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
         panelDadosInactivos = new JPanel();
         panelDadosInactivos.setPreferredSize(new Dimension(1000, 1000));
         panelDadosInactivos.setBorder(BorderFactory.createTitledBorder("Dados inactivos"));
         panelDadosInactivos.setBackground(Color.WHITE);
-        panelDadosInactivos.add(dado1);
-        panelDadosInactivos.add(dado2);
-        panelDadosInactivos.add(dado3);
-        panelDadosInactivos.add(dado4);
-        panelDadosInactivos.add(dado5);
-        panelDadosInactivos.add(dado6);
+        panelDadosInactivos.setLayout(new GridBagLayout());
+        GridBagConstraints constraintsPanelInactivos = new GridBagConstraints();
+        panelDadosInactivos.add(dado10);
+        panelDadosInactivos.add(dado11);
+        panelDadosInactivos.add(dado12);
+        panelDadosInactivos.add(dado13);
+        panelDadosInactivos.add(dado14);
+        panelDadosInactivos.add(dado15);
+        panelDadosInactivos.add(dado16);
+        panelDadosInactivos.add(dado17);
+        panelDadosInactivos.add(dado18);
+
+        constraintsPanelInactivos.gridx = 4;
+        constraintsPanelInactivos.gridy = 4;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado10, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 5;
+        constraintsPanelInactivos.gridy = 4;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado11, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 6;
+        constraintsPanelInactivos.gridy = 4;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado12, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 4;
+        constraintsPanelInactivos.gridy = 5;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado13, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 5;
+        constraintsPanelInactivos.gridy = 5;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado14, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 6;
+        constraintsPanelInactivos.gridy = 5;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado15, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 4;
+        constraintsPanelInactivos.gridy = 6;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.LINE_START;
+
+        panelDadosInactivos.add(dado16, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 5;
+        constraintsPanelInactivos.gridy = 6;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado17, constraintsPanelInactivos);
+
+        constraintsPanelInactivos.gridx = 6;
+        constraintsPanelInactivos.gridy = 6;
+        constraintsPanelInactivos.gridwidth = 1;
+        constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+        constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+
+        panelDadosInactivos.add(dado18, constraintsPanelInactivos);
 
         constraints.gridx = 4;
         constraints.gridy = 4;
         constraints.gridwidth = 3;
+        constraints.gridheight = 1;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_END;
 
         this.add(panelDadosInactivos, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelEspacioEnBlanco3 = new JPanel();
 
@@ -193,19 +384,21 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco3, constraints);
 
+        //------------------------------------------------------------------------------------------------------------------------------------------
+
         panelDadosActivos = new JPanel();
         panelDadosActivos.setPreferredSize(new Dimension(1000, 1000));
         panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados activos"));
         panelDadosActivos.setBackground(Color.WHITE);
         panelDadosActivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
-        panelDadosActivos.add(dado4);
-        panelDadosActivos.add(dado5);
-        panelDadosActivos.add(dado6);
-        panelDadosActivos.add(dado7);
-        panelDadosActivos.add(dado8);
-        panelDadosActivos.add(dado9);
-        panelDadosActivos.add(dado10);
+        panelDadosActivos.add(dado19);
+        panelDadosActivos.add(dado20);
+        panelDadosActivos.add(dado21);
+        panelDadosActivos.add(dado22);
+        panelDadosActivos.add(dado23);
+        panelDadosActivos.add(dado24);
+        panelDadosActivos.add(dado25);
 
         constraintsPanelActivos.gridx = 1;
         constraintsPanelActivos.gridy = 8;
@@ -213,7 +406,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado4, constraintsPanelActivos);
+        panelDadosActivos.add(dado19, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 2;
         constraintsPanelActivos.gridy = 8;
@@ -221,7 +414,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado5, constraintsPanelActivos);
+        panelDadosActivos.add(dado20, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 3;
         constraintsPanelActivos.gridy = 8;
@@ -229,7 +422,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado6, constraintsPanelActivos);
+        panelDadosActivos.add(dado21, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 4;
         constraintsPanelActivos.gridy = 8;
@@ -237,7 +430,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado7, constraintsPanelActivos);
+        panelDadosActivos.add(dado22, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 5;
         constraintsPanelActivos.gridy = 8;
@@ -245,7 +438,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
 
-        panelDadosActivos.add(dado8, constraintsPanelActivos);
+        panelDadosActivos.add(dado23, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 2;
         constraintsPanelActivos.gridy = 9;
@@ -253,7 +446,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado9, constraintsPanelActivos);
+        panelDadosActivos.add(dado24, constraintsPanelActivos);
 
         constraintsPanelActivos.gridx = 4;
         constraintsPanelActivos.gridy = 9;
@@ -261,7 +454,9 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
         constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-        panelDadosActivos.add(dado10, constraintsPanelActivos);
+        panelDadosActivos.add(dado25, constraintsPanelActivos);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         lanzar = new JButton("Lanzar");
         lanzar.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
@@ -273,17 +468,19 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelActivos.gridy = 10;
         constraintsPanelActivos.gridwidth = 1;
         constraintsPanelActivos.fill = GridBagConstraints.NONE;
-        constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+        constraintsPanelActivos.anchor = GridBagConstraints.CENTER;
 
         panelDadosActivos.add(lanzar, constraintsPanelActivos);
 
         constraints.gridx = 1;
-        constraints.gridy = 5;
+        constraints.gridy = 8;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
 
         this.add(panelDadosActivos, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelEspacioEnBlanco4 = new JPanel();
 
@@ -293,6 +490,8 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridheight = 1;
 
         this.add(panelEspacioEnBlanco4, constraints);
+
+        //------------------------------------------------------------------------------------------------------------------------------------------
 
         nuevaRonda = new JButton("Nueva ronda");
         nuevaRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
