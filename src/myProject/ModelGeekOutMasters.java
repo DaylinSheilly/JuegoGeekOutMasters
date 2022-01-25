@@ -128,7 +128,7 @@ public class ModelGeekOutMasters
 
     public void nextRound()
     {
-        ronda=ronda+1;
+        ronda++;
     }
 
     public String endGame()
