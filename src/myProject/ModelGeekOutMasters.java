@@ -1,11 +1,22 @@
 package myProject;
 
+/**
+ * This class is used for apply Geek Out Masters rules.
+ * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
+ *        Juan Mazuera, juan.yunda@correounivalle.edu.co
+ * @version v.1.0.0 date:11/01/2022
+ */
+
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private int dadosActivos, puntos, puntaje, flag, ronda;
     private int[] caras;
     private String mensajeFinal;
+
+    /**
+     * Class Constructor
+     */
 
     public ModelGeekOutMasters()
     {
@@ -25,6 +36,10 @@ public class ModelGeekOutMasters
         mensajeFinal="";
     }
 
+    /**
+     * Establish a number that represents the face of each dice in the game
+     */
+
     public void calculateShot()
     {
         caras[0] = dado1.getCara();
@@ -35,6 +50,11 @@ public class ModelGeekOutMasters
         caras[5] = dado6.getCara();
         caras[6] = dado7.getCara();
     }
+
+    /**
+     * Count the amount of 42 that were obtained in the round
+     * @return
+     */
 
     public int calculatePoints()
     {

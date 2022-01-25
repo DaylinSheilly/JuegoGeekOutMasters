@@ -2,6 +2,13 @@ package myProject;
 
 import java.util.Random;
 
+/**
+ * Class Dados generate a Random value between 1 and 6
+ * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
+ *        Juan Mazuera, juan.yunda@correounivalle.edu.co
+ * @version v.1.0.0 date:11/01/2022
+ */
+
 public class Dados
 {
     /**
