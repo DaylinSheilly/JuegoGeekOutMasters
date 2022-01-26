@@ -15,7 +15,7 @@ public class ModelGeekOutMasters
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private int dadosActivos, puntos, puntaje, flag, ronda;
     private int[] caras;
-    private String mensajeFinal;
+    private boolean terminar;
 
     /**
      * Class Constructor
@@ -39,7 +39,7 @@ public class ModelGeekOutMasters
         ronda=0;
         puntaje=0;
         flag=0;
-        mensajeFinal="";
+        terminar = false;
     }
 
     /**
@@ -157,7 +157,7 @@ public class ModelGeekOutMasters
         if(ronda==5)
         {
             puntaje=0;
-            ronda=0;
+            ronda=1;
         }
         else
         {
@@ -165,20 +165,20 @@ public class ModelGeekOutMasters
         }
     }
 
-    public String endGame()
+    public boolean endGame()
     {
         if(ronda==5)
         {
             if(puntaje >= 30)
             {
-                mensajeFinal="";//ganó
+                terminar=true;//ganó
             }
             else
             {
-                mensajeFinal="";//perdió
+                terminar=false;//perdió
             }
         }
-        return mensajeFinal;
+        return terminar;
     }
 
     public void meeple()

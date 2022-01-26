@@ -21,9 +21,10 @@ public class GUIGeekOutMasters extends JFrame {
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
             panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4;
     private JTextArea numeroRonda, puntaje;
+    private String mensajeFinal = "";
     private int ronda, puntos;
     private int[] caras;
-    public static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
+    private static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
                                                 + "El juego inicia cuando presiones Nueva ronda\n";
     private Escucha escucha;
     private ModelGeekOutMasters game;
@@ -449,7 +450,6 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.anchor = GridBagConstraints.CENTER;
         this.add(nuevaRonda, constraints);
-
     }
 
     /**
@@ -461,6 +461,10 @@ public class GUIGeekOutMasters extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             GUIGeekOutMasters miProjectGUIGeekOutMasters = new GUIGeekOutMasters();
+
+            //------------------------------------------------------------------------------------------------------------------------------------------
+
+            JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
         });
     }
 
@@ -472,210 +476,234 @@ public class GUIGeekOutMasters extends JFrame {
 
     private class Escucha extends MouseAdapter {
         public void mouseClicked(MouseEvent e) {
-            if (e.getSource() == nuevaRonda) {
-                game.nextRound();
+            if (e.getSource() == nuevaRonda)
+            {
+                if(ronda==5)
+                {
+                    if(game.endGame())
+                    {
+                        mensajeFinal="¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
+                    }
+                    else
+                    {
+                        mensajeFinal="Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
+                    }
+                    JOptionPane.showMessageDialog(null, mensajeFinal);
+                }
+                else
+                {
+                    game.nextRound();
 
-                game.calculateShot();
-                caras = game.getCaras();
+                    game.calculateShot();
+                    caras = game.getCaras();
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado1.setIcon(imagenNuevoTamanho);
-                dado1.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado1.setIcon(imagenNuevoTamanho);
+                    dado1.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado2.setIcon(imagenNuevoTamanho);
-                dado2.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado2.setIcon(imagenNuevoTamanho);
+                    dado2.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado3.setIcon(imagenNuevoTamanho);
-                dado3.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado3.setIcon(imagenNuevoTamanho);
+                    dado3.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado4.setIcon(imagenNuevoTamanho);
-                dado4.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado4.setIcon(imagenNuevoTamanho);
+                    dado4.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado5.setIcon(imagenNuevoTamanho);
-                dado5.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado5.setIcon(imagenNuevoTamanho);
+                    dado5.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado6.setIcon(imagenNuevoTamanho);
-                dado6.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado6.setIcon(imagenNuevoTamanho);
+                    dado6.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado7.setIcon(imagenNuevoTamanho);
-                dado7.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado7.setIcon(imagenNuevoTamanho);
+                    dado7.setBackground(Color.WHITE);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado8.setIcon(imagenNuevoTamanho);
-                dado8.setBackground(Color.WHITE);
-                dado9.setIcon(imagenNuevoTamanho);
-                dado9.setBackground(Color.WHITE);
-                dado10.setIcon(imagenNuevoTamanho);
-                dado10.setBackground(Color.WHITE);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    dado8.setIcon(imagenNuevoTamanho);
+                    dado8.setBackground(Color.WHITE);
+                    dado9.setIcon(imagenNuevoTamanho);
+                    dado9.setBackground(Color.WHITE);
+                    dado10.setIcon(imagenNuevoTamanho);
+                    dado10.setBackground(Color.WHITE);
 
-                GridBagConstraints constraints = new GridBagConstraints();
+                    GridBagConstraints constraints = new GridBagConstraints();
 
+                    //------------------------------------------------------------------------------------------------------------------------------------------
 
-                panelDadosUtilizados.removeAll();
+                    panelDadosUtilizados.removeAll();
 
-                constraints.gridx = 0;
-                constraints.gridy = 4;
-                constraints.gridwidth = 3;
-                constraints.gridheight = 1;
-                constraints.fill = GridBagConstraints.NONE;
-                constraints.anchor = GridBagConstraints.LINE_START;
+                    constraints.gridx = 0;
+                    constraints.gridy = 4;
+                    constraints.gridwidth = 3;
+                    constraints.gridheight = 1;
+                    constraints.fill = GridBagConstraints.NONE;
+                    constraints.anchor = GridBagConstraints.LINE_START;
 
-                add(panelDadosUtilizados, constraints);
+                    add(panelDadosUtilizados, constraints);
 
-                revalidate();
-                repaint();
+                    revalidate();
+                    repaint();
 
+                    //------------------------------------------------------------------------------------------------------------------------------------------
 
-                panelDadosInactivos.removeAll();
+                    panelDadosInactivos.removeAll();
 
-                panelDadosInactivos.setLayout(new GridBagLayout());
-                GridBagConstraints constraintsPanelInactivos = new GridBagConstraints();
-                panelDadosInactivos.add(dado8);
-                panelDadosInactivos.add(dado9);
-                panelDadosInactivos.add(dado10);
+                    panelDadosInactivos.setLayout(new GridBagLayout());
+                    GridBagConstraints constraintsPanelInactivos = new GridBagConstraints();
+                    panelDadosInactivos.add(dado8);
+                    panelDadosInactivos.add(dado9);
+                    panelDadosInactivos.add(dado10);
 
-                constraintsPanelInactivos.gridx = 4;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 4;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(dado8, constraintsPanelInactivos);
+                    panelDadosInactivos.add(dado8, constraintsPanelInactivos);
 
-                constraintsPanelInactivos.gridx = 5;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 5;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(dado9, constraintsPanelInactivos);
+                    panelDadosInactivos.add(dado9, constraintsPanelInactivos);
 
-                constraintsPanelInactivos.gridx = 6;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 6;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(dado10, constraintsPanelInactivos);
+                    panelDadosInactivos.add(dado10, constraintsPanelInactivos);
 
-                constraints.gridx = 4;
-                constraints.gridy = 4;
-                constraints.gridwidth = 3;
-                constraints.gridheight = 1;
-                constraints.fill = GridBagConstraints.NONE;
-                constraints.anchor = GridBagConstraints.LINE_END;
+                    constraints.gridx = 4;
+                    constraints.gridy = 4;
+                    constraints.gridwidth = 3;
+                    constraints.gridheight = 1;
+                    constraints.fill = GridBagConstraints.NONE;
+                    constraints.anchor = GridBagConstraints.LINE_END;
 
-                add(panelDadosInactivos, constraints);
+                    add(panelDadosInactivos, constraints);
 
-                revalidate();
-                repaint();
+                    revalidate();
+                    repaint();
 
+                    //------------------------------------------------------------------------------------------------------------------------------------------
 
+                    panelDadosActivos.removeAll();
 
-                panelDadosActivos.removeAll();
+                    panelDadosActivos.setLayout(new GridBagLayout());
+                    GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
 
-                panelDadosActivos.setLayout(new GridBagLayout());
-                GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
+                    constraintsPanelActivos.gridx = 1;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 1;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado1, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado1, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 2;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 2;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado2, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado2, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 3;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 3;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado3, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado3, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 4;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 4;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado4, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado4, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 5;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
 
-                constraintsPanelActivos.gridx = 5;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
+                    panelDadosActivos.add(dado5, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado5, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 2;
+                    constraintsPanelActivos.gridy = 9;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 2;
-                constraintsPanelActivos.gridy = 9;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado6, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado6, constraintsPanelActivos);
+                    constraintsPanelActivos.gridx = 4;
+                    constraintsPanelActivos.gridy = 9;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                constraintsPanelActivos.gridx = 4;
-                constraintsPanelActivos.gridy = 9;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+                    panelDadosActivos.add(dado7, constraintsPanelActivos);
 
-                panelDadosActivos.add(dado7, constraintsPanelActivos);
+                    constraints.gridx = 2;
+                    constraints.gridy = 8;
+                    constraints.gridwidth = 5;
+                    constraints.fill = GridBagConstraints.NONE;
+                    constraints.anchor = GridBagConstraints.CENTER;
 
-                constraints.gridx = 2;
-                constraints.gridy = 8;
-                constraints.gridwidth = 5;
-                constraints.fill = GridBagConstraints.NONE;
-                constraints.anchor = GridBagConstraints.CENTER;
+                    add(panelDadosActivos, constraints);
 
-                add(panelDadosActivos, constraints);
+                    //------------------------------------------------------------------------------------------------------------------------------------------
 
-                revalidate();
-                repaint();
+                    revalidate();
+                    repaint();
 
+                    //------------------------------------------------------------------------------------------------------------------------------------------
 
-                ronda = game.getRonda();
-                numeroRonda.setText("Ronda: "+ ronda);
+                    ronda = game.getRonda();
+                    numeroRonda.setText("Ronda: " + ronda);
 
-                puntos=game.getPuntaje();
-                puntaje.setText("Puntaje: " + puntos);
-
-            } else if (e.getSource() == ayuda) {
+                    puntos = game.getPuntaje();
+                    puntaje.setText("Puntaje: " + puntos);
+                }
+            }
+            else if (e.getSource() == ayuda)
+            {
                 JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
-            } else {
+            }
+            else if(e.getSource() == salir)
+            {
                 System.exit(0);
             }
         }
