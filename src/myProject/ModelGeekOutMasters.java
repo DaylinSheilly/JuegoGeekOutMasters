@@ -1,5 +1,8 @@
 package myProject;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * This class is used for apply Geek Out Masters rules.
  * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
@@ -33,6 +36,9 @@ public class ModelGeekOutMasters
         caras = new int[7];
 
         dadosActivos = 0;
+        ronda=0;
+        puntaje=0;
+        flag=0;
         mensajeFinal="";
     }
 
@@ -148,7 +154,15 @@ public class ModelGeekOutMasters
 
     public void nextRound()
     {
-        ronda=ronda+1;
+        if(ronda==5)
+        {
+            puntaje=0;
+            ronda=0;
+        }
+        else
+        {
+            ronda++;
+        }
     }
 
     public String endGame()

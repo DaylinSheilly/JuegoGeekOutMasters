@@ -14,13 +14,14 @@ import java.awt.event.*;
 public class GUIGeekOutMasters extends JFrame {
 
     private Header headerProject;
-    private JLabel dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
+    private JButton dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private ImageIcon imageDado, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
     private JButton ayuda, salir, lanzar, nuevaRonda;
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
             panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4;
     private JTextArea numeroRonda, puntaje;
+    private int ronda, puntos;
     private int[] caras;
     public static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n";
     private Escucha escucha;
@@ -29,7 +30,7 @@ public class GUIGeekOutMasters extends JFrame {
     /**
      * Constructor of GUI class
      */
-    public GUIGeekOutMasters(){
+    public GUIGeekOutMasters() {
         initGUI();
 
         //Default JFrame configuration
@@ -46,7 +47,6 @@ public class GUIGeekOutMasters extends JFrame {
     /**
      * This method is used to set up the default JComponent Configuration,
      * create Listener and control Objects used for the GUI class
-     *
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
@@ -93,8 +93,9 @@ public class GUIGeekOutMasters extends JFrame {
 
         //------------------------------------------------------------------------------------------------------------------------------------------
 
+        ronda = 0;
         numeroRonda = new JTextArea(1, 5);
-        numeroRonda.setText("Ronda: ");
+        numeroRonda.setText("Ronda: " + ronda);
         numeroRonda.setBackground(Color.WHITE);
         numeroRonda.setEditable(false);
 
@@ -107,8 +108,9 @@ public class GUIGeekOutMasters extends JFrame {
 
         //------------------------------------------------------------------------------------------------------------------------------------------
 
+        puntos = 0;
         puntaje = new JTextArea(1, 5);
-        puntaje.setText("Puntaje: ");
+        puntaje.setText("Puntaje: " + puntos);
         puntaje.setBackground(Color.WHITE);
         puntaje.setEditable(false);
 
@@ -153,49 +155,59 @@ public class GUIGeekOutMasters extends JFrame {
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado1 = new JLabel(imagenNuevoTamanho);
+        dado1 = new JButton(imagenNuevoTamanho);
+        dado1.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado2 = new JLabel(imagenNuevoTamanho);
+        dado2 = new JButton(imagenNuevoTamanho);
+        dado2.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado3 = new JLabel(imagenNuevoTamanho);
+        dado3 = new JButton(imagenNuevoTamanho);
+        dado3.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado4 = new JLabel(imagenNuevoTamanho);
+        dado4 = new JButton(imagenNuevoTamanho);
+        dado4.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado5 = new JLabel(imagenNuevoTamanho);
+        dado5 = new JButton(imagenNuevoTamanho);
+        dado5.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado6 = new JLabel(imagenNuevoTamanho);
+        dado6 = new JButton(imagenNuevoTamanho);
+        dado6.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado7 = new JLabel(imagenNuevoTamanho);
+        dado7 = new JButton(imagenNuevoTamanho);
+        dado7.setBackground(Color.WHITE);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        dado8 = new JLabel(imagenNuevoTamanho);
-        dado9 = new JLabel(imagenNuevoTamanho);
-        dado10 = new JLabel(imagenNuevoTamanho);
+        dado8 = new JButton(imagenNuevoTamanho);
+        dado8.setBackground(Color.WHITE);
+        dado9 = new JButton(imagenNuevoTamanho);
+        dado9.setBackground(Color.WHITE);
+        dado10 = new JButton(imagenNuevoTamanho);
+        dado10.setBackground(Color.WHITE);
 
         //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelDadosUtilizados = new JPanel();
-        panelDadosUtilizados.setPreferredSize(new Dimension(2000, 2000));
+        panelDadosUtilizados.setMinimumSize(new Dimension(600, 200));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
         panelDadosUtilizados.setLayout(new GridBagLayout());
@@ -280,8 +292,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraintsPanelUtilizados.fill = GridBagConstraints.NONE;
         constraintsPanelUtilizados.anchor = GridBagConstraints.CENTER;
 
-        panelDadosUtilizados.add(dado9, constraintsPanelUtilizados);
-*/
+         */
         constraints.gridx = 0;
         constraints.gridy = 4;
         constraints.gridwidth = 3;
@@ -294,7 +305,7 @@ public class GUIGeekOutMasters extends JFrame {
         //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelDadosInactivos = new JPanel();
-        panelDadosInactivos.setPreferredSize(new Dimension(1000, 1000));
+        panelDadosInactivos.setMinimumSize(new Dimension(600, 200));
         panelDadosInactivos.setBorder(BorderFactory.createTitledBorder("Dados inactivos"));
         panelDadosInactivos.setBackground(Color.WHITE);
         panelDadosInactivos.setLayout(new GridBagLayout());
@@ -340,8 +351,8 @@ public class GUIGeekOutMasters extends JFrame {
 
         panelEspacioEnBlanco3 = new JPanel();
 
-        constraints.gridx= 0;
-        constraints.gridy= 7;
+        constraints.gridx = 0;
+        constraints.gridy = 7;
         constraints.gridwidth = 7;
         constraints.gridheight = 1;
 
@@ -350,18 +361,11 @@ public class GUIGeekOutMasters extends JFrame {
         //------------------------------------------------------------------------------------------------------------------------------------------
 
         panelDadosActivos = new JPanel();
-        panelDadosActivos.setPreferredSize(new Dimension(1000, 1000));
+        panelDadosActivos.setPreferredSize(new Dimension(800, 600));
         panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados activos"));
         panelDadosActivos.setBackground(Color.WHITE);
         panelDadosActivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
-        panelDadosActivos.add(dado1);
-        panelDadosActivos.add(dado2);
-        panelDadosActivos.add(dado3);
-        panelDadosActivos.add(dado4);
-        panelDadosActivos.add(dado5);
-        panelDadosActivos.add(dado6);
-        panelDadosActivos.add(dado7);
 
         constraintsPanelActivos.gridx = 1;
         constraintsPanelActivos.gridy = 8;
@@ -426,7 +430,7 @@ public class GUIGeekOutMasters extends JFrame {
         lanzar.setForeground(Color.WHITE);
         lanzar.addMouseListener(escucha);
         lanzar.setBackground(new Color(63, 255, 51));
-        lanzar.addMouseMotionListener((MouseMotionListener)escucha);
+        lanzar.addMouseMotionListener((MouseMotionListener) escucha);
 
         constraintsPanelActivos.gridx = 3;
         constraintsPanelActivos.gridy = 10;
@@ -436,7 +440,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         panelDadosActivos.add(lanzar, constraintsPanelActivos);
 
-        constraints.gridx = 1;
+        constraints.gridx = 2;
         constraints.gridy = 8;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.NONE;
@@ -460,8 +464,9 @@ public class GUIGeekOutMasters extends JFrame {
         nuevaRonda = new JButton("Nueva ronda");
         nuevaRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         nuevaRonda.setForeground(Color.WHITE);
-        //nuevaRonda.addMouseListener(escucha);
+        nuevaRonda.addMouseListener(escucha);
         nuevaRonda.setBackground(new Color(63, 255, 51));
+        nuevaRonda.setFocusable(true);
 
         constraints.gridx = 0;
         constraints.gridy = 12;
@@ -474,154 +479,166 @@ public class GUIGeekOutMasters extends JFrame {
 
     /**
      * Main process of the Java program
+     *
      * @param args Object used in order to send input data from command line when
      *             the program is execute by console.
      */
-    public static void main(String[] args){
+    public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             GUIGeekOutMasters miProjectGUIGeekOutMasters = new GUIGeekOutMasters();
         });
     }
 
+
+
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
-    private class Escucha extends MouseAdapter{
-        /*public void mouseClicked (MouseEvent e) {
-            if (e.getSource() == dado1){
 
-                int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado1.setIcon(imagenNuevoTamanho);
-            }
-            if (e.getSource() == dado2) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado2.setIcon(imagenNuevoTamanho);
-                }
+    private class Escucha extends MouseAdapter {
+        public void mouseClicked(MouseEvent e) {
+            if (e.getSource() == nuevaRonda) {
+                game.nextRound();
 
-            if (e.getSource() == dado3) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado3.setIcon(imagenNuevoTamanho);
-                } else {
+                game.calculateShot();
+                caras = game.getCaras();
 
-                }
-            }
+                panelDadosActivos.removeAll();
 
-            if (e.getSource() == dado4) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado4.setIcon(imagenNuevoTamanho);
-                } else {
 
-                }
-            }
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado1 = new JButton(imagenNuevoTamanho);
+                dado1.setBackground(Color.WHITE);
 
-            if (e.getSource() == dado5) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado5.setIcon(imagenNuevoTamanho);
-                } else {
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado2 = new JButton(imagenNuevoTamanho);
+                dado2.setBackground(Color.WHITE);
 
-                }
-            }
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado3 = new JButton(imagenNuevoTamanho);
+                dado3.setBackground(Color.WHITE);
 
-            if (e.getSource() == dado6) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado6.setIcon(imagenNuevoTamanho);
-                } else {
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado4 = new JButton(imagenNuevoTamanho);
+                dado4.setBackground(Color.WHITE);
 
-                }
-            }
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado5 = new JButton(imagenNuevoTamanho);
+                dado5.setBackground(Color.WHITE);
 
-            if (e.getSource() == dado7) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado3.setIcon(imagenNuevoTamanho);
-                } else {
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado6 = new JButton(imagenNuevoTamanho);
+                dado6.setBackground(Color.WHITE);
 
-                }
-            }
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado7 = new JButton(imagenNuevoTamanho);
+                dado7.setBackground(Color.WHITE);
 
-            if (e.getSource() == dado8) {
-                if (e.getSource() == lanzar) {
-                    int caras[] = modelGeekOutMasters.getCaras();
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[7] + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    dado8.setIcon(imagenNuevoTamanho);
-                } else {
+                imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                dado8 = new JButton(imagenNuevoTamanho);
+                dado8.setBackground(Color.WHITE);
+                dado9 = new JButton(imagenNuevoTamanho);
+                dado9.setBackground(Color.WHITE);
+                dado10 = new JButton(imagenNuevoTamanho);
+                dado10.setBackground(Color.WHITE);
 
-                }
-            }
+                revalidate();
+                repaint();
 
-            if (e.getSource() == ayuda) {
+                panelDadosActivos.setPreferredSize(new Dimension(800, 600));
+                panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados activos"));
+                panelDadosActivos.setBackground(Color.WHITE);
+                panelDadosActivos.setLayout(new GridBagLayout());
+                GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
+
+                constraintsPanelActivos.gridx = 1;
+                constraintsPanelActivos.gridy = 8;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado1, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 2;
+                constraintsPanelActivos.gridy = 8;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado2, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 3;
+                constraintsPanelActivos.gridy = 8;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado3, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 4;
+                constraintsPanelActivos.gridy = 8;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado4, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 5;
+                constraintsPanelActivos.gridy = 8;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
+
+                panelDadosActivos.add(dado5, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 2;
+                constraintsPanelActivos.gridy = 9;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado6, constraintsPanelActivos);
+
+                constraintsPanelActivos.gridx = 4;
+                constraintsPanelActivos.gridy = 9;
+                constraintsPanelActivos.gridwidth = 1;
+                constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                panelDadosActivos.add(dado7, constraintsPanelActivos);
+
+                revalidate();
+                repaint();
+
+                ronda = game.getRonda();
+                puntaje.setText("Puntaje: " + puntos);
+
+                game.getPuntaje();
+
+            } else if (e.getSource() == ayuda) {
                 JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
             } else {
                 System.exit(0);
             }
-        }*/
+        }
     }
 }
-            /*if(e.getSource()==lanzar){
-                modelGeekOutMasters.determinateScore();
-                int caras [] = modelGeekOutMasters.getCaras();
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[0] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado4.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[1] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado5.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[2] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado6.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[3] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado7.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[4] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado8.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[5] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado9.setIcon(imagenNuevoTamanho);
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + caras[6] + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                dado10.setIcon(imagenNuevoTamanho);
-            }
-            else if(e.getSource()==ayuda){
-                JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
-            }else{
-                System.exit(0);
-            }*/
 
 
 
