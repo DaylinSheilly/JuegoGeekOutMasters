@@ -690,6 +690,14 @@ public class GUIGeekOutMasters extends JFrame {
             {
                 System.exit(0);
             }
+            else
+            {
+                switch();
+                case 1:
+                    break;
+                case 2:
+                    break;
+            }
         }
     }
 }
