@@ -13,9 +13,10 @@ import java.awt.*;
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int dadosActivos, puntos, puntaje, flag, ronda;
+    private int puntos, puntaje, flag, ronda;
     private int[] caras;
     private boolean terminar;
+    public Dados[] dadosUtilizados, dadosInactivos, dadosActivos;
 
     /**
      * Class Constructor
@@ -35,12 +36,28 @@ public class ModelGeekOutMasters
         dado10 = new Dados();
         caras = new int[7];
 
-        dadosActivos = 0;
         ronda=0;
         puntaje=0;
         flag=0;
         terminar = false;
+
+        dadosActivos = new Dados[7];
+        dadosInactivos = new Dados[3];
+        dadosUtilizados = new Dados[10];
     }
+
+    public void determinateDadosActivos()
+    {
+        dadosActivos[0] = dado1;
+        dadosActivos[1] = dado2;
+        dadosActivos[2] = dado3;
+        dadosActivos[3] = dado4;
+        dadosActivos[4] = dado5;
+        dadosActivos[5] = dado6;
+        dadosActivos[6] = dado7;
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Establish a number that represents the face of each dice in the game
@@ -48,14 +65,13 @@ public class ModelGeekOutMasters
 
     public void calculateShot()
     {
-        caras[0] = dado1.getCara();
-        caras[1] = dado2.getCara();
-        caras[2] = dado3.getCara();
-        caras[3] = dado4.getCara();
-        caras[4] = dado5.getCara();
-        caras[5] = dado6.getCara();
-        caras[6] = dado7.getCara();
+        for(flag=0;flag<7;flag++)
+        {
+            dadosActivos[flag].getCara();
+        }
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * Count the amount of 42 that were obtained in the round
@@ -64,7 +80,7 @@ public class ModelGeekOutMasters
 
     public int calculatePoints()
     {
-        for(flag=0;flag<dadosActivos;flag++)
+        for(flag=0;flag<7;flag++)
         {
             if(caras[flag]==6)//If the dice face is 42 at end of a round incremed one point.
             {
@@ -86,9 +102,9 @@ public class ModelGeekOutMasters
             }
         }
         flag=0;
-        if(dadosActivos==1)
+        if(7==1)
         {
-            for(flag=0;flag<dadosActivos;flag++)
+            for(flag=0;flag<7;flag++)
             {
                 if (caras[flag] == 5)
                 {
@@ -99,6 +115,8 @@ public class ModelGeekOutMasters
         }
         return 1;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void determinateScore()
     {
@@ -152,6 +170,8 @@ public class ModelGeekOutMasters
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public void nextRound()
     {
         if(ronda==5)
@@ -164,6 +184,8 @@ public class ModelGeekOutMasters
             ronda++;
         }
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public boolean endGame()
     {
@@ -180,6 +202,8 @@ public class ModelGeekOutMasters
         }
         return terminar;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void meeple()
     {
@@ -202,6 +226,8 @@ public class ModelGeekOutMasters
 
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public int getPuntaje()
     {
         return puntaje;
@@ -214,8 +240,16 @@ public class ModelGeekOutMasters
     {
         return caras;
     }
-    public int getDadosActivos()
-    {
+
+    public Dados[] getDadosUtilizados() {
+        return dadosUtilizados;
+    }
+
+    public Dados[] getDadosInactivos() {
+        return dadosInactivos;
+    }
+
+    public Dados[] getDadosActivos() {
         return dadosActivos;
     }
 }
