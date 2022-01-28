@@ -1,11 +1,27 @@
 package myProject;
 
+import javax.swing.*;
+import java.awt.*;
+import java.util.ArrayList;
+
+/**
+ * This class is used for apply Geek Out Masters rules.
+ * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
+ *        Juan Mazuera, juan.yunda@correounivalle.edu.co
+ * @version v.1.0.0 date:11/01/2022
+ */
+
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int dadosActivos, puntos, puntaje, flag, ronda;
+    private int puntos, puntaje, flag, ronda;
     private int[] caras;
-    private String mensajeFinal;
+    private boolean terminar;
+    public ArrayList dadosUtilizados, dadosInactivos, dadosActivos;
+
+    /**
+     * Class Constructor
+     */
 
     public ModelGeekOutMasters()
     {
@@ -21,24 +37,55 @@ public class ModelGeekOutMasters
         dado10 = new Dados();
         caras = new int[7];
 
-        dadosActivos = 0;
-        mensajeFinal="";
+        ronda=0;
+        puntaje=0;
+        flag=0;
+        terminar = false;
+
+        dadosActivos = new ArrayList();
+        dadosInactivos = new Dados[3];
+        dadosUtilizados = new Dados[10];
     }
+
+    public void determinateDadosActivos()
+    {
+        dadosActivos[0] = dado1;
+        dadosActivos[1] = dado2;
+        dadosActivos[2] = dado3;
+        dadosActivos[3] = dado4;
+        dadosActivos[4] = dado5;
+        dadosActivos[5] = dado6;
+        dadosActivos[6] = dado7;
+    }
+
+    public void putInDicesOnDadosUtilizados(Dados dado){
+        dadosUtilizados.(dado);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Establish a number that represents the face of each dice in the game
+     */
 
     public void calculateShot()
     {
-        caras[0] = dado1.getCara();
-        caras[1] = dado2.getCara();
-        caras[2] = dado3.getCara();
-        caras[3] = dado4.getCara();
-        caras[4] = dado5.getCara();
-        caras[5] = dado6.getCara();
-        caras[6] = dado7.getCara();
+        for(flag=0;flag<7;flag++)
+        {
+            dadosActivos[flag].getCara();
+        }
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * Count the amount of 42 that were obtained in the round
+     * @return
+     */
 
     public int calculatePoints()
     {
-        for(flag=0;flag<dadosActivos;flag++)
+        for(flag=0;flag<7;flag++)
         {
             if(caras[flag]==6)//If the dice face is 42 at end of a round incremed one point.
             {
@@ -60,9 +107,9 @@ public class ModelGeekOutMasters
             }
         }
         flag=0;
-        if(dadosActivos==1)
+        if(7==1)
         {
-            for(flag=0;flag<dadosActivos;flag++)
+            for(flag=0;flag<7;flag++)
             {
                 if (caras[flag] == 5)
                 {
@@ -73,6 +120,8 @@ public class ModelGeekOutMasters
         }
         return 1;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void determinateScore()
     {
@@ -126,26 +175,44 @@ public class ModelGeekOutMasters
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public void nextRound()
     {
+<<<<<<< HEAD
         ronda++;
+=======
+        if(ronda==5)
+        {
+            puntaje=0;
+            ronda=1;
+        }
+        else
+        {
+            ronda++;
+        }
+>>>>>>> 27b4ad435996910691338f34194cf4ad36358c2e
     }
 
-    public String endGame()
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    public boolean endGame()
     {
         if(ronda==5)
         {
             if(puntaje >= 30)
             {
-                mensajeFinal="";//ganó
+                terminar=true;//ganó
             }
             else
             {
-                mensajeFinal="";//perdió
+                terminar=false;//perdió
             }
         }
-        return mensajeFinal;
+        return terminar;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void meeple()
     {
@@ -168,6 +235,8 @@ public class ModelGeekOutMasters
 
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public int getPuntaje()
     {
         return puntaje;
@@ -180,8 +249,16 @@ public class ModelGeekOutMasters
     {
         return caras;
     }
-    public int getDadosActivos()
-    {
+
+    public Dados[] getDadosUtilizados() {
+        return dadosUtilizados;
+    }
+
+    public Dados[] getDadosInactivos() {
+        return dadosInactivos;
+    }
+
+    public Dados[] getDadosActivos() {
         return dadosActivos;
     }
 }
