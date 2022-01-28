@@ -22,11 +22,36 @@ public class Dados
      * #6 = 42: It is the face that allows points to be scored at the end of the round.
      */
     private int cara;
+    private int caraOpuesta;
+
+    public void setNewCara(int newCara)
+    {
+        this.cara = newCara;
+    }
 
     public int getCara()
     {
         Random aleatorio = new Random();
         cara = aleatorio.nextInt(6)+1;
         return cara;
+    }
+
+    public int getCaraOpuesta()
+    {
+        switch (cara)
+        {
+            case 1: caraOpuesta = 2;
+                break;
+            case 2: caraOpuesta = 1;
+                break;
+            case 3: caraOpuesta = 5;
+                break;
+            case 4: caraOpuesta = 6;
+                break;
+            case 5: caraOpuesta = 3;
+                break;
+            case 6: caraOpuesta = 4;
+        }
+        return caraOpuesta;
     }
 }

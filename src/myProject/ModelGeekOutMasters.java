@@ -2,6 +2,7 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * This class is used for apply Geek Out Masters rules.
@@ -16,7 +17,7 @@ public class ModelGeekOutMasters
     private int puntos, puntaje, flag, ronda;
     private int[] caras;
     private boolean terminar;
-    public Dados[] dadosUtilizados, dadosInactivos, dadosActivos;
+    public ArrayList dadosUtilizados, dadosInactivos, dadosActivos;
 
     /**
      * Class Constructor
@@ -41,7 +42,7 @@ public class ModelGeekOutMasters
         flag=0;
         terminar = false;
 
-        dadosActivos = new Dados[7];
+        dadosActivos = new ArrayList();
         dadosInactivos = new Dados[3];
         dadosUtilizados = new Dados[10];
     }
@@ -55,6 +56,10 @@ public class ModelGeekOutMasters
         dadosActivos[4] = dado5;
         dadosActivos[5] = dado6;
         dadosActivos[6] = dado7;
+    }
+
+    public void putInDicesOnDadosUtilizados(Dados dado){
+        dadosUtilizados.(dado);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------

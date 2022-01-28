@@ -22,7 +22,7 @@ public class GUIGeekOutMasters extends JFrame {
             panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4;
     private JTextArea numeroRonda, puntaje;
     private String mensajeFinal = "";
-    private int ronda, puntos;
+    private int ronda, puntos, diceSelection, diceFace;
     private int[] caras;
     private Dados[] dadosUtilizados, dadosInactivos, dadosActivos;
     private static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
@@ -60,30 +60,42 @@ public class GUIGeekOutMasters extends JFrame {
         game = new ModelGeekOutMasters();
         //Set up JComponents
 
+        diceSelection = 1;
+
         imageDado =new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho =imageDado.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
 
         imagenNuevoTamanho =new ImageIcon(imagenOtroTamanho);
         dado1 =new JButton(imagenNuevoTamanho);
         dado1.setBackground(Color.WHITE);
+        dado1.addMouseListener(escucha);
         dado2 =new JButton(imagenNuevoTamanho);
         dado2.setBackground(Color.WHITE);
+        dado2.addMouseListener(escucha);
         dado3 =new JButton(imagenNuevoTamanho);
         dado3.setBackground(Color.WHITE);
+        dado3.addMouseListener(escucha);
         dado4 =new JButton(imagenNuevoTamanho);
         dado4.setBackground(Color.WHITE);
+        dado4.addMouseListener(escucha);
         dado5 =new JButton(imagenNuevoTamanho);
         dado5.setBackground(Color.WHITE);
+        dado5.addMouseListener(escucha);
         dado6 =new JButton(imagenNuevoTamanho);
         dado6.setBackground(Color.WHITE);
+        dado6.addMouseListener(escucha);
         dado7 =new JButton(imagenNuevoTamanho);
         dado7.setBackground(Color.WHITE);
+        dado7.addMouseListener(escucha);
         dado8 =new JButton(imagenNuevoTamanho);
         dado8.setBackground(Color.WHITE);
+        dado8.addMouseListener(escucha);
         dado9 =new JButton(imagenNuevoTamanho);
         dado9.setBackground(Color.WHITE);
+        dado9.addMouseListener(escucha);
         dado10 =new JButton(imagenNuevoTamanho);
         dado10.setBackground(Color.WHITE);
+        dado10.addMouseListener(escucha);
 
         createHeader(constraints);
         createSpace1(constraints);
@@ -447,42 +459,49 @@ public class GUIGeekOutMasters extends JFrame {
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado1.setIcon(imagenNuevoTamanho);
         dado1.setBackground(Color.WHITE);
+        dado1.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[1].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado2.setIcon(imagenNuevoTamanho);
         dado2.setBackground(Color.WHITE);
+        dado2.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[2].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado3.setIcon(imagenNuevoTamanho);
         dado3.setBackground(Color.WHITE);
+        dado3.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[3].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado4.setIcon(imagenNuevoTamanho);
         dado4.setBackground(Color.WHITE);
+        dado4.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[4].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado5.setIcon(imagenNuevoTamanho);
         dado5.setBackground(Color.WHITE);
+        dado5.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[5].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado6.setIcon(imagenNuevoTamanho);
         dado6.setBackground(Color.WHITE);
+        dado6.addMouseListener(escucha);
 
         imageDado = new ImageIcon(getClass().getResource("/resources/" + faceDadosActivos[6].getCara() + ".png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         dado7.setIcon(imagenNuevoTamanho);
         dado7.setBackground(Color.WHITE);
+        dado7.addMouseListener(escucha);
 
         GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
 
@@ -692,11 +711,51 @@ public class GUIGeekOutMasters extends JFrame {
             }
             else
             {
-                switch();
-                case 1:
-                    break;
-                case 2:
-                    break;
+                switch(diceSelection) //dice choice
+                {
+                    case 1:
+
+                        dadosActivos = game.getDadosActivos();
+
+                        if(e.getSource() == dado1)
+                        {
+                            diceFace = dadosActivos[0].getCara();
+
+                            if (diceFace != 5 & diceFace != 6) {
+                                //Move the dice to "Used Dices"
+                                panelDadosUtilizados.add(dado1);
+                                game.
+
+                                //Remove Escucha
+                                dado1.removeMouseListener(escucha);
+                            }
+                        }
+                        else if(e.getSource() == dado2)
+                        {
+
+                        }
+                        else if(e.getSource() == dado3)
+                        {
+
+                        }
+                        else if(e.getSource() == dado4)
+                        {
+
+                        }
+                        else if(e.getSource() == dado5)
+                        {
+
+                        }
+                        else if(e.getSource() == dado6)
+                        {
+
+                        }
+                        else if(e.getSource() == dado7)
+
+                        break;
+                    case 2:
+                        break;
+                }
             }
         }
     }
