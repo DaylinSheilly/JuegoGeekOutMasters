@@ -19,7 +19,7 @@ public class GUIGeekOutMasters extends JFrame {
     private Image imagenOtroTamanho;
     private JButton ayuda, salir, lanzar, nuevaRonda;
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
-            panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4, panelInstrucciones;
+            panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4, panelInstrucciones, panelAccionesDados;
     private JTextArea numeroRonda, puntaje, instrucciones;
     private String mensajeFinal = "";
     private int ronda, puntos, seleccionDado, boton, unDado;
@@ -324,6 +324,25 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco3, constraints);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void createAccionesDadosPane(GridBagConstraints constraints)
+    {
+        panelAccionesDados = new JPanel();
+        panelAccionesDados.setBorder(BorderFactory.createTitledBorder("Acciones que está realizando"));
+        panelAccionesDados.setMinimumSize(new Dimension(500, 200));
+        panelAccionesDados.setBackground(Color.WHITE);
+
+        constraints.gridx = 0;
+        constraints.gridy = 8;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.LINE_START;
+
+        this.add(panelAccionesDados, constraints);
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void createDadosActivosPane(GridBagConstraints constraints)
