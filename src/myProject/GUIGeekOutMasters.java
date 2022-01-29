@@ -149,16 +149,20 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createRoundCount(GridBagConstraints constraints) {
         ronda = 0;
-        numeroRonda = new JTextArea(1, 5);
-        numeroRonda.setText("Ronda: " + ronda);
-        numeroRonda.setBackground(Color.WHITE);
-        numeroRonda.setEditable(false);
 
-        constraints.gridx = 1;
+        numeroRonda = new JTextArea(4, 8);
+        numeroRonda.setMinimumSize(new Dimension(100, 40));
+        numeroRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        numeroRonda.setText("Ronda: " + ronda);
+        numeroRonda.setBackground(new Color(254, 228, 64));
+        numeroRonda.setEditable(false);
+        numeroRonda.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        constraints.gridx = 2;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.WEST;
-        constraints.anchor = GridBagConstraints.WEST;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
         add(numeroRonda, constraints);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
