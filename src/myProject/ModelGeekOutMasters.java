@@ -84,23 +84,11 @@ public class ModelGeekOutMasters
         array.remove(posicionDado);
     }
 
-    public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
-    {
-        array.add(posicion, dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
-    }
-
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
     {
         array.add(dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void determinateScore()
@@ -161,13 +149,11 @@ public class ModelGeekOutMasters
     {
         if(ronda==5)
         {
-            flag=0;
             puntaje=0;
             ronda=1;
         }
         else
         {
-            flag=0;
             if(dadosActivosArray.size()!=0)
             {
                 dadosActivosArray.clear();
@@ -214,19 +200,20 @@ public class ModelGeekOutMasters
         switch (caraPoder)
         {
             case 1: //Meeple
+                dadosActivosArray.get(posicionDadoActivo).newCara();
                 break;
             case 2: //Spaceship
                 addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
                 removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
                 break;
             case 3: //Superhero
+                dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
                 break;
             case 4: //Heart
                 addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
                 removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-                addDiceFromArray(dadosActivosArray,dadosUtilizadosArray.get(flag),posicionDadoActivo);
+                addDiceFromArray(dadosActivosArray,dadosUtilizadosArray.get(0));
                 removeDiceFromArray(0,dadosInactivosArray);
-                JOptionPane.showMessageDialog(null, dadosInactivosArray.size());
                 break;
         }
     }
