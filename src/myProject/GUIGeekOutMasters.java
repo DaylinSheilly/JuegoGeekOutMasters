@@ -77,10 +77,11 @@ public class GUIGeekOutMasters extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("GeekOutMasterGame");
-        //this.setSize(200,100);
-        this.pack();
-        //th/is.setUndecorated(true);
-        this.setResizable(true);
+        this.setSize(1202, 580);
+        //this.pack();
+        //this.setSize(2000,2000);
+        this.setUndecorated(true);
+        this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
