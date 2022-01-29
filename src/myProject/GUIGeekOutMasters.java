@@ -165,15 +165,19 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createPointCounter(GridBagConstraints constraints) {
         puntos = 0;
-        puntaje = new JTextArea(1, 5);
+
+        puntaje = new JTextArea(4, 8);
+        puntaje.setMinimumSize(new Dimension(100, 40));
+        puntaje.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         puntaje.setText("Puntaje: " + puntos);
         puntaje.setBackground(Color.WHITE);
         puntaje.setEditable(false);
+        puntaje.setBorder(BorderFactory.createRaisedBevelBorder());
 
         constraints.gridx = 4;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
         add(puntaje, constraints);
     }
@@ -296,7 +300,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 8;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_END;
 
         this.add(panelDadosActivos, constraints);
 
