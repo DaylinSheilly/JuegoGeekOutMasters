@@ -24,8 +24,10 @@ public class GUIGeekOutMasters extends JFrame {
     private String mensajeFinal = "";
     private int ronda, puntos, seleccionDado, boton, unDado;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
-    private static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
-            + "El juego inicia cuando presiones Nueva ronda\n";
+    private static final String MENSAJE_INICIO =
+                    "¡¡Bienvenido a Geek Out Masters!! \n"
+                    +"\nPresiona \"Nueva ronda\" para comenzar a jugar.\n"
+                    + "\nRecuerda leer las instrucciones, en el botón azul, para entender cómo jugar.";
     private  static final String INSTRUCCIONES =
                     "Lo primero que debes saber es que los dados aparecen aleatoriamente"
                     + " después de presionar \"Nueva ronda.\"\n"
