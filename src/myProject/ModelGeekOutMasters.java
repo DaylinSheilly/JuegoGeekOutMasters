@@ -14,9 +14,8 @@ import java.util.ArrayList;
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, flag, ronda, caraPoder;
+    private int puntos, puntaje, flag, ronda, caraPoder, unDado, dados42, dadosDragon;
     private boolean terminar;
-    private int[] caras;
     public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray;
 
     /**
@@ -35,11 +34,11 @@ public class ModelGeekOutMasters
         dado8 = new Dados();
         dado9 = new Dados();
         dado10 = new Dados();
-        caras = new int[7];
 
         ronda=0;
         puntaje=0;
         flag=0;
+        puntos=0;
 
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
@@ -155,6 +154,38 @@ public class ModelGeekOutMasters
         }
     }
 
+    public void roundPoints()
+    {
+        dados42 = 0;
+        for(unDado=0;unDado<10;unDado++)
+        {
+            if (dadosActivosArray.get(unDado) != null)
+            {
+                if (dadosActivosArray.get(unDado).getCara() == 6)
+                {
+                    dados42++;
+                }
+            }
+        }
+        puntos = puntos+dados42;
+    }
+
+    public void drakeDices()
+    {
+        dadosDragon = 0;
+        for(unDado=0;unDado<10;unDado++)
+        {
+            if (dadosActivosArray.get(unDado) != null)
+            {
+                if (dadosActivosArray.get(unDado).getCara() == 6)
+                {
+                    puntos = 0;
+                    puntaje = 0;
+                }
+            }
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void nextRound()
@@ -211,24 +242,40 @@ public class ModelGeekOutMasters
     {
         caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
 
-        switch (caraPoder)
+        JOptionPane.showMessageDialog(null, "antes");
+        for(int i=0;i<dadosActivosArray.size();i++)
         {
-            case 1: //Meeple
-                break;
-            case 2: //Spaceship
-                addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
-                removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-                break;
-            case 3: //Superhero
-                break;
-            case 4: //Heart
-                addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
-                removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-                addDiceFromArray(dadosActivosArray,dadosUtilizadosArray.get(flag),posicionDadoActivo);
-                removeDiceFromArray(0,dadosInactivosArray);
-                JOptionPane.showMessageDialog(null, dadosInactivosArray.size());
-                break;
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
         }
+        addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+        JOptionPane.showMessageDialog(null, "despues");
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
+        JOptionPane.showMessageDialog(null, "listo");
+    }
+
+    public void meeple(int posicionDadoActivo)
+    {
+        JOptionPane.showMessageDialog(null,"meeple acción");
+    }
+    public void spaceship(int posicionDadoActivo)
+    {
+        addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+        JOptionPane.showMessageDialog(null,"cohete acción");
+    }
+    public void superhero(int posicionDadoActivo)
+    {
+        JOptionPane.showMessageDialog(null,"superheroe acción");
+    }
+    public void heart(int posicionDadoActivo)
+    {
+        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(flag),posicionDadoActivo);
+        removeDiceFromArray(flag,dadosInactivosArray);
+        JOptionPane.showMessageDialog(null,"corazón acción");
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
