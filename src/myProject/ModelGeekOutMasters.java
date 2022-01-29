@@ -2,7 +2,7 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
-
+/*
 /**
  * This class is used for apply Geek Out Masters rules.
  * @autor Sheilly Ortega, sheilly.ortega@correounivalle.edu.co
