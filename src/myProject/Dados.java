@@ -24,15 +24,20 @@ public class Dados
     private int cara;
     private int caraOpuesta;
 
-    public void setNewCara(int newCara)
+    public int getCara() {
+        return cara;
+    }
+
+    public void setCara(int newCara)
     {
         this.cara = newCara;
     }
 
-    public int getCara()
+    public int newCara()
     {
         Random aleatorio = new Random();
         cara = aleatorio.nextInt(6)+1;
+        setCara(cara);
         return cara;
     }
 
@@ -52,6 +57,7 @@ public class Dados
                 break;
             case 6: caraOpuesta = 4;
         }
+        setCara(caraOpuesta);
         return caraOpuesta;
     }
 }
