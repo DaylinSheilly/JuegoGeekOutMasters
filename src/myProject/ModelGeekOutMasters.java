@@ -230,21 +230,41 @@ public class ModelGeekOutMasters
     public void meeple(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).newCara();
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
     }
     public void spaceship(int posicionDadoActivo)
     {
         addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
     }
     public void superhero(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
     }
     public void heart(int posicionDadoActivo)
     {
         dadosInactivosArray.get(0).newCara();
         addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
         removeDiceFromArray(0,dadosInactivosArray);
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
