@@ -2,6 +2,7 @@ package myProject;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 /**
  * This class is used for apply Geek Out Masters rules.
@@ -13,10 +14,9 @@ import java.awt.*;
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, flag, ronda;
-    private int[] caras;
+    private int puntos, puntaje, flag, ronda, caraPoder, unDado, dados42, dadosDragon;
     private boolean terminar;
-    public Dados[] dadosUtilizados, dadosInactivos, dadosActivos;
+    public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
 
     /**
      * Class Constructor
@@ -34,88 +34,73 @@ public class ModelGeekOutMasters
         dado8 = new Dados();
         dado9 = new Dados();
         dado10 = new Dados();
-        caras = new int[7];
 
         ronda=0;
         puntaje=0;
         flag=0;
-        terminar = false;
+        puntos=0;
 
-        dadosActivos = new Dados[7];
-        dadosInactivos = new Dados[3];
-        dadosUtilizados = new Dados[10];
+        dadosActivosArray = new ArrayList<Dados>();
+        dadosInactivosArray = new ArrayList<Dados>();
+        dadosUtilizadosArray = new ArrayList<Dados>();
+        unArray = new ArrayList<Dados>();
+
+        determinateDadosActivos();
+        determinateDadosInactivos();
     }
 
     public void determinateDadosActivos()
     {
-        dadosActivos[0] = dado1;
-        dadosActivos[1] = dado2;
-        dadosActivos[2] = dado3;
-        dadosActivos[3] = dado4;
-        dadosActivos[4] = dado5;
-        dadosActivos[5] = dado6;
-        dadosActivos[6] = dado7;
+        dadosActivosArray.add(dado1);
+        dadosActivosArray.add(dado2);
+        dadosActivosArray.add(dado3);
+        dadosActivosArray.add(dado4);
+        dadosActivosArray.add(dado5);
+        dadosActivosArray.add(dado6);
+        dadosActivosArray.add(dado7);
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Establish a number that represents the face of each dice in the game
-     */
-
-    public void calculateShot()
+    public void determinateDadosInactivos()
     {
-        for(flag=0;flag<7;flag++)
-        {
-            dadosActivos[flag].getCara();
-        }
+        dadosInactivosArray.add(dado8);
+        dadosInactivosArray.add(dado9);
+        dadosInactivosArray.add(dado10);
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------
+    public ArrayList<Dados> getDadosUtilizadosArray() {
+        return dadosUtilizadosArray;
+    }
 
-    /**
-     * Count the amount of 42 that were obtained in the round
-     * @return
-     */
+    public ArrayList<Dados> getDadosInactivosArray() {
+        return dadosInactivosArray;
+    }
 
-    public int calculatePoints()
+    public ArrayList<Dados> getDadosActivosArray() {
+        return dadosActivosArray;
+    }
+
+    public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array)
     {
-        for(flag=0;flag<7;flag++)
-        {
-            if(caras[flag]==6)//If the dice face is 42 at end of a round incremed one point.
-            {
-                puntos=puntos+1;
-                return 1;
-            }
-            else if(caras[flag]==0)
-            {
-                puntos=puntos;
-                return 1;
-            }
-            else if(caras[flag]==0)
-            {
-
-            }
-            else
-            {
-                return 0;
-            }
-        }
-        flag=0;
-        if(7==1)
-        {
-            for(flag=0;flag<7;flag++)
-            {
-                if (caras[flag] == 5)
-                {
-                    puntos = 0;
-                    return 1;
-                }
-            }
-        }
-        return 1;
+        array.remove(posicionDado);
     }
 
+    public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
+    {
+        array.add(posicion, dado);
+        if(array==dadosUtilizadosArray)
+        {
+            flag++;
+        }
+    }
+
+    public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
+    {
+        array.add(dado);
+        if(array==dadosUtilizadosArray)
+        {
+            flag++;
+        }
+    }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void determinateScore()
@@ -170,17 +155,60 @@ public class ModelGeekOutMasters
         }
     }
 
+    public void roundPoints()
+    {
+        dados42 = 0;
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
+        {
+            if (dadosActivosArray.get(unDado).getCara() == 6)
+            {
+                dados42++;
+            }
+        }
+        puntos = puntos+dados42;
+    }
+
+    public void drakeDices()
+    {
+        dadosDragon = 0;
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
+        {
+            if (dadosActivosArray.get(unDado).getCara() == 5)
+            {
+                puntos = 0;
+                puntaje = 0;
+            }
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void nextRound()
     {
         if(ronda==5)
         {
+            flag=0;
             puntaje=0;
             ronda=1;
         }
         else
         {
+            flag=0;
+            if(dadosActivosArray.size()!=0)
+            {
+                dadosActivosArray.clear();
+            }
+            if(dadosInactivosArray.size()!=0)
+            {
+                dadosInactivosArray.clear();
+            }
+            if(dadosUtilizadosArray.size()!=0)
+            {
+                dadosUtilizadosArray.clear();
+            }
+            determinateDadosActivos();
+            determinateDadosInactivos();
+
             ronda++;
         }
     }
@@ -205,25 +233,32 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void meeple()
+    public void powers(int posicionDadoActivo)
     {
+        caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
 
+        addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
     }
-    public void spaceship()
-    {
 
+    public void meeple(int posicionDadoActivo)
+    {
+        dadosActivosArray.get(posicionDadoActivo).newCara();
     }
-    public void superhero()
+    public void spaceship(int posicionDadoActivo)
     {
-
+        addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
     }
-    public void heart()
+    public void superhero(int posicionDadoActivo)
     {
-
+        dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
     }
-    public void dragon()
+    public void heart(int posicionDadoActivo)
     {
-
+        dadosInactivosArray.get(0).newCara();
+        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
+        removeDiceFromArray(0,dadosInactivosArray);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -235,21 +270,5 @@ public class ModelGeekOutMasters
     public int getRonda()
     {
         return ronda;
-    }
-    public int[] getCaras()
-    {
-        return caras;
-    }
-
-    public Dados[] getDadosUtilizados() {
-        return dadosUtilizados;
-    }
-
-    public Dados[] getDadosInactivos() {
-        return dadosInactivos;
-    }
-
-    public Dados[] getDadosActivos() {
-        return dadosActivos;
     }
 }
