@@ -17,7 +17,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JButton dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private ImageIcon imageDado, imagenNuevoTamanho;
     private Image imagenOtroTamanho;
-    private JButton ayuda, salir, lanzar, nuevaRonda;
+    private JButton ayuda, salir, nuevaRonda;
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
             panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4, panelInstrucciones, panelAccionesDados;
     private JTextArea numeroRonda, puntaje, instrucciones;
@@ -71,7 +71,7 @@ public class GUIGeekOutMasters extends JFrame {
     private ModelGeekOutMasters game;
 
     /**
-     * Constructor of GUI class
+     * Constructor of GUI class.
      */
     public GUIGeekOutMasters() {
         initGUI();
@@ -88,9 +88,11 @@ public class GUIGeekOutMasters extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     /**
      * This method is used to set up the default JComponent Configuration,
-     * create Listener and control Objects used for the GUI class
+     * create Listener and control Objects used for the GUI class.
      */
     private void initGUI() {
         //Set up JFrame Container's Layout
@@ -149,6 +151,13 @@ public class GUIGeekOutMasters extends JFrame {
         createAccionesDadosPane(constraints);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * This function creates the header.
+     * @param constraints
+     */
+
     public void createHeader(GridBagConstraints constraints) {
         headerProject = new Header("Geek Out Masters", Color.GRAY);
         constraints.gridx = 0;
@@ -160,6 +169,11 @@ public class GUIGeekOutMasters extends JFrame {
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates white space to separate the header and ayuda button, ronda, puntaje and salir button.
+     * @param constraints
+     */
 
     public void createSpace1(GridBagConstraints constraints) {
         panelEspacioEnBlanco1 = new JPanel();
@@ -173,6 +187,11 @@ public class GUIGeekOutMasters extends JFrame {
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the ayuda button.
+     * @param constraints
+     */
 
     public void createHelpButton(GridBagConstraints constraints) {
         ayuda = new JButton(" ? ");
@@ -190,6 +209,11 @@ public class GUIGeekOutMasters extends JFrame {
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the text box to display the number of rounds.
+     * @param constraints
+     */
 
     public void createRoundCount(GridBagConstraints constraints) {
         ronda = 0;
@@ -209,7 +233,13 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         add(numeroRonda, constraints);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the text box to display the score.
+     * @param constraints
+     */
 
     public void createPointCounter(GridBagConstraints constraints) {
         puntos = 0;
@@ -229,7 +259,13 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.anchor = GridBagConstraints.CENTER;
         add(puntaje, constraints);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the salir button.
+     * @param constraints
+     */
 
     public void createExitButton(GridBagConstraints constraints) {
         salir = new JButton("Salir");
@@ -245,7 +281,13 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(salir, constraints);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates white space to separate the buttons and texts box of  panelDadosUtilizados.
+     * @param constraints
+     */
 
     public void createSpace2(GridBagConstraints constraints) {
         panelEspacioEnBlanco2 = new JPanel();
@@ -257,11 +299,17 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco2, constraints);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the DadosUtilizados panel.
+     * @param constraints
+     */
 
     public void createDadosUtilizadosPane(GridBagConstraints constraints) {
         panelDadosUtilizados = new JPanel();
-        panelDadosUtilizados.setMinimumSize(new Dimension(600, 200));
+        panelDadosUtilizados.setMinimumSize(new Dimension(590, 200));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
         rePaintDadosUtilizados();
@@ -276,8 +324,12 @@ public class GUIGeekOutMasters extends JFrame {
         this.add(panelDadosUtilizados, constraints);
     }
 
-
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the DadosInactivos panel.
+     * @param constraints
+     */
 
     public void createDadosInactivosPane(GridBagConstraints constraints) {
         panelDadosInactivos = new JPanel();
@@ -301,6 +353,10 @@ public class GUIGeekOutMasters extends JFrame {
         determinateBotonesInactivos();
     }
 
+    /**
+     * This function determinates how dices are in the panelDadosInactivos.
+     */
+
     public void determinateBotonesInactivos()
     {
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
@@ -316,6 +372,12 @@ public class GUIGeekOutMasters extends JFrame {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function creates white space to separate the panelDadosUtilizados and panelDadosInactivos of
+     * panelDadosActivos and panelAccioonesDados.
+     * @param constraints
+     */
+
     public void createSpace3(GridBagConstraints constraints)
     {
         panelEspacioEnBlanco3 = new JPanel();
@@ -330,11 +392,16 @@ public class GUIGeekOutMasters extends JFrame {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function creates the AccionesDados panel.
+     * @param constraints
+     */
+
     public void createAccionesDadosPane(GridBagConstraints constraints)
     {
         panelAccionesDados = new JPanel();
         panelAccionesDados.setBorder(BorderFactory.createTitledBorder("Acciones que está realizando"));
-        panelAccionesDados.setMinimumSize(new Dimension(500, 200));
+        panelAccionesDados.setPreferredSize(new Dimension(500, 200));
         panelAccionesDados.setBackground(Color.WHITE);
 
         constraints.gridx = 0;
@@ -347,6 +414,11 @@ public class GUIGeekOutMasters extends JFrame {
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the DadosActivos panel.
+     * @param constraints
+     */
 
     public void createDadosActivosPane(GridBagConstraints constraints)
     {
@@ -374,6 +446,12 @@ public class GUIGeekOutMasters extends JFrame {
         determinateBotonesActivos();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function determinates how dices are in the panelDadosActivos.
+     */
+
     public void determinateBotonesActivos()
     {
         for(boton=0;boton<botonesEnDadosActivos.size();boton++)
@@ -399,6 +477,11 @@ public class GUIGeekOutMasters extends JFrame {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function creates white space to separate the panelDadosActivos and panelAccioonesDados of Nueva Ronda button.
+     * @param constraints
+     */
+
     public void createSpace4(GridBagConstraints constraints)
     {
         panelEspacioEnBlanco4 = new JPanel();
@@ -411,6 +494,11 @@ public class GUIGeekOutMasters extends JFrame {
         this.add(panelEspacioEnBlanco4, constraints);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function creates the Nueva Ronda button.
+     * @param constraints
+     */
 
     public void createNewRoundButton(GridBagConstraints constraints)
     {
@@ -431,6 +519,9 @@ public class GUIGeekOutMasters extends JFrame {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function updates DadosActivos panel each time the power of one of the dice is run.
+     */
     public void rePaintDadosActivos()
     {
         panelDadosActivos.removeAll();
@@ -537,10 +628,17 @@ public class GUIGeekOutMasters extends JFrame {
         repaint();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function updates DadosInactivos panel each time the power of one of the dice is run.
+     */
+
     private void rePaintDadosInactivos()
     {
         panelDadosInactivos.removeAll();
 
+        setPreferredSize(new Dimension(600, 300));
         panelDadosInactivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelInactivos = new GridBagConstraints();
 
@@ -635,10 +733,16 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosInactivos.updateUI();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function updates DadosUtilizados panel each time the power of one of the dice is run.
+     */
     private void rePaintDadosUtilizados()
     {
         panelDadosUtilizados.removeAll();
 
+        panelDadosUtilizados.setPreferredSize(new Dimension(800, 600));
         panelDadosUtilizados.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelUtilizados = new GridBagConstraints();
 
@@ -733,6 +837,8 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosUtilizados.updateUI();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     /**
      * Main process of the Java program
      *
@@ -749,7 +855,7 @@ public class GUIGeekOutMasters extends JFrame {
         });
     }
 
-
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
@@ -766,12 +872,14 @@ public class GUIGeekOutMasters extends JFrame {
                     if(game.endGame())
                     {
                         mensajeFinal="¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
+                        JOptionPane.showMessageDialog(null, mensajeFinal);
                     }
                     else
                     {
                         mensajeFinal="Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
+                        JOptionPane.showMessageDialog(null, mensajeFinal);
                     }
-                    JOptionPane.showMessageDialog(null, mensajeFinal);
+                    //JOptionPane.showMessageDialog(null, mensajeFinal);
                 }
                 else
                 {

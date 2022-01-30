@@ -48,6 +48,12 @@ public class ModelGeekOutMasters
         determinateDadosInactivos();
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function addes the active dices an DadosActivos array.
+     */
+
     public void determinateDadosActivos()
     {
         dadosActivosArray.add(dado1);
@@ -59,6 +65,12 @@ public class ModelGeekOutMasters
         dadosActivosArray.add(dado7);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function addes the active dices an DadosActivos array.
+     */
+
     public void determinateDadosInactivos()
     {
         dadosInactivosArray.add(dado8);
@@ -66,32 +78,57 @@ public class ModelGeekOutMasters
         dadosInactivosArray.add(dado10);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     */
+
     public ArrayList<Dados> getDadosUtilizadosArray() {
         return dadosUtilizadosArray;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     */
 
     public ArrayList<Dados> getDadosInactivosArray() {
         return dadosInactivosArray;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     *
+     */
+
     public ArrayList<Dados> getDadosActivosArray() {
         return dadosActivosArray;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array)
     {
         array.remove(posicionDado);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
     {
         array.add(posicion, dado);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
     {
         array.add(dado);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void determinateScore()
@@ -146,6 +183,8 @@ public class ModelGeekOutMasters
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
     public void roundPoints()
     {
         dados42 = 0;
@@ -158,6 +197,8 @@ public class ModelGeekOutMasters
         }
         puntos = puntos+dados42;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void drakeDices()
     {
