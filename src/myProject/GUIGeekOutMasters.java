@@ -19,14 +19,54 @@ public class GUIGeekOutMasters extends JFrame {
     private Image imagenOtroTamanho;
     private JButton ayuda, salir, lanzar, nuevaRonda;
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
-            panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4;
-    private JTextArea numeroRonda, puntaje;
+            panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4, panelInstrucciones, panelAccionesDados;
+    private JTextArea numeroRonda, puntaje, instrucciones;
     private String mensajeFinal = "";
     private String poder = "";
     private int ronda, puntos, seleccionDado, boton, unBoton;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
-    private static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
-            + "El juego inicia cuando presiones Nueva ronda\n";
+    private static final String MENSAJE_INICIO =
+                    "¡¡Bienvenido a Geek Out Masters!! \n"
+                    +"\nPresiona \"Nueva ronda\" para comenzar a jugar.\n"
+                    + "\nRecuerda leer las instrucciones, en el botón azul, para entender cómo jugar.";
+    private  static final String INSTRUCCIONES =
+                    "Lo primero que debes saber es que los dados aparecen aleatoriamente"
+                    + " después de presionar \"Nueva ronda.\"\n"
+                    + "\nDe los 10 dados que trae el juego se toman 3 y se colocan en el sector de \"Dados\""
+                    + "Inactivos\". Los otros 7 dados se tiran y pasan a ser los \"Dados Activos\".\n"
+                    + "\nSe van eligiendo los dados a utilizar según las habilidades de sus caras y se pasan"
+                    + " al sector de \"Dados Utilizados\".\n"
+                    + "\nSi como último dado activo queda un Dragón, se perderán todos los puntos acumulados.\n"
+                    + "\nEste juego lo jugará un único jugador y ganará si logra sumar 30 puntos en 5 rondas"
+                    + " consecutivas de juego.\n"
+                    + "\nTienes disponibles los siguientes dados:\n"
+                    + "\n 1. El Meeple permite relanzar otro dado en juego, es decir, de la sección dados activos.\n"
+                    + "\n 2. La Nave Espacial envía un dado no usado (de la sección dados activos) a la sección de"
+                    + "  dados inactivos.\n"
+                    + "\n 3. El Superhéroe permite que cualquier dado no usado (sección dados activos) sea volteado"
+                    + "  y colocado en su cara opuesta.\n"
+                    + "\n 4. El Corazón permite tomar un dado de la sección de dados inactivos y lanzarlo para que"
+                    + "  sea un nuevo dado activo.\n"
+                    + "\n 5. El Dragón es la cara que se quiere evitar, ya que, si al final de la ronda es el último"
+                    + "  dado activo que queda se habrán perdido todos los puntos ganados y acumulados.\n"
+                    + "\n 6. 42 es la cara que permite sumar puntos al final de la ronda.\n"
+                    + "\nEs importante que sepas que las caras contrarias del dado corresponden a sus colores, es"
+                    + " decir, la cara contraria al Corazón es el 42, ya que, tienen el mismo color (rojo); la cara"
+                    + " contraria del Meeple es la Nave Espacial y la cara contraria del Superhéroe es el Dragón.\n"
+                    + "\nPara activar el poder de un dado, debes presionar el dado que vas a activar y luego presionar"
+                    + " el dado al que le vas a aplicar el poder.\n"
+                    + "\nAl finalizar cada turno o ronda se cuenta la cantidad de dados con cara 42 en el área de dados"
+                    + " puntuados teniendo en cuenta las reglas de la siguiente imagen. Se debe tener presente que, en"
+                    + " cualquier ronda, existe el riesgo de quedar con un dragón en la zona de dados activos, en cuyo"
+                    + " caso, los puntos dela ronda como los puntos acumulados (si se han jugado varias rondas) son"
+                    + " eliminados, quedando con cero puntos.\n"
+                    + "\nA continuación se listan las reglas para la asignación de puntos:\n"
+                    + "\n1 Dado 42 -> 1 Punto       6 Dados 42 -> 21 Puntos\n"
+                    + "\n2 Dados 42 -> 3 Puntos     7 Dados 42 -> 28 Puntos\n"
+                    + "\n3 Dados 42 -> 6 Puntos     8 Dados 42 -> 36 Puntos\n"
+                    + "\n4 Dados 42 -> 10 Puntos    9 Dados 42 -> 45 Puntos\n"
+                    + "\n5 Dados 42 -> 15 Puntos    10 Dados 42 -> 55 Puntos\n";
+
     private Escucha escucha;
     private ModelGeekOutMasters game;
 
@@ -38,10 +78,11 @@ public class GUIGeekOutMasters extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("GeekOutMasterGame");
-        //this.setSize(200,100);
-        this.pack();
-        //th/is.setUndecorated(true);
-        this.setResizable(true);
+        this.setSize(1202, 580);
+        //this.pack();
+        //this.setSize(2000,2000);
+        this.setUndecorated(true);
+        this.setResizable(false);
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -105,6 +146,7 @@ public class GUIGeekOutMasters extends JFrame {
         createDadosActivosPane(constraints);
         createSpace4(constraints);
         createNewRoundButton(constraints);
+        createAccionesDadosPane(constraints);
     }
 
     public void createHeader(GridBagConstraints constraints) {
@@ -151,31 +193,39 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createRoundCount(GridBagConstraints constraints) {
         ronda = 0;
-        numeroRonda = new JTextArea(1, 5);
-        numeroRonda.setText("Ronda: " + ronda);
-        numeroRonda.setBackground(Color.WHITE);
-        numeroRonda.setEditable(false);
 
-        constraints.gridx = 1;
+        numeroRonda = new JTextArea(4, 8);
+        numeroRonda.setMinimumSize(new Dimension(100, 40));
+        numeroRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
+        numeroRonda.setText("Ronda: " + ronda);
+        numeroRonda.setBackground(new Color(254, 228, 64));
+        numeroRonda.setEditable(false);
+        numeroRonda.setBorder(BorderFactory.createRaisedBevelBorder());
+
+        constraints.gridx = 2;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.WEST;
-        constraints.anchor = GridBagConstraints.WEST;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.CENTER;
         add(numeroRonda, constraints);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void createPointCounter(GridBagConstraints constraints) {
         puntos = 0;
-        puntaje = new JTextArea(1, 5);
+
+        puntaje = new JTextArea(4, 8);
+        puntaje.setMinimumSize(new Dimension(100, 40));
+        puntaje.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         puntaje.setText("Puntaje: " + puntos);
         puntaje.setBackground(Color.WHITE);
         puntaje.setEditable(false);
+        puntaje.setBorder(BorderFactory.createRaisedBevelBorder());
 
         constraints.gridx = 4;
         constraints.gridy = 2;
         constraints.gridwidth = 1;
-        constraints.fill = GridBagConstraints.CENTER;
+        constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.CENTER;
         add(puntaje, constraints);
     }
@@ -277,6 +327,25 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco3, constraints);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    public void createAccionesDadosPane(GridBagConstraints constraints)
+    {
+        panelAccionesDados = new JPanel();
+        panelAccionesDados.setBorder(BorderFactory.createTitledBorder("Acciones que está realizando"));
+        panelAccionesDados.setMinimumSize(new Dimension(500, 200));
+        panelAccionesDados.setBackground(Color.WHITE);
+
+        constraints.gridx = 0;
+        constraints.gridy = 8;
+        constraints.gridwidth = 5;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.anchor = GridBagConstraints.LINE_START;
+
+        this.add(panelAccionesDados, constraints);
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void createDadosActivosPane(GridBagConstraints constraints)
@@ -298,7 +367,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 8;
         constraints.gridwidth = 5;
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_END;
 
         this.add(panelDadosActivos, constraints);
 
@@ -756,7 +825,25 @@ public class GUIGeekOutMasters extends JFrame {
             }
             else if (e.getSource() == ayuda)
             {
-                JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
+                panelInstrucciones = new JPanel();
+                panelInstrucciones.setBackground(Color.WHITE);
+                panelInstrucciones.setBorder(BorderFactory.createTitledBorder("Instrucciones del juego."));
+                panelInstrucciones.setLayout(new BorderLayout());
+
+                instrucciones = new JTextArea();
+                instrucciones.setText(INSTRUCCIONES);
+                instrucciones.setLineWrap(true);
+                instrucciones.setPreferredSize(new Dimension(408, 1000));
+                instrucciones.setWrapStyleWord(true);
+                instrucciones.setLineWrap(true);
+                instrucciones.setEditable(false);
+
+                panelInstrucciones.add(instrucciones, BorderLayout.LINE_START);
+
+                JScrollPane scroll = new JScrollPane(panelInstrucciones);
+                scroll.setPreferredSize(new Dimension(435, 400));
+
+                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego", JOptionPane.INFORMATION_MESSAGE);
             }
             else if(e.getSource() == salir)
             {
