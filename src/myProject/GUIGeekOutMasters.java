@@ -248,10 +248,10 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelDadosInactivos, constraints);
 
-        determinateDadosInactivos();
+        determinateBotonesInactivos();
     }
 
-    public void determinateDadosInactivos()
+    public void determinateBotonesInactivos()
     {
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -302,10 +302,10 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelDadosActivos, constraints);
 
-        determinateDadosActivos();
+        determinateBotonesActivos();
     }
 
-    public void determinateDadosActivos()
+    public void determinateBotonesActivos()
     {
         for(boton=0;boton<botonesEnDadosActivos.size();boton++)
         {
@@ -733,8 +733,6 @@ public class GUIGeekOutMasters extends JFrame {
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
 
-                    game.determinateDadosInactivos();
-
                     if(botonesEnDadosInactivos.size()!=0)
                     {
                         botonesEnDadosInactivos.clear();
@@ -742,8 +740,6 @@ public class GUIGeekOutMasters extends JFrame {
                     createDadosInactivosPane(constraints);
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    game.determinateDadosActivos();
 
                     if(botonesEnDadosActivos.size()!=0)
                     {
@@ -777,24 +773,24 @@ public class GUIGeekOutMasters extends JFrame {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
                         if (poder == "meeple") {
                             JOptionPane.showMessageDialog(null, "meeple 2");
-                            game.meeple(game.dadosActivosArray.get(boton).getCara());
+                            game.meeple(boton);
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         } else if (poder == "cohete") {
                             JOptionPane.showMessageDialog(null, "cohete 2");
-                            game.spaceship(game.dadosActivosArray.get(boton).getCara());
+                            game.spaceship(boton);
 
                             botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
                             botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
                             botonesEnDadosActivos.remove(boton);
                         } else if (poder == "superheroe") {
                             JOptionPane.showMessageDialog(null, "superheroe 2");
-                            game.superhero(game.dadosActivosArray.get(boton).getCara());
+                            game.superhero(boton);
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCaraOpuesta() + ".png"));
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
@@ -837,12 +833,7 @@ public class GUIGeekOutMasters extends JFrame {
                                 JOptionPane.showMessageDialog(null, "superheroe 1");
                                 poder = "superheroe";
                             }
-                            JOptionPane.showMessageDialog(null, "dados");
-                            for(int i=0;i<botonesEnDadosActivos.size();i++)
-                            {
-                                JOptionPane.showMessageDialog(null, botonesEnDadosActivos.get(i));
-                            }
-                            game.powers(game.dadosActivosArray.get(boton).getCara());
+                            game.powers(boton);
                             seleccionDado = 4;
 
                             rePaintDadosActivos();
@@ -852,7 +843,7 @@ public class GUIGeekOutMasters extends JFrame {
                         } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
                             JOptionPane.showMessageDialog(null, "corazón");
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
@@ -861,7 +852,8 @@ public class GUIGeekOutMasters extends JFrame {
                             botonesEnDadosInactivos.remove(unBoton);
                             unBoton++;
 
-                            game.heart(game.dadosActivosArray.get(boton).getCara());
+                            game.powers(boton);
+                            game.heart(boton);
 
                             rePaintDadosActivos();
                             rePaintDadosUtilizados();

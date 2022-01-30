@@ -16,7 +16,7 @@ public class ModelGeekOutMasters
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private int puntos, puntaje, flag, ronda, caraPoder, unDado, dados42, dadosDragon;
     private boolean terminar;
-    public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray;
+    public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
 
     /**
      * Class Constructor
@@ -43,6 +43,7 @@ public class ModelGeekOutMasters
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
         dadosUtilizadosArray = new ArrayList<Dados>();
+        unArray = new ArrayList<Dados>();
 
         determinateDadosActivos();
         determinateDadosInactivos();
@@ -157,9 +158,9 @@ public class ModelGeekOutMasters
     public void roundPoints()
     {
         dados42 = 0;
-        for(unDado=0;unDado<10;unDado++)
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
         {
-            if (dadosActivosArray.get(unDado) != null)
+            if (dadosActivosArray != null)
             {
                 if (dadosActivosArray.get(unDado).getCara() == 6)
                 {
@@ -242,6 +243,7 @@ public class ModelGeekOutMasters
     {
         caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
 
+        JOptionPane.showMessageDialog(null, "tamaño: "+dadosActivosArray.size());
         JOptionPane.showMessageDialog(null, "antes");
         for(int i=0;i<dadosActivosArray.size();i++)
         {
@@ -249,33 +251,56 @@ public class ModelGeekOutMasters
         }
         addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+        JOptionPane.showMessageDialog(null, posicionDadoActivo);
         JOptionPane.showMessageDialog(null, "despues");
+    }
+
+    public void meeple(int posicionDadoActivo)
+    {
+        dadosActivosArray.get(posicionDadoActivo).newCara();
+        JOptionPane.showMessageDialog(null,"meeple acción");
+
         for(int i=0;i<dadosActivosArray.size();i++)
         {
             JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
         }
         JOptionPane.showMessageDialog(null, "listo");
     }
-
-    public void meeple(int posicionDadoActivo)
-    {
-        JOptionPane.showMessageDialog(null,"meeple acción");
-    }
     public void spaceship(int posicionDadoActivo)
     {
         addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
         JOptionPane.showMessageDialog(null,"cohete acción");
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
+        JOptionPane.showMessageDialog(null, "listo");
     }
     public void superhero(int posicionDadoActivo)
     {
+        dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
         JOptionPane.showMessageDialog(null,"superheroe acción");
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
+        JOptionPane.showMessageDialog(null, "listo");
     }
     public void heart(int posicionDadoActivo)
     {
-        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(flag),posicionDadoActivo);
-        removeDiceFromArray(flag,dadosInactivosArray);
+        dadosInactivosArray.get(0).newCara();
+        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
+        removeDiceFromArray(0,dadosInactivosArray);
         JOptionPane.showMessageDialog(null,"corazón acción");
+
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+        }
+        JOptionPane.showMessageDialog(null, "listo");
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
