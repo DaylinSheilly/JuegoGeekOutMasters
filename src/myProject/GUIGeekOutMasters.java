@@ -773,7 +773,7 @@ public class GUIGeekOutMasters extends JFrame {
                         if (poder == "meeple") {
                             game.meeple(boton);
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
@@ -786,7 +786,7 @@ public class GUIGeekOutMasters extends JFrame {
                         } else if (poder == "superheroe") {
                             game.superhero(boton);
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);

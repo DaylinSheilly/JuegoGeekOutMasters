@@ -160,12 +160,9 @@ public class ModelGeekOutMasters
         dados42 = 0;
         for(unDado=0;unDado<dadosActivosArray.size();unDado++)
         {
-            if (dadosActivosArray != null)
+            if (dadosActivosArray.get(unDado).getCara() == 6)
             {
-                if (dadosActivosArray.get(unDado).getCara() == 6)
-                {
-                    dados42++;
-                }
+                dados42++;
             }
         }
         puntos = puntos+dados42;
@@ -174,15 +171,12 @@ public class ModelGeekOutMasters
     public void drakeDices()
     {
         dadosDragon = 0;
-        for(unDado=0;unDado<10;unDado++)
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
         {
-            if (dadosActivosArray.get(unDado) != null)
+            if (dadosActivosArray.get(unDado).getCara() == 5)
             {
-                if (dadosActivosArray.get(unDado).getCara() == 6)
-                {
-                    puntos = 0;
-                    puntaje = 0;
-                }
+                puntos = 0;
+                puntaje = 0;
             }
         }
     }
@@ -243,64 +237,28 @@ public class ModelGeekOutMasters
     {
         caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
 
-        JOptionPane.showMessageDialog(null, "tamaño: "+dadosActivosArray.size());
-        JOptionPane.showMessageDialog(null, "antes");
-        for(int i=0;i<dadosActivosArray.size();i++)
-        {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
-        }
         addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-        JOptionPane.showMessageDialog(null, posicionDadoActivo);
-        JOptionPane.showMessageDialog(null, "despues");
     }
 
     public void meeple(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).newCara();
-        JOptionPane.showMessageDialog(null,"meeple acción");
-
-        for(int i=0;i<dadosActivosArray.size();i++)
-        {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
-        }
-        JOptionPane.showMessageDialog(null, "listo");
     }
     public void spaceship(int posicionDadoActivo)
     {
         addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-        JOptionPane.showMessageDialog(null,"cohete acción");
-
-        for(int i=0;i<dadosActivosArray.size();i++)
-        {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
-        }
-        JOptionPane.showMessageDialog(null, "listo");
     }
     public void superhero(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
-        JOptionPane.showMessageDialog(null,"superheroe acción");
-
-        for(int i=0;i<dadosActivosArray.size();i++)
-        {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
-        }
-        JOptionPane.showMessageDialog(null, "listo");
     }
     public void heart(int posicionDadoActivo)
     {
         dadosInactivosArray.get(0).newCara();
         addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
         removeDiceFromArray(0,dadosInactivosArray);
-        JOptionPane.showMessageDialog(null,"corazón acción");
-
-        for(int i=0;i<dadosActivosArray.size();i++)
-        {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
-        }
-        JOptionPane.showMessageDialog(null, "listo");
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
