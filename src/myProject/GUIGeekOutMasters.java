@@ -768,11 +768,9 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
 
-                JOptionPane.showMessageDialog(null, "eleccion: " + seleccionDado);
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
                         if (poder == "meeple") {
-                            JOptionPane.showMessageDialog(null, "meeple 2");
                             game.meeple(boton);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
@@ -780,14 +778,12 @@ public class GUIGeekOutMasters extends JFrame {
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         } else if (poder == "cohete") {
-                            JOptionPane.showMessageDialog(null, "cohete 2");
                             game.spaceship(boton);
 
                             botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
                             botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
                             botonesEnDadosActivos.remove(boton);
                         } else if (poder == "superheroe") {
-                            JOptionPane.showMessageDialog(null, "superheroe 2");
                             game.superhero(boton);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
@@ -795,14 +791,8 @@ public class GUIGeekOutMasters extends JFrame {
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         }
-
-                        for(int i=0;i<botonesEnDadosActivos.size();i++)
-                        {
-                            JOptionPane.showMessageDialog(null, botonesEnDadosActivos.get(i));
-                        }
                         seleccionDado = 3;
                         poder = "";
-                        JOptionPane.showMessageDialog(null, "final opción 2");
                     }
                 }
                 seleccionDado = 3;
@@ -816,7 +806,6 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
 
-                JOptionPane.showMessageDialog(null, "eleccion: " + seleccionDado);
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
                         botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
@@ -824,13 +813,10 @@ public class GUIGeekOutMasters extends JFrame {
                         botonesEnDadosActivos.remove(boton);
                         if ((game.dadosActivosArray.get(boton).getCara()) != 4 & (game.dadosActivosArray.get(boton).getCara()) != 5 & (game.dadosActivosArray.get(boton).getCara()) != 6) {
                             if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
-                                JOptionPane.showMessageDialog(null, "meeple 1");
                                 poder = "meeple";
                             } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
-                                JOptionPane.showMessageDialog(null, "cohete 1");
                                 poder = "cohete";
                             } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
-                                JOptionPane.showMessageDialog(null, "superheroe 1");
                                 poder = "superheroe";
                             }
                             game.powers(boton);
@@ -841,7 +827,6 @@ public class GUIGeekOutMasters extends JFrame {
                             rePaintDadosInactivos();
                             break;
                         } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
-                            JOptionPane.showMessageDialog(null, "corazón");
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -860,12 +845,10 @@ public class GUIGeekOutMasters extends JFrame {
                             rePaintDadosInactivos();
 
                             seleccionDado = 3;
-                            JOptionPane.showMessageDialog(null, "final corazon");
                             break;
                         }
                     }
                 }
-                JOptionPane.showMessageDialog(null, "fin eleccion: 1 - " + seleccionDado);
             }
             else if(seleccionDado==3)
             {
