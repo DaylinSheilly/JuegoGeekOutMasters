@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, flag, ronda, caraPoder, unDado, dados42, dadosDragon;
+    private int puntos, puntaje, ronda, unDado, dados42;
     private boolean terminar;
     public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
 
@@ -37,7 +37,6 @@ public class ModelGeekOutMasters
 
         ronda=0;
         puntaje=0;
-        flag=0;
         puntos=0;
 
         dadosActivosArray = new ArrayList<Dados>();
@@ -87,19 +86,11 @@ public class ModelGeekOutMasters
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
     {
         array.add(posicion, dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
     }
 
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
     {
         array.add(dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -170,10 +161,9 @@ public class ModelGeekOutMasters
 
     public void drakeDices()
     {
-        dadosDragon = 0;
         for(unDado=0;unDado<dadosActivosArray.size();unDado++)
         {
-            if (dadosActivosArray.get(unDado).getCara() == 5)
+            if(dadosActivosArray.get(unDado).getCara() == 5)
             {
                 puntos = 0;
                 puntaje = 0;
@@ -187,13 +177,11 @@ public class ModelGeekOutMasters
     {
         if(ronda==5)
         {
-            flag=0;
             puntaje=0;
             ronda=1;
         }
         else
         {
-            flag=0;
             if(dadosActivosArray.size()!=0)
             {
                 dadosActivosArray.clear();
@@ -235,8 +223,6 @@ public class ModelGeekOutMasters
 
     public void powers(int posicionDadoActivo)
     {
-        caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
-
         addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
     }

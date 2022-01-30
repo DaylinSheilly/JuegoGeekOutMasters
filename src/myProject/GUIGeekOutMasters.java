@@ -808,10 +808,10 @@ public class GUIGeekOutMasters extends JFrame {
 
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                        botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                        botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                        botonesEnDadosActivos.remove(boton);
-                        if ((game.dadosActivosArray.get(boton).getCara()) != 4 & (game.dadosActivosArray.get(boton).getCara()) != 5 & (game.dadosActivosArray.get(boton).getCara()) != 6) {
+                        if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
+                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                            botonesEnDadosActivos.remove(boton);
                             if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
                                 poder = "meeple";
                             } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
@@ -827,25 +827,36 @@ public class GUIGeekOutMasters extends JFrame {
                             rePaintDadosInactivos();
                             break;
                         } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
+                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                            botonesEnDadosActivos.remove(boton);
+                            if(botonesEnDadosInactivos.size()!=0) {
+                                game.powers(boton);
+                                game.heart(boton);
 
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
-                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                            imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                            botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
-                            botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
-                            botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
-                            botonesEnDadosInactivos.remove(unBoton);
-                            unBoton++;
+                                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                                botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
+                                botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
+                                botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
+                                botonesEnDadosInactivos.remove(unBoton);
 
-                            game.powers(boton);
-                            game.heart(boton);
+                                rePaintDadosActivos();
+                                rePaintDadosUtilizados();
+                                rePaintDadosInactivos();
 
-                            rePaintDadosActivos();
-                            rePaintDadosUtilizados();
-                            rePaintDadosInactivos();
-
-                            seleccionDado = 3;
-                            break;
+                                seleccionDado = 3;
+                                break;
+                            }
+                        }
+                        else if((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6)
+                        {
+                            seleccionDado=3;
+                        }
+                        else
+                        {
+                            seleccionDado=3;
                         }
                     }
                 }
@@ -857,6 +868,10 @@ public class GUIGeekOutMasters extends JFrame {
             else if(seleccionDado==4)
             {
                 seleccionDado=2;
+            }
+            else
+            {
+                seleccionDado=1;
             }
         }
     }
