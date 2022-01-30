@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class ModelGeekOutMasters {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, ronda, unDado, dados42;
+    private int puntos, puntaje, ronda, unDado, dados42, estado;
     private boolean terminar;
     public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
     private String[] estadoToString;
@@ -37,6 +37,7 @@ public class ModelGeekOutMasters {
         ronda = 0;
         puntaje = 0;
         puntos = 0;
+        estado = 0;
 
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
@@ -45,7 +46,7 @@ public class ModelGeekOutMasters {
 
         determinateDadosActivos();
         determinateDadosInactivos();
-        getEstadoToString();
+        estadoToString = new String[7];
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -348,46 +349,4 @@ public class ModelGeekOutMasters {
         return ronda;
     }
 
-//------------------------------------------------------------------------------------------------------------------------------------------
-
-    /**
-     * Establish message game state according to estado atribute value
-     *
-     * @return Message for the View class
-     */
-
-    public String[] getEstadoToString() {
-        switch (estado) {
-            case 1:
-                estadoToString[0] = "Tiro de Salida " + tiro;
-                estadoToString[1] = "Sacaste Natural, has ganado!!";
-                break;
-            case 2:
-                estadoToString[0] = "Tiro de Salida " + tiro;
-                estadoToString[1] = "Sacaste Craps, has perdido!!";
-                break;
-            case 3:
-                estadoToString[0] = "Tiro de Salida " + tiro + " \nPunto = " + punto;
-                estadoToString[1] = "Estableciste Punto en " + punto +
-                        " Debes seguir lanzando!!" +
-                        "\npero si sacas 7 antes que " + punto + " perderás";
-                break;
-            case 4:
-                estadoToString[0] = "Tiro de Salida " + punto + " \nPunto = " + punto
-                        + " \nValor del nuevo Tiro = " + tiro;
-                estadoToString[1] = "Volviste a sacar " + punto + ", has ganado!!";
-                break;
-            case 5:
-                estadoToString[0] = "Tiro de Salida " + punto + " \nPunto = " + punto
-                        + "\nValor del nuevo Tiro = " + tiro;
-                estadoToString[1] = "Sacaste 7 antes que " + punto + ", has perdido!!";
-                break;
-            case 6:
-                estadoToString[0] = "Tiro de Salida " + punto + " \nPunto = " + punto
-                        + " \nValor del nuevo Tiro = " + tiro;
-                estadoToString[1] = "\nEstás en Punto y debes seguir lanzando!!"
-                        + "\npero si sacas 7 antes que " + punto + " perderás";
-                break;
-        }
-    }
 }

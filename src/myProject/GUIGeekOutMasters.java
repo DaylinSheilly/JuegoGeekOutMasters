@@ -23,7 +23,8 @@ public class GUIGeekOutMasters extends JFrame {
     private JTextArea numeroRonda, puntaje, instrucciones;
     private String mensajeFinal = "";
     private String poder = "";
-    private int ronda, puntos, seleccionDado, boton, unBoton;
+    private String[] estadoToString;
+    private int ronda, puntos, seleccionDado, boton, unBoton, estado;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
     private static final String MENSAJE_INICIO =
                     "¡¡Bienvenido a Geek Out Masters!! \n"
@@ -109,9 +110,12 @@ public class GUIGeekOutMasters extends JFrame {
 
         seleccionDado = 1;
         unBoton=0;
+        estado=0;
+
+        estadoToString = new String[1];
 
         imageDado =new ImageIcon(getClass().getResource("/resources/7.png"));
-        imagenOtroTamanho =imageDado.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
+        imagenOtroTamanho =imageDado.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH);
         imagenNuevoTamanho =new ImageIcon(imagenOtroTamanho);
 
         dado1 =new JButton(imagenNuevoTamanho);
@@ -360,7 +364,7 @@ public class GUIGeekOutMasters extends JFrame {
     public void determinateBotonesInactivos()
     {
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
         for(boton=0;boton<botonesEnDadosInactivos.size();boton++)
         {
@@ -459,13 +463,13 @@ public class GUIGeekOutMasters extends JFrame {
             if(ronda==0)
             {
                 imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
             }
             else
             {
                 imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
             }
             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
@@ -860,6 +864,40 @@ public class GUIGeekOutMasters extends JFrame {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
+     * Establish message game state according to estado atribute value
+     *
+     * @return Message for the View class
+     */
+
+    public String[] getEstadoToString() {
+        switch (estado) {
+            case 1:
+                estadoToString[0] = "Has seleccionado el Meeple: puedes relanzar otro dado de la sección dados activos";
+                break;
+            case 2:
+                estadoToString[0] = "Has seleccionado la Nave Espacial: puedes envíar un dado no usado (de la sección"
+                        + " dados activos) a la sección de dados inactivos";
+                break;
+            case 3:
+                estadoToString[0] = "Has seleccionado el Superheroe: puedes hacer que cualquier dado no usado (sección"
+                        + " dados activos) sea volteado y colocado en su cara opuesta.";
+                break;
+            case 4:
+                estadoToString[0] = "Has seleccionado el Corazón: puedes tomar un dado de la sección de dados inactivos"
+                        + " y lanzarlo para que sea un nuevo dado activo.";
+                break;
+            case 5:
+                estadoToString[0] = "Has seleccionado el dragón, si te queda como último dado perderás todos los puntos.";
+                break;
+            case 6:
+                estadoToString[0] = "Has seleccionado el corazón, al final se contarán todos los dados 42 que obtuviste"
+                        + " para conocer tu punatje.";
+                break;
+        }
+        return estadoToString;
+    }
+
+    /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
 
@@ -953,7 +991,8 @@ public class GUIGeekOutMasters extends JFrame {
                 JScrollPane scroll = new JScrollPane(panelInstrucciones);
                 scroll.setPreferredSize(new Dimension(435, 400));
 
-                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego",
+                JOptionPane.INFORMATION_MESSAGE);
             }
             else if(e.getSource() == salir)
             {
@@ -964,6 +1003,7 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosActivos();
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
+                estado = 2;
 
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
@@ -971,7 +1011,7 @@ public class GUIGeekOutMasters extends JFrame {
                             game.meeple(boton);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         } else if (poder == "cohete") {
@@ -984,7 +1024,7 @@ public class GUIGeekOutMasters extends JFrame {
                             game.superhero(boton);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                             imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         }
@@ -1002,6 +1042,7 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosActivos();
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
+                estado = 1;
 
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
@@ -1032,7 +1073,7 @@ public class GUIGeekOutMasters extends JFrame {
                                 game.heart(boton);
 
                                 imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
-                                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                                imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
                                 botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
                                 botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
