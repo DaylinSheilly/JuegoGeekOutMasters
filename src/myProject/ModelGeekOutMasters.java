@@ -14,10 +14,9 @@ import java.util.ArrayList;
 public class ModelGeekOutMasters
 {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, flag, ronda, caraPoder;
+    private int puntos, puntaje, ronda, unDado, dados42;
     private boolean terminar;
-    private int[] caras;
-    public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray;
+    public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
 
     /**
      * Class Constructor
@@ -35,15 +34,15 @@ public class ModelGeekOutMasters
         dado8 = new Dados();
         dado9 = new Dados();
         dado10 = new Dados();
-        caras = new int[7];
 
         ronda=0;
         puntaje=0;
-        flag=0;
+        puntos=0;
 
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
         dadosUtilizadosArray = new ArrayList<Dados>();
+        unArray = new ArrayList<Dados>();
 
         determinateDadosActivos();
         determinateDadosInactivos();
@@ -87,19 +86,11 @@ public class ModelGeekOutMasters
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
     {
         array.add(posicion, dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
     }
 
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
     {
         array.add(dado);
-        if(array==dadosUtilizadosArray)
-        {
-            flag++;
-        }
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -155,19 +146,42 @@ public class ModelGeekOutMasters
         }
     }
 
+    public void roundPoints()
+    {
+        dados42 = 0;
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
+        {
+            if (dadosActivosArray.get(unDado).getCara() == 6)
+            {
+                dados42++;
+            }
+        }
+        puntos = puntos+dados42;
+    }
+
+    public void drakeDices()
+    {
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
+        {
+            if(dadosActivosArray.get(unDado).getCara() == 5)
+            {
+                puntos = 0;
+                puntaje = 0;
+            }
+        }
+    }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     public void nextRound()
     {
         if(ronda==5)
         {
-            flag=0;
             puntaje=0;
             ronda=1;
         }
         else
         {
-            flag=0;
             if(dadosActivosArray.size()!=0)
             {
                 dadosActivosArray.clear();
@@ -209,26 +223,28 @@ public class ModelGeekOutMasters
 
     public void powers(int posicionDadoActivo)
     {
-        caraPoder=dadosActivosArray.get(posicionDadoActivo).getCara();
+        addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+    }
 
-        switch (caraPoder)
-        {
-            case 1: //Meeple
-                break;
-            case 2: //Spaceship
-                addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
-                removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-                break;
-            case 3: //Superhero
-                break;
-            case 4: //Heart
-                addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
-                removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-                addDiceFromArray(dadosActivosArray,dadosUtilizadosArray.get(flag),posicionDadoActivo);
-                removeDiceFromArray(0,dadosInactivosArray);
-                JOptionPane.showMessageDialog(null, dadosInactivosArray.size());
-                break;
-        }
+    public void meeple(int posicionDadoActivo)
+    {
+        dadosActivosArray.get(posicionDadoActivo).newCara();
+    }
+    public void spaceship(int posicionDadoActivo)
+    {
+        addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
+    }
+    public void superhero(int posicionDadoActivo)
+    {
+        dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
+    }
+    public void heart(int posicionDadoActivo)
+    {
+        dadosInactivosArray.get(0).newCara();
+        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
+        removeDiceFromArray(0,dadosInactivosArray);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------

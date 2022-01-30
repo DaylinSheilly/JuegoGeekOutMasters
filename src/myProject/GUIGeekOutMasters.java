@@ -23,7 +23,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JTextArea numeroRonda, puntaje, instrucciones;
     private String mensajeFinal = "";
     private String poder = "";
-    private int ronda, puntos, seleccionDado, boton, unDado;
+    private int ronda, puntos, seleccionDado, boton, unBoton;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
     private static final String MENSAJE_INICIO =
                     "¡¡Bienvenido a Geek Out Masters!! \n"
@@ -106,6 +106,7 @@ public class GUIGeekOutMasters extends JFrame {
         botonesEnDadosUtilizados = new ArrayList<JButton>();
 
         seleccionDado = 1;
+        unBoton=0;
 
         imageDado =new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho =imageDado.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
@@ -145,6 +146,7 @@ public class GUIGeekOutMasters extends JFrame {
         createDadosActivosPane(constraints);
         createSpace4(constraints);
         createNewRoundButton(constraints);
+        createAccionesDadosPane(constraints);
     }
 
     public void createHeader(GridBagConstraints constraints) {
@@ -296,10 +298,10 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelDadosInactivos, constraints);
 
-        determinateDadosInactivos();
+        determinateBotonesInactivos();
     }
 
-    public void determinateDadosInactivos()
+    public void determinateBotonesInactivos()
     {
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
@@ -369,10 +371,10 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelDadosActivos, constraints);
 
-        determinateDadosActivos();
+        determinateBotonesActivos();
     }
 
-    public void determinateDadosActivos()
+    public void determinateBotonesActivos()
     {
         for(boton=0;boton<botonesEnDadosActivos.size();boton++)
         {
@@ -391,6 +393,7 @@ public class GUIGeekOutMasters extends JFrame {
             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
             botonesEnDadosActivos.get(boton).setBackground(Color.WHITE);
             botonesEnDadosActivos.get(boton).addMouseListener(escucha);
+
         }
         rePaintDadosActivos();
     }
@@ -772,6 +775,13 @@ public class GUIGeekOutMasters extends JFrame {
                 }
                 else
                 {
+                    if(ronda==1)
+                    {
+                        game.roundPoints();
+                        game.drakeDices();
+                        game.determinateScore();
+                    }
+
                     game.nextRound();
 
                     ronda = game.getRonda();
@@ -792,8 +802,6 @@ public class GUIGeekOutMasters extends JFrame {
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
 
-                    game.determinateDadosInactivos();
-
                     if(botonesEnDadosInactivos.size()!=0)
                     {
                         botonesEnDadosInactivos.clear();
@@ -801,8 +809,6 @@ public class GUIGeekOutMasters extends JFrame {
                     createDadosInactivosPane(constraints);
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    game.determinateDadosActivos();
 
                     if(botonesEnDadosActivos.size()!=0)
                     {
@@ -812,6 +818,7 @@ public class GUIGeekOutMasters extends JFrame {
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
 
+                    seleccionDado=1;
                     revalidate();
                     repaint();
                 }
@@ -842,157 +849,121 @@ public class GUIGeekOutMasters extends JFrame {
             {
                 System.exit(0);
             }
+            else if(seleccionDado==2)
+            {
+                rePaintDadosActivos();
+                rePaintDadosUtilizados();
+                rePaintDadosInactivos();
+
+                for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                    if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                        if (poder == "meeple") {
+                            game.meeple(boton);
+
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
+                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                            botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                        } else if (poder == "cohete") {
+                            game.spaceship(boton);
+
+                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                            botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
+                            botonesEnDadosActivos.remove(boton);
+                        } else if (poder == "superheroe") {
+                            game.superhero(boton);
+
+                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
+                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                            imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                            botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                        }
+                        seleccionDado = 3;
+                        poder = "";
+                    }
+                }
+                seleccionDado = 3;
+                rePaintDadosInactivos();
+                rePaintDadosUtilizados();
+                rePaintDadosActivos();
+            }
+            else if(seleccionDado==1)
+            {
+                rePaintDadosActivos();
+                rePaintDadosUtilizados();
+                rePaintDadosInactivos();
+
+                for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                    if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                        if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
+                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                            botonesEnDadosActivos.remove(boton);
+                            if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
+                                poder = "meeple";
+                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
+                                poder = "cohete";
+                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
+                                poder = "superheroe";
+                            }
+                            game.powers(boton);
+                            seleccionDado = 4;
+
+                            rePaintDadosActivos();
+                            rePaintDadosUtilizados();
+                            rePaintDadosInactivos();
+                            break;
+                        } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
+                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                            botonesEnDadosActivos.remove(boton);
+                            if(botonesEnDadosInactivos.size()!=0) {
+                                game.powers(boton);
+                                game.heart(boton);
+
+                                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                                botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
+                                botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
+                                botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
+                                botonesEnDadosInactivos.remove(unBoton);
+
+                                rePaintDadosActivos();
+                                rePaintDadosUtilizados();
+                                rePaintDadosInactivos();
+
+                                seleccionDado = 3;
+                                break;
+                            }
+                        }
+                        else if((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6)
+                        {
+                            seleccionDado=3;
+                        }
+                        else
+                        {
+                            seleccionDado=3;
+                        }
+                    }
+                }
+            }
+            else if(seleccionDado==3)
+            {
+                seleccionDado=1;
+            }
+            else if(seleccionDado==4)
+            {
+                seleccionDado=2;
+            }
             else
             {
-                GridBagConstraints constraints = new GridBagConstraints();
-                switch(seleccionDado) //dice choice
-                {
-                    case 1:
-                        for(boton=0;boton<botonesEnDadosActivos.size();boton++)
-                        {
-                            if (e.getSource() == botonesEnDadosActivos.get(boton))
-                            {
-                                if ((game.dadosActivosArray.get(boton).getCara()) != 4 & (game.dadosActivosArray.get(boton).getCara()) != 5 & (game.dadosActivosArray.get(boton).getCara()) != 6)
-                                {
-                                    if((game.dadosActivosArray.get(boton).getCara()) == 1)
-                                    {
-                                        seleccionDado=2;
-                                        poder = "meeple";
-
-                                        imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                                        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                        botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                                        botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                                        botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                                        botonesEnDadosActivos.remove(boton);
-                                        JOptionPane.showMessageDialog(null, botonesEnDadosUtilizados.size());
-
-                                        rePaintDadosActivos();
-                                        rePaintDadosUtilizados();
-
-                                    }
-                                    else if((game.dadosActivosArray.get(boton).getCara()) == 2)
-                                    {
-                                        seleccionDado=2;
-                                        poder = "cohete";
-
-                                        imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                                        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                        botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                                        botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                                        botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                                        botonesEnDadosActivos.remove(boton);
-
-                                        rePaintDadosActivos();
-                                        rePaintDadosUtilizados();
-                                    }
-                                    else if((game.dadosActivosArray.get(boton).getCara()) == 3)
-                                    {
-                                        seleccionDado=2;
-                                        poder = "superheroe";
-
-                                        imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                                        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                        botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                                        botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                                        botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                                        botonesEnDadosActivos.remove(boton);
-
-                                        rePaintDadosActivos();
-                                        rePaintDadosUtilizados();
-                                    }
-                                }
-                                else if((game.dadosActivosArray.get(boton).getCara()) == 4)
-                                {
-                                    imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                                    botonesEnDadosActivos.get(boton).addMouseListener(escucha);
-                                    botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                                    botonesEnDadosActivos.remove(boton);
-
-                                    imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
-                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                    botonesEnDadosInactivos.get(0).setIcon(imagenNuevoTamanho);
-                                    botonesEnDadosInactivos.get(0).addMouseListener(escucha);
-                                    botonesEnDadosActivos.add(boton,botonesEnDadosInactivos.get(0));
-                                    botonesEnDadosInactivos.remove(0);
-
-                                    game.powers(boton);
-                                    rePaintDadosActivos();
-                                    rePaintDadosUtilizados();
-                                    rePaintDadosInactivos();
-                                }
-                                else if(((game.dadosActivosArray.get(0).getCara()) == 5))
-                                {
-                                    for(unDado=0;unDado<botonesEnDadosActivos.size();unDado++)
-                                    {
-                                    }
-                                }
-                            }
-                        }
-                        break;
-                    case 2:
-                        for(boton=0;boton<botonesEnDadosActivos.size();boton++)
-                        {
-                            if (e.getSource() == botonesEnDadosActivos.get(boton))
-                            {
-                                if (poder == "meeple")
-                                {
-                                    game.powers(boton);
-
-                                    imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
-                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-
-                                    rePaintDadosActivos();
-
-                                    seleccionDado=1;
-                                }
-                                else if(poder == "cohete")
-                                {
-                                    game.powers(boton);
-
-                                    imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
-                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-
-                                    botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
-                                    botonesEnDadosActivos.remove(boton);
-
-                                    rePaintDadosActivos();
-                                    rePaintDadosInactivos();
-
-                                    seleccionDado=1;
-                                }
-                                else if(poder == "superheroe")
-                                {
-                                    game.powers(boton);
-
-                                    imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCaraOpuesta() + ".png"));
-                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-
-                                    rePaintDadosActivos();
-
-                                    seleccionDado=1;
-                                }
-                            }
-                        }
-                        break;
-                }
+                seleccionDado=1;
             }
         }
     }
 }
+
 
 
 
