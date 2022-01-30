@@ -81,8 +81,8 @@ public class ModelGeekOutMasters
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function
-     * @return
+     * This function gets DadosUtilizados.
+     * @return an DadosUtilizados array
      */
 
     public ArrayList<Dados> getDadosUtilizadosArray()
@@ -93,8 +93,8 @@ public class ModelGeekOutMasters
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function
-     * @return
+     * This function gets DadosInactivos.
+     * @return an DadosInactivos array
      */
 
     public ArrayList<Dados> getDadosInactivosArray() {
@@ -104,8 +104,8 @@ public class ModelGeekOutMasters
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     *
-     * @return
+     * This function gets DadosActivos.
+     * @return an DadosActivos array
      */
 
     public ArrayList<Dados> getDadosActivosArray() {
@@ -304,7 +304,7 @@ public class ModelGeekOutMasters
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function moves the dice that is activated to the DadosUtilizados panel
+     * This function moves the dice that is activated to the DadosUtilizados panel.
      * @param posicionDadoActivo
      */
 
@@ -369,8 +369,9 @@ public class ModelGeekOutMasters
 
     /**
      * This function gets Puntaje.
-     * @return
+     * @return cumulative score
      */
+
     public int getPuntaje()
     {
         return puntaje;
@@ -380,8 +381,9 @@ public class ModelGeekOutMasters
 
     /**
      * This function gets the round.
-     * @return
+     * @return number round
      */
+
     public int getRonda()
     {
         return ronda;
