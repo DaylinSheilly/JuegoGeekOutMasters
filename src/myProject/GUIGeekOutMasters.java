@@ -449,7 +449,7 @@ public class GUIGeekOutMasters extends JFrame {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function determinates how dices are in the panelDadosActivos.
+     * This function determines which face the dice will have in the DadosActivos panel.
      */
 
     public void determinateBotonesActivos()
@@ -475,6 +475,7 @@ public class GUIGeekOutMasters extends JFrame {
         }
         rePaintDadosActivos();
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
@@ -493,6 +494,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelEspacioEnBlanco4, constraints);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
@@ -520,7 +522,7 @@ public class GUIGeekOutMasters extends JFrame {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function updates DadosActivos panel each time the power of one of the dice is run.
+     * This function updates DadosActivos panel.
      */
     public void rePaintDadosActivos()
     {
@@ -631,7 +633,7 @@ public class GUIGeekOutMasters extends JFrame {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function updates DadosInactivos panel each time the power of one of the dice is run.
+     * This function updates DadosInactivos panel.
      */
 
     private void rePaintDadosInactivos()
@@ -736,7 +738,7 @@ public class GUIGeekOutMasters extends JFrame {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function updates DadosUtilizados panel each time the power of one of the dice is run.
+     * This function updates DadosUtilizados panel.
      */
     private void rePaintDadosUtilizados()
     {

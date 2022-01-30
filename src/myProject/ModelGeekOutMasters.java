@@ -81,17 +81,20 @@ public class ModelGeekOutMasters
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     *
+     * This function
+     * @return
      */
 
-    public ArrayList<Dados> getDadosUtilizadosArray() {
+    public ArrayList<Dados> getDadosUtilizadosArray()
+    {
         return dadosUtilizadosArray;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     *
+     * This function
+     * @return
      */
 
     public ArrayList<Dados> getDadosInactivosArray() {
@@ -102,6 +105,7 @@ public class ModelGeekOutMasters
 
     /**
      *
+     * @return
      */
 
     public ArrayList<Dados> getDadosActivosArray() {
@@ -110,6 +114,11 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function erases dices from array.
+     * @param posicionDado
+     * @param array
+     */
     public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array)
     {
         array.remove(posicionDado);
@@ -117,6 +126,12 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function adds dice to the array at a given position.
+     * @param array
+     * @param dado
+     * @param posicion
+     */
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
     {
         array.add(posicion, dado);
@@ -124,12 +139,22 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function adds dices to array.
+     * @param array
+     * @param dado
+     */
+
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
     {
         array.add(dado);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function determinates round score.
+     */
 
     public void determinateScore()
     {
@@ -185,6 +210,9 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function determines how many 42 dices got were in the round.
+     */
     public void roundPoints()
     {
         dados42 = 0;
@@ -200,6 +228,10 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function runs the power of the dragon.
+     */
+
     public void drakeDices()
     {
         for(unDado=0;unDado<dadosActivosArray.size();unDado++)
@@ -213,6 +245,10 @@ public class ModelGeekOutMasters
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function goes to the next round.
+     */
 
     public void nextRound()
     {
@@ -244,6 +280,11 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function ends the game.
+     * @return if you won or lost
+     */
+
     public boolean endGame()
     {
         if(ronda==5)
@@ -262,25 +303,61 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function moves the dice that is activated to the DadosUtilizados panel
+     * @param posicionDadoActivo
+     */
+
     public void powers(int posicionDadoActivo)
     {
         addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the meeple.
+     * @param posicionDadoActivo
+     */
+
     public void meeple(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).newCara();
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the spaceship.
+     * @param posicionDadoActivo
+     */
+
     public void spaceship(int posicionDadoActivo)
     {
         addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the superhero.
+     * @param posicionDadoActivo
+     */
+
     public void superhero(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the heart.
+     * @param posicionDadoActivo
+     */
+
     public void heart(int posicionDadoActivo)
     {
         dadosInactivosArray.get(0).newCara();
@@ -290,10 +367,21 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
+    /**
+     * This function gets Puntaje.
+     * @return
+     */
     public int getPuntaje()
     {
         return puntaje;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function gets the round.
+     * @return
+     */
     public int getRonda()
     {
         return ronda;
