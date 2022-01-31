@@ -23,7 +23,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JTextArea numeroRonda, puntaje, instrucciones;
     private String mensajeFinal = "";
     private String poder = "";
-    private int ronda, puntos, seleccionDado, boton, unBoton;
+    private int ronda, puntos, seleccionDado, boton, unBoton, tamañoActivos;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
     private static final String MENSAJE_INICIO =
                     "¡¡Bienvenido a Geek Out Masters!! \n"
@@ -885,7 +885,7 @@ public class GUIGeekOutMasters extends JFrame {
                 }
                 else
                 {
-                    if(ronda==1)
+                    if(ronda>0)
                     {
                         game.roundPoints();
                         game.drakeDices();
@@ -927,6 +927,8 @@ public class GUIGeekOutMasters extends JFrame {
                     createDadosActivosPane(constraints);
 
                     //------------------------------------------------------------------------------------------------------------------------------------------
+
+                    remove(nuevaRonda);
 
                     seleccionDado=1;
                     revalidate();
@@ -990,6 +992,129 @@ public class GUIGeekOutMasters extends JFrame {
                         }
                         seleccionDado = 3;
                         poder = "";
+
+                        GridBagConstraints constraints = new GridBagConstraints();
+                        if(botonesEnDadosActivos.size()==1 & (game.dadosActivosArray.get(0).getCara() != 5 | game.dadosActivosArray.get(0).getCara() != 6 | game.dadosActivosArray.get(0).getCara() != 4)) {
+                            if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3) {
+                                createNewRoundButton(constraints);
+                            }
+                        }
+                        else if(botonesEnDadosActivos==null)
+                        {
+                            createNewRoundButton(constraints);
+                        }
+                        else
+                        {
+                            tamañoActivos = botonesEnDadosActivos.size();
+                            switch (tamañoActivos)
+                            {
+                                case 1:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        createNewRoundButton(constraints);
+                                    }
+                                    break;
+                                case 2:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            createNewRoundButton(constraints);
+                                        }
+                                    }
+                                    break;
+                                case 3:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                            {
+                                                createNewRoundButton(constraints);
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 4:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                {
+                                                    createNewRoundButton(constraints);
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 5:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                    {
+                                                        createNewRoundButton(constraints);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 6:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                    {
+                                                        if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
+                                                        {
+                                                            createNewRoundButton(constraints);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                                case 7:
+                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                    {
+                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                    {
+                                                        if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
+                                                        {
+                                                            if(game.dadosActivosArray.get(6).getCara()==5 | game.dadosActivosArray.get(6).getCara()==6)
+                                                            {
+                                                                createNewRoundButton(constraints);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                    break;
+                            }
+                        }
                     }
                 }
                 seleccionDado = 3;
@@ -1027,6 +1152,7 @@ public class GUIGeekOutMasters extends JFrame {
                             botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
                             botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
                             botonesEnDadosActivos.remove(boton);
+
                             if(botonesEnDadosInactivos.size()!=0) {
                                 game.powers(boton);
                                 game.heart(boton);
@@ -1045,6 +1171,129 @@ public class GUIGeekOutMasters extends JFrame {
 
                                 seleccionDado = 3;
                                 break;
+                            }
+
+                            GridBagConstraints constraints = new GridBagConstraints();
+                            if(botonesEnDadosActivos.size()==1 & (game.dadosActivosArray.get(0).getCara() != 5 | game.dadosActivosArray.get(0).getCara() != 6 | game.dadosActivosArray.get(0).getCara() != 4)) {
+                                if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3) {
+                                    createNewRoundButton(constraints);
+                                }
+                            }
+                            else if(botonesEnDadosActivos==null)
+                            {
+                                createNewRoundButton(constraints);
+                            }
+                            else
+                            {
+                                tamañoActivos = botonesEnDadosActivos.size();
+                                switch (tamañoActivos)
+                                {
+                                    case 1:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            createNewRoundButton(constraints);
+                                        }
+                                        break;
+                                    case 2:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                createNewRoundButton(constraints);
+                                            }
+                                        }
+                                        break;
+                                    case 3:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                                {
+                                                    createNewRoundButton(constraints);
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 4:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                    {
+                                                        createNewRoundButton(constraints);
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 5:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                    {
+                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                        {
+                                                            createNewRoundButton(constraints);
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 6:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                    {
+                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                        {
+                                                            if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
+                                                            {
+                                                                createNewRoundButton(constraints);
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                    case 7:
+                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
+                                        {
+                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
+                                            {
+                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
+                                                {
+                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
+                                                    {
+                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
+                                                        {
+                                                            if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
+                                                            {
+                                                                if(game.dadosActivosArray.get(6).getCara()==5 | game.dadosActivosArray.get(6).getCara()==6)
+                                                                {
+                                                                    createNewRoundButton(constraints);
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        break;
+                                }
                             }
                         }
                         else if((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6)
