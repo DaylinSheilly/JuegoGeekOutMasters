@@ -20,7 +20,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JButton ayuda, salir, nuevaRonda;
     private JPanel panelDadosUtilizados, panelDadosInactivos, panelDadosActivos, panelEspacioEnBlanco1,
             panelEspacioEnBlanco2, panelEspacioEnBlanco3, panelEspacioEnBlanco4, panelInstrucciones, panelAccionesDados;
-    private JTextArea numeroRonda, puntaje, instrucciones;
+    private JTextArea numeroRonda, puntaje, instrucciones, mensajesAccionesDados;
     private String mensajeFinal = "";
     private String poder = "";
     private String[] estadoToString;
@@ -79,7 +79,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         //Default JFrame configuration
         this.setTitle("GeekOutMasterGame");
-        this.setSize(1202, 580);
+        this.setSize(1003, 550);
         //this.pack();
         //this.setSize(2000,2000);
         this.setUndecorated(true);
@@ -87,6 +87,8 @@ public class GUIGeekOutMasters extends JFrame {
         this.setVisible(true);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setBackground(new Color(26, 26, 64));
+
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -153,6 +155,7 @@ public class GUIGeekOutMasters extends JFrame {
         createSpace4(constraints);
         createNewRoundButton(constraints);
         createAccionesDadosPane(constraints);
+
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -163,7 +166,7 @@ public class GUIGeekOutMasters extends JFrame {
      */
 
     public void createHeader(GridBagConstraints constraints) {
-        headerProject = new Header("Geek Out Masters", Color.GRAY);
+        headerProject = new Header("Geek Out Masters", Color.BLACK);
         constraints.gridx = 0;
         constraints.gridy = 0;
         constraints.gridwidth = 7;
@@ -181,6 +184,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createSpace1(GridBagConstraints constraints) {
         panelEspacioEnBlanco1 = new JPanel();
+        panelEspacioEnBlanco1.setOpaque(false);
 
         constraints.gridx = 0;
         constraints.gridy = 1;
@@ -252,7 +256,7 @@ public class GUIGeekOutMasters extends JFrame {
         puntaje.setMinimumSize(new Dimension(100, 40));
         puntaje.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         puntaje.setText("Puntaje: " + puntos);
-        puntaje.setBackground(Color.WHITE);
+        puntaje.setBackground(new Color(244, 115, 64));
         puntaje.setEditable(false);
         puntaje.setBorder(BorderFactory.createRaisedBevelBorder());
 
@@ -260,7 +264,7 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.gridy = 2;
         constraints.gridwidth = 1;
         constraints.fill = GridBagConstraints.NONE;
-        constraints.anchor = GridBagConstraints.CENTER;
+        constraints.anchor = GridBagConstraints.LINE_END;
         add(puntaje, constraints);
     }
 
@@ -313,7 +317,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createDadosUtilizadosPane(GridBagConstraints constraints) {
         panelDadosUtilizados = new JPanel();
-        panelDadosUtilizados.setMinimumSize(new Dimension(590, 200));
+        panelDadosUtilizados.setMinimumSize(new Dimension(500, 200));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
         rePaintDadosUtilizados();
@@ -337,7 +341,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     public void createDadosInactivosPane(GridBagConstraints constraints) {
         panelDadosInactivos = new JPanel();
-        panelDadosInactivos.setMinimumSize(new Dimension(600, 200));
+        panelDadosInactivos.setMinimumSize(new Dimension(500, 200));
         panelDadosInactivos.setBorder(BorderFactory.createTitledBorder("Dados inactivos"));
         panelDadosInactivos.setBackground(Color.WHITE);
 
@@ -405,8 +409,14 @@ public class GUIGeekOutMasters extends JFrame {
     {
         panelAccionesDados = new JPanel();
         panelAccionesDados.setBorder(BorderFactory.createTitledBorder("Acciones que está realizando"));
-        panelAccionesDados.setPreferredSize(new Dimension(500, 200));
+        panelAccionesDados.setMinimumSize(new Dimension(400, 200));
         panelAccionesDados.setBackground(Color.WHITE);
+
+        mensajesAccionesDados = new JTextArea(20,30);
+        mensajesAccionesDados.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        mensajesAccionesDados.setWrapStyleWord(true);
+        mensajesAccionesDados.setLineWrap(true);
+        mensajesAccionesDados.setEditable(false);
 
         constraints.gridx = 0;
         constraints.gridy = 8;
@@ -416,6 +426,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         this.add(panelAccionesDados, constraints);
     }
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -875,23 +886,29 @@ public class GUIGeekOutMasters extends JFrame {
                 estadoToString[0] = "Has seleccionado el Meeple: puedes relanzar otro dado de la sección dados activos";
                 break;
             case 2:
-                estadoToString[0] = "Has seleccionado la Nave Espacial: puedes envíar un dado no usado (de la sección"
-                        + " dados activos) a la sección de dados inactivos";
+                estadoToString[0] = "Has ejecutado el poder del Meeple. Continúa jugando.";
                 break;
             case 3:
+                estadoToString[0] = "Has seleccionado la Nave Espacial: puedes enviar un dado no usado (de la sección"
+                        + " dados activos) a la sección de dados inactivos";
+                break;
+            case 4:
+                estadoToString[0] = "Has ejecutado el poder de la Nave Espacial. Continúa jugando.";
+                break;
+            case 5:
                 estadoToString[0] = "Has seleccionado el Superheroe: puedes hacer que cualquier dado no usado (sección"
                         + " dados activos) sea volteado y colocado en su cara opuesta.";
                 break;
-            case 4:
-                estadoToString[0] = "Has seleccionado el Corazón: puedes tomar un dado de la sección de dados inactivos"
-                        + " y lanzarlo para que sea un nuevo dado activo.";
-                break;
-            case 5:
-                estadoToString[0] = "Has seleccionado el dragón, si te queda como último dado perderás todos los puntos.";
-                break;
             case 6:
-                estadoToString[0] = "Has seleccionado el corazón, al final se contarán todos los dados 42 que obtuviste"
-                        + " para conocer tu punatje.";
+                estadoToString[0] = "Has ejecutado el poder del Superhéroe. Continúa jugando.";
+                break;
+
+            case 7:
+                estadoToString[0] = "Has seleccionado el Corazón: toma un dado aleatorio de la sección de dados inactivos"
+                        + " y lo lanza para que sea un nuevo dado activo.";
+                break;
+            case 8:
+                estadoToString[0] = "Puedes pasar a la siguiente ronda.";
                 break;
         }
         return estadoToString;
@@ -919,7 +936,6 @@ public class GUIGeekOutMasters extends JFrame {
                         mensajeFinal="Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
                         JOptionPane.showMessageDialog(null, mensajeFinal);
                     }
-                    //JOptionPane.showMessageDialog(null, mensajeFinal);
                 }
                 else
                 {
@@ -1003,12 +1019,14 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosActivos();
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
-                estado = 2;
 
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
                         if (poder == "meeple") {
                             game.meeple(boton);
+                            estado = 2;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -1016,12 +1034,18 @@ public class GUIGeekOutMasters extends JFrame {
                             botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                         } else if (poder == "cohete") {
                             game.spaceship(boton);
+                            estado = 4;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
 
                             botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
                             botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
                             botonesEnDadosActivos.remove(boton);
                         } else if (poder == "superheroe") {
                             game.superhero(boton);
+                            estado = 6;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
 
                             imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
                             imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
@@ -1042,7 +1066,6 @@ public class GUIGeekOutMasters extends JFrame {
                 rePaintDadosActivos();
                 rePaintDadosUtilizados();
                 rePaintDadosInactivos();
-                estado = 1;
 
                 for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                     if (e.getSource() == botonesEnDadosActivos.get(boton)) {
@@ -1052,10 +1075,19 @@ public class GUIGeekOutMasters extends JFrame {
                             botonesEnDadosActivos.remove(boton);
                             if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
                                 poder = "meeple";
+                                estado = 1;
+                                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                panelAccionesDados.add(mensajesAccionesDados);
                             } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
                                 poder = "cohete";
+                                estado = 3;
+                                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                panelAccionesDados.add(mensajesAccionesDados);
                             } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
                                 poder = "superheroe";
+                                estado = 5;
+                                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                panelAccionesDados.add(mensajesAccionesDados);
                             }
                             game.powers(boton);
                             seleccionDado = 4;
@@ -1065,6 +1097,9 @@ public class GUIGeekOutMasters extends JFrame {
                             rePaintDadosInactivos();
                             break;
                         } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
+                            estado = 7;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
                             botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
                             botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
                             botonesEnDadosActivos.remove(boton);
@@ -1090,7 +1125,8 @@ public class GUIGeekOutMasters extends JFrame {
                         }
                         else if((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6)
                         {
-                            seleccionDado=3;
+                            seleccionDado = 3;
+                            estado = 8;
                         }
                         else
                         {
@@ -1112,6 +1148,7 @@ public class GUIGeekOutMasters extends JFrame {
                 seleccionDado=1;
             }
         }
+
     }
 }
 
