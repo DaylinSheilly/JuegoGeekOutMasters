@@ -23,7 +23,7 @@ public class GUIGeekOutMasters extends JFrame {
     private JTextArea numeroRonda, puntaje;
     private String mensajeFinal = "";
     private String poder = "";
-    private int ronda, puntos, seleccionDado, boton, unBoton, tamañoActivos;
+    private int ronda, puntos, seleccionDado, boton, unBoton;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
     private static final String MENSAJE_INICIO = "Bienvenido a Geek Out Masters \n"
             + "El juego inicia cuando presiones Nueva ronda\n";
@@ -65,31 +65,31 @@ public class GUIGeekOutMasters extends JFrame {
         botonesEnDadosUtilizados = new ArrayList<JButton>();
 
         seleccionDado = 1;
-        unBoton=0;
+        unBoton = 0;
 
-        imageDado =new ImageIcon(getClass().getResource("/resources/7.png"));
-        imagenOtroTamanho =imageDado.getImage().getScaledInstance(100,100,Image.SCALE_SMOOTH);
-        imagenNuevoTamanho =new ImageIcon(imagenOtroTamanho);
+        imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
+        imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
 
-        dado1 =new JButton(imagenNuevoTamanho);
+        dado1 = new JButton(imagenNuevoTamanho);
         dado1.setBackground(Color.WHITE);
-        dado2 =new JButton(imagenNuevoTamanho);
+        dado2 = new JButton(imagenNuevoTamanho);
         dado2.setBackground(Color.WHITE);
-        dado3 =new JButton(imagenNuevoTamanho);
+        dado3 = new JButton(imagenNuevoTamanho);
         dado3.setBackground(Color.WHITE);
-        dado4 =new JButton(imagenNuevoTamanho);
+        dado4 = new JButton(imagenNuevoTamanho);
         dado4.setBackground(Color.WHITE);
-        dado5 =new JButton(imagenNuevoTamanho);
+        dado5 = new JButton(imagenNuevoTamanho);
         dado5.setBackground(Color.WHITE);
-        dado6 =new JButton(imagenNuevoTamanho);
+        dado6 = new JButton(imagenNuevoTamanho);
         dado6.setBackground(Color.WHITE);
-        dado7 =new JButton(imagenNuevoTamanho);
+        dado7 = new JButton(imagenNuevoTamanho);
         dado7.setBackground(Color.WHITE);
-        dado8 =new JButton(imagenNuevoTamanho);
+        dado8 = new JButton(imagenNuevoTamanho);
         dado8.setBackground(Color.WHITE);
-        dado9 =new JButton(imagenNuevoTamanho);
+        dado9 = new JButton(imagenNuevoTamanho);
         dado9.setBackground(Color.WHITE);
-        dado10 =new JButton(imagenNuevoTamanho);
+        dado10 = new JButton(imagenNuevoTamanho);
         dado10.setBackground(Color.WHITE);
 
         createHeader(constraints);
@@ -251,13 +251,11 @@ public class GUIGeekOutMasters extends JFrame {
         determinateBotonesInactivos();
     }
 
-    public void determinateBotonesInactivos()
-    {
+    public void determinateBotonesInactivos() {
         imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-        for(boton=0;boton<botonesEnDadosInactivos.size();boton++)
-        {
+        for (boton = 0; boton < botonesEnDadosInactivos.size(); boton++) {
             botonesEnDadosInactivos.get(boton).setIcon(imagenNuevoTamanho);
             botonesEnDadosInactivos.get(boton).setBackground(Color.WHITE);
         }
@@ -266,8 +264,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void createSpace3(GridBagConstraints constraints)
-    {
+    public void createSpace3(GridBagConstraints constraints) {
         panelEspacioEnBlanco3 = new JPanel();
 
         constraints.gridx = 0;
@@ -279,8 +276,7 @@ public class GUIGeekOutMasters extends JFrame {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void createDadosActivosPane(GridBagConstraints constraints)
-    {
+    public void createDadosActivosPane(GridBagConstraints constraints) {
         panelDadosActivos = new JPanel();
         panelDadosActivos.setPreferredSize(new Dimension(800, 600));
         panelDadosActivos.setBorder(BorderFactory.createTitledBorder("Dados activos"));
@@ -305,19 +301,14 @@ public class GUIGeekOutMasters extends JFrame {
         determinateBotonesActivos();
     }
 
-    public void determinateBotonesActivos()
-    {
-        for(boton=0;boton<botonesEnDadosActivos.size();boton++)
-        {
-            if(ronda==0)
-            {
+    public void determinateBotonesActivos() {
+        for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+            if (ronda == 0) {
                 imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
                 imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-            }
-            else
-            {
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
+            } else {
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
                 imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
             }
@@ -330,8 +321,7 @@ public class GUIGeekOutMasters extends JFrame {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void createSpace4(GridBagConstraints constraints)
-    {
+    public void createSpace4(GridBagConstraints constraints) {
         panelEspacioEnBlanco4 = new JPanel();
 
         constraints.gridx = 0;
@@ -343,8 +333,7 @@ public class GUIGeekOutMasters extends JFrame {
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void createNewRoundButton(GridBagConstraints constraints)
-    {
+    public void createNewRoundButton(GridBagConstraints constraints) {
         nuevaRonda = new JButton("Nueva ronda");
         nuevaRonda.setFont(new Font("SansSerif", Font.BOLD + Font.PLAIN, 14));
         nuevaRonda.setForeground(Color.WHITE);
@@ -362,105 +351,75 @@ public class GUIGeekOutMasters extends JFrame {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void rePaintDadosActivos()
-    {
+    public void rePaintDadosActivos() {
         panelDadosActivos.removeAll();
 
         panelDadosActivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelActivos = new GridBagConstraints();
-        for(boton=0;boton<botonesEnDadosActivos.size();boton++)
-        {
-            switch (boton)
-            {
+        for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+            switch (boton) {
                 case 0:
-                constraintsPanelActivos.gridx = 1;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(0), constraintsPanelActivos);
-                break;
-                case 1:
-                constraintsPanelActivos.gridx = 2;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(1), constraintsPanelActivos);
-                break;
-                case 2:
-                constraintsPanelActivos.gridx = 3;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(2), constraintsPanelActivos);
-                break;
-                case 3:
-                constraintsPanelActivos.gridx = 4;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(3), constraintsPanelActivos);
-                break;
-                case 4:
-                constraintsPanelActivos.gridx = 5;
-                constraintsPanelActivos.gridy = 8;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(4), constraintsPanelActivos);
-                break;
-                case 5:
-                constraintsPanelActivos.gridx = 2;
-                constraintsPanelActivos.gridy = 9;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(5), constraintsPanelActivos);
-                break;
-                case 6:
-                constraintsPanelActivos.gridx = 4;
-                constraintsPanelActivos.gridy = 9;
-                constraintsPanelActivos.gridwidth = 1;
-                constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                panelDadosActivos.add(botonesEnDadosActivos.get(6), constraintsPanelActivos);
-                break;
-                case 7:
-                    constraintsPanelActivos.gridx = 3;
-                    constraintsPanelActivos.gridy = 9;
-                    constraintsPanelActivos.gridwidth = 1;
-                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
-                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
-
-                    panelDadosActivos.add(botonesEnDadosActivos.get(7), constraintsPanelActivos);
-                    break;
-                case 8:
                     constraintsPanelActivos.gridx = 1;
-                    constraintsPanelActivos.gridy = 9;
+                    constraintsPanelActivos.gridy = 8;
                     constraintsPanelActivos.gridwidth = 1;
                     constraintsPanelActivos.fill = GridBagConstraints.NONE;
                     constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                    panelDadosActivos.add(botonesEnDadosActivos.get(8), constraintsPanelActivos);
+                    panelDadosActivos.add(botonesEnDadosActivos.get(0), constraintsPanelActivos);
                     break;
-                case 9:
+                case 1:
+                    constraintsPanelActivos.gridx = 2;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                    panelDadosActivos.add(botonesEnDadosActivos.get(1), constraintsPanelActivos);
+                    break;
+                case 2:
+                    constraintsPanelActivos.gridx = 3;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                    panelDadosActivos.add(botonesEnDadosActivos.get(2), constraintsPanelActivos);
+                    break;
+                case 3:
+                    constraintsPanelActivos.gridx = 4;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                    panelDadosActivos.add(botonesEnDadosActivos.get(3), constraintsPanelActivos);
+                    break;
+                case 4:
                     constraintsPanelActivos.gridx = 5;
+                    constraintsPanelActivos.gridy = 8;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_END;
+
+                    panelDadosActivos.add(botonesEnDadosActivos.get(4), constraintsPanelActivos);
+                    break;
+                case 5:
+                    constraintsPanelActivos.gridx = 2;
                     constraintsPanelActivos.gridy = 9;
                     constraintsPanelActivos.gridwidth = 1;
                     constraintsPanelActivos.fill = GridBagConstraints.NONE;
                     constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
 
-                    panelDadosActivos.add(botonesEnDadosActivos.get(9), constraintsPanelActivos);
+                    panelDadosActivos.add(botonesEnDadosActivos.get(5), constraintsPanelActivos);
+                    break;
+                case 6:
+                    constraintsPanelActivos.gridx = 4;
+                    constraintsPanelActivos.gridy = 9;
+                    constraintsPanelActivos.gridwidth = 1;
+                    constraintsPanelActivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelActivos.anchor = GridBagConstraints.LINE_START;
+
+                    panelDadosActivos.add(botonesEnDadosActivos.get(6), constraintsPanelActivos);
                     break;
             }
         }
@@ -468,44 +427,41 @@ public class GUIGeekOutMasters extends JFrame {
         repaint();
     }
 
-    private void rePaintDadosInactivos()
-    {
+    private void rePaintDadosInactivos() {
         panelDadosInactivos.removeAll();
 
         panelDadosInactivos.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelInactivos = new GridBagConstraints();
 
-        for(boton=0;boton<botonesEnDadosInactivos.size();boton++)
-        {
-            switch (boton)
-            {
+        for (boton = 0; boton < botonesEnDadosInactivos.size(); boton++) {
+            switch (boton) {
                 case 0:
-                constraintsPanelInactivos.gridx = 4;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 4;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(botonesEnDadosInactivos.get(0), constraintsPanelInactivos);
-                break;
+                    panelDadosInactivos.add(botonesEnDadosInactivos.get(0), constraintsPanelInactivos);
+                    break;
                 case 1:
-                constraintsPanelInactivos.gridx = 5;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 5;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(botonesEnDadosInactivos.get(1), constraintsPanelInactivos);
-                break;
+                    panelDadosInactivos.add(botonesEnDadosInactivos.get(1), constraintsPanelInactivos);
+                    break;
                 case 2:
-                constraintsPanelInactivos.gridx = 6;
-                constraintsPanelInactivos.gridy = 4;
-                constraintsPanelInactivos.gridwidth = 1;
-                constraintsPanelInactivos.fill = GridBagConstraints.NONE;
-                constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
+                    constraintsPanelInactivos.gridx = 6;
+                    constraintsPanelInactivos.gridy = 4;
+                    constraintsPanelInactivos.gridwidth = 1;
+                    constraintsPanelInactivos.fill = GridBagConstraints.NONE;
+                    constraintsPanelInactivos.anchor = GridBagConstraints.CENTER;
 
-                panelDadosInactivos.add(botonesEnDadosInactivos.get(2), constraintsPanelInactivos);
-                break;
+                    panelDadosInactivos.add(botonesEnDadosInactivos.get(2), constraintsPanelInactivos);
+                    break;
                 case 3:
                     constraintsPanelInactivos.gridx = 4;
                     constraintsPanelInactivos.gridy = 5;
@@ -566,17 +522,14 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosInactivos.updateUI();
     }
 
-    private void rePaintDadosUtilizados()
-    {
+    private void rePaintDadosUtilizados() {
         panelDadosUtilizados.removeAll();
 
         panelDadosUtilizados.setLayout(new GridBagLayout());
         GridBagConstraints constraintsPanelUtilizados = new GridBagConstraints();
 
-        for(boton=0;boton<botonesEnDadosUtilizados.size();boton++)
-        {
-            switch(boton)
-            {
+        for (boton = 0; boton < botonesEnDadosUtilizados.size(); boton++) {
+            switch (boton) {
                 case 0:
                     constraintsPanelUtilizados.gridx = 0;
                     constraintsPanelUtilizados.gridy = 4;
@@ -664,6 +617,112 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosUtilizados.updateUI();
     }
 
+    private void verifyDicesInDadosActivos()
+    {
+        GridBagConstraints constraints = new GridBagConstraints();
+        if(botonesEnDadosActivos == null)
+        {
+            nuevaRonda.addMouseListener(escucha);
+            nuevaRonda.setBackground(Color.green);
+        }
+        else if(botonesEnDadosActivos.size()==1)
+        {
+            if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3)
+            {
+                nuevaRonda.addMouseListener(escucha);
+                nuevaRonda.setBackground(Color.green);
+            }
+            else if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6)
+            {
+                nuevaRonda.addMouseListener(escucha);
+                nuevaRonda.setBackground(Color.green);
+            }
+        }
+        else {
+            switch (botonesEnDadosActivos.size()) {
+                case 2:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            nuevaRonda.addMouseListener(escucha);
+                            nuevaRonda.setBackground(Color.green);
+                        }
+                    }
+                    break;
+                case 3:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
+                                nuevaRonda.addMouseListener(escucha);
+                                nuevaRonda.setBackground(Color.green);
+                            }
+                        }
+                    }
+                    break;
+                case 4:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
+                                if (game.dadosActivosArray.get(3).getCara() == 5 | game.dadosActivosArray.get(3).getCara() == 6) {
+                                    nuevaRonda.addMouseListener(escucha);
+                                    nuevaRonda.setBackground(Color.green);
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 5:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
+                                if (game.dadosActivosArray.get(3).getCara() == 5 | game.dadosActivosArray.get(3).getCara() == 6) {
+                                    if (game.dadosActivosArray.get(4).getCara() == 5 | game.dadosActivosArray.get(4).getCara() == 6) {
+                                        nuevaRonda.addMouseListener(escucha);
+                                        nuevaRonda.setBackground(Color.green);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 6:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
+                                if (game.dadosActivosArray.get(3).getCara() == 5 | game.dadosActivosArray.get(3).getCara() == 6) {
+                                    if (game.dadosActivosArray.get(4).getCara() == 5 | game.dadosActivosArray.get(4).getCara() == 6) {
+                                        if (game.dadosActivosArray.get(5).getCara() == 5 | game.dadosActivosArray.get(5).getCara() == 6) {
+                                            nuevaRonda.addMouseListener(escucha);
+                                            nuevaRonda.setBackground(Color.green);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                case 7:
+                    if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
+                        if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
+                            if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
+                                if (game.dadosActivosArray.get(3).getCara() == 5 | game.dadosActivosArray.get(3).getCara() == 6) {
+                                    if (game.dadosActivosArray.get(4).getCara() == 5 | game.dadosActivosArray.get(4).getCara() == 6) {
+                                        if (game.dadosActivosArray.get(5).getCara() == 5 | game.dadosActivosArray.get(5).getCara() == 6) {
+                                            if (game.dadosActivosArray.get(6).getCara() == 5 | game.dadosActivosArray.get(6).getCara() == 6) {
+                                                nuevaRonda.addMouseListener(escucha);
+                                                nuevaRonda.setBackground(Color.green);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+            }
+        }
+    }
+
+
     /**
      * Main process of the Java program
      *
@@ -681,451 +740,182 @@ public class GUIGeekOutMasters extends JFrame {
     }
 
 
-
     /**
      * inner class that extends an Adapter Class or implements Listeners used by GUI class
      */
 
-    private class Escucha extends MouseAdapter 
-    {
-        public void mouseClicked(MouseEvent e) 
-        {
-            if (e.getSource() == nuevaRonda)
-            {
-                if(ronda==5)
-                {
-                    if(game.endGame())
-                    {
-                        mensajeFinal="¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
+    private class Escucha extends MouseAdapter {
+        public void mousePressed(MouseEvent e) {
+            if (e.getSource() == nuevaRonda) {
+                nuevaRonda.removeMouseListener(escucha);
+                nuevaRonda.setBackground(Color.darkGray);
+                if (ronda == 5) {
+                    if (game.endGame()) {
+                        mensajeFinal = "¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
+                    } else {
+                        mensajeFinal = "Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
                     }
-                    else
-                    {
-                        mensajeFinal="Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
-                    }
-                    JOptionPane.showMessageDialog(null, mensajeFinal);
-                }
-                else
-                {
-                    if(ronda>0)
-                    {
+                    JOptionPane.showMessageDialog(null, "game over");
+                } else {
+                    if (ronda > 0) {
                         game.roundPoints();
                         game.drakeDices();
                         game.determinateScore();
+
+                        remove(panelDadosActivos);
+                        remove(panelDadosInactivos);
+                        remove(panelDadosUtilizados);
+
+                        JOptionPane.showMessageDialog(null, "nueva ronda");
                     }
-
-                    game.nextRound();
-
-                    ronda = game.getRonda();
-                    numeroRonda.setText("Ronda: " + ronda);
-
-                    puntos = game.getPuntaje();
-                    puntaje.setText("Puntaje: " + puntos);
-
-                    GridBagConstraints constraints = new GridBagConstraints();
-
-                    //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    if(botonesEnDadosUtilizados.size()!=0)
-                    {
-                        botonesEnDadosUtilizados.clear();
-                    }
-                    createDadosUtilizadosPane(constraints);
-
-                    //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    if(botonesEnDadosInactivos.size()!=0)
-                    {
-                        botonesEnDadosInactivos.clear();
-                    }
-                    createDadosInactivosPane(constraints);
-
-                    //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    if(botonesEnDadosActivos.size()!=0)
-                    {
-                        botonesEnDadosActivos.clear();
-                    }
-                    createDadosActivosPane(constraints);
-
-                    //------------------------------------------------------------------------------------------------------------------------------------------
-
-                    remove(nuevaRonda);
-
-                    seleccionDado=1;
-                    revalidate();
-                    repaint();
                 }
-            }
-            else if (e.getSource() == ayuda)
-            {
+                JOptionPane.showMessageDialog(null, "cantidad de dados: "+botonesEnDadosActivos.size());
+                for(int i=0;i<botonesEnDadosActivos.size();i++)
+                {
+                    JOptionPane.showMessageDialog(null, "dado "+i+1+": "+botonesEnDadosActivos.get(i));
+                }
+
+                game.nextRound();
+
+                ronda = game.getRonda();
+                numeroRonda.setText("Ronda: " + ronda);
+
+                puntos = game.getPuntaje();
+                puntaje.setText("Puntaje: " + puntos);
+
+                GridBagConstraints constraints = new GridBagConstraints();
+
+                //------------------------------------------------------------------------------------------------------------------------------------------
+
+                if (botonesEnDadosUtilizados.size() != 0) {
+                    botonesEnDadosUtilizados.clear();
+                }
+                createDadosUtilizadosPane(constraints);
+
+                //------------------------------------------------------------------------------------------------------------------------------------------
+
+                if (botonesEnDadosInactivos.size() != 0) {
+                    botonesEnDadosInactivos.clear();
+                }
+                createDadosInactivosPane(constraints);
+
+                //------------------------------------------------------------------------------------------------------------------------------------------
+
+                if (botonesEnDadosActivos.size() != 0) {
+                    botonesEnDadosActivos.clear();
+                }
+                createDadosActivosPane(constraints);
+
+                //------------------------------------------------------------------------------------------------------------------------------------------
+
+                verifyDicesInDadosActivos();
+
+                revalidate();
+                repaint();
+
+                seleccionDado = 1;
+
+                JOptionPane.showMessageDialog(null, "panel restablecido con éxito");
+            } else if (e.getSource() == ayuda) {
                 JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
-            }
-            else if(e.getSource() == salir)
-            {
+            } else if (e.getSource() == salir) {
                 System.exit(0);
-            }
-            else if(seleccionDado==2)
-            {
-                rePaintDadosActivos();
-                rePaintDadosUtilizados();
-                rePaintDadosInactivos();
-
-                for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
-                    if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                        if (poder == "meeple") {
-                            game.meeple(boton);
-
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                            imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                            botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                        } else if (poder == "cohete") {
-                            game.spaceship(boton);
-
-                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                            botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
-                            botonesEnDadosActivos.remove(boton);
-                        } else if (poder == "superheroe") {
-                            game.superhero(boton);
-
-                            imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                            imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-                            imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                            botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-                        }
-                        seleccionDado = 3;
-                        poder = "";
-
-                        GridBagConstraints constraints = new GridBagConstraints();
-                        if(botonesEnDadosActivos.size()==1 & (game.dadosActivosArray.get(0).getCara() != 5 | game.dadosActivosArray.get(0).getCara() != 6 | game.dadosActivosArray.get(0).getCara() != 4)) {
-                            if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3) {
-                                createNewRoundButton(constraints);
-                            }
-                        }
-                        else if(botonesEnDadosActivos==null)
-                        {
-                            createNewRoundButton(constraints);
-                        }
-                        else
-                        {
-                            tamañoActivos = botonesEnDadosActivos.size();
-                            switch (tamañoActivos)
-                            {
-                                case 1:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        createNewRoundButton(constraints);
-                                    }
-                                    break;
-                                case 2:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            createNewRoundButton(constraints);
-                                        }
-                                    }
-                                    break;
-                                case 3:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                            {
-                                                createNewRoundButton(constraints);
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 4:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                {
-                                                    createNewRoundButton(constraints);
-                                                }
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 5:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                    {
-                                                        createNewRoundButton(constraints);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 6:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                    {
-                                                        if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
-                                                        {
-                                                            createNewRoundButton(constraints);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    break;
-                                case 7:
-                                    if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                    {
-                                        if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                    {
-                                                        if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
-                                                        {
-                                                            if(game.dadosActivosArray.get(6).getCara()==5 | game.dadosActivosArray.get(6).getCara()==6)
-                                                            {
-                                                                createNewRoundButton(constraints);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    break;
-                            }
-                        }
-                    }
-                }
-                seleccionDado = 3;
+            } else {
                 rePaintDadosInactivos();
                 rePaintDadosUtilizados();
                 rePaintDadosActivos();
-            }
-            else if(seleccionDado==1)
-            {
-                rePaintDadosActivos();
-                rePaintDadosUtilizados();
-                rePaintDadosInactivos();
 
-                for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
-                    if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                        if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
-                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                            botonesEnDadosActivos.remove(boton);
-                            if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
-                                poder = "meeple";
-                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
-                                poder = "cohete";
-                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
-                                poder = "superheroe";
-                            }
-                            game.powers(boton);
-                            seleccionDado = 4;
+                if (seleccionDado == 2) {
 
-                            rePaintDadosActivos();
-                            rePaintDadosUtilizados();
-                            rePaintDadosInactivos();
-                            break;
-                        } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
-                            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                            botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                            botonesEnDadosActivos.remove(boton);
+                    for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                        if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                            if (poder == "meeple") {
+                                game.meeple(boton);
 
-                            if(botonesEnDadosInactivos.size()!=0) {
-                                game.powers(boton);
-                                game.heart(boton);
-
-                                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                                imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
                                 imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
                                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                                botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
-                                botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
-                                botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
-                                botonesEnDadosInactivos.remove(unBoton);
+                                botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                            } else if (poder == "cohete") {
+                                game.spaceship(boton);
 
-                                rePaintDadosActivos();
-                                rePaintDadosUtilizados();
-                                rePaintDadosInactivos();
+                                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                                botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
+                                botonesEnDadosActivos.remove(boton);
+                            } else if (poder == "superheroe") {
+                                game.superhero(boton);
 
-                                seleccionDado = 3;
-                                break;
+                                imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
+                                imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                                botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
                             }
-
-                            GridBagConstraints constraints = new GridBagConstraints();
-                            if(botonesEnDadosActivos.size()==1 & (game.dadosActivosArray.get(0).getCara() != 5 | game.dadosActivosArray.get(0).getCara() != 6 | game.dadosActivosArray.get(0).getCara() != 4)) {
-                                if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3) {
-                                    createNewRoundButton(constraints);
-                                }
-                            }
-                            else if(botonesEnDadosActivos==null)
-                            {
-                                createNewRoundButton(constraints);
-                            }
-                            else
-                            {
-                                tamañoActivos = botonesEnDadosActivos.size();
-                                switch (tamañoActivos)
-                                {
-                                    case 1:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            createNewRoundButton(constraints);
-                                        }
-                                        break;
-                                    case 2:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                createNewRoundButton(constraints);
-                                            }
-                                        }
-                                        break;
-                                    case 3:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                                {
-                                                    createNewRoundButton(constraints);
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 4:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                    {
-                                                        createNewRoundButton(constraints);
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 5:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                    {
-                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                        {
-                                                            createNewRoundButton(constraints);
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 6:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                    {
-                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                        {
-                                                            if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
-                                                            {
-                                                                createNewRoundButton(constraints);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                    case 7:
-                                        if(game.dadosActivosArray.get(0).getCara()==5 | game.dadosActivosArray.get(0).getCara()==6)
-                                        {
-                                            if(game.dadosActivosArray.get(1).getCara()==5 | game.dadosActivosArray.get(1).getCara()==6)
-                                            {
-                                                if(game.dadosActivosArray.get(2).getCara()==5 | game.dadosActivosArray.get(2).getCara()==6)
-                                                {
-                                                    if(game.dadosActivosArray.get(3).getCara()==5 | game.dadosActivosArray.get(3).getCara()==6)
-                                                    {
-                                                        if(game.dadosActivosArray.get(4).getCara()==5 | game.dadosActivosArray.get(4).getCara()==6)
-                                                        {
-                                                            if(game.dadosActivosArray.get(5).getCara()==5 | game.dadosActivosArray.get(5).getCara()==6)
-                                                            {
-                                                                if(game.dadosActivosArray.get(6).getCara()==5 | game.dadosActivosArray.get(6).getCara()==6)
-                                                                {
-                                                                    createNewRoundButton(constraints);
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                        }
-                                        break;
-                                }
-                            }
-                        }
-                        else if((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6)
-                        {
-                            seleccionDado=3;
-                        }
-                        else
-                        {
-                            seleccionDado=3;
+                            verifyDicesInDadosActivos();
+                            seleccionDado = 3;
+                            poder = "";
                         }
                     }
+                    seleccionDado = 3;
+                } else if (seleccionDado == 1) {
+                    for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                        if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                            if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
+                                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                                botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                                botonesEnDadosActivos.remove(boton);
+                                if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
+                                    poder = "meeple";
+                                } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
+                                    poder = "cohete";
+                                } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
+                                    poder = "superheroe";
+                                }
+                                game.powers(boton);
+                                seleccionDado = 4;
+
+                                break;
+                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
+                                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                                botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                                botonesEnDadosActivos.remove(boton);
+
+                                if (botonesEnDadosInactivos.size() != 0) {
+                                    game.powers(boton);
+                                    game.heart(boton);
+
+                                    imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+                                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                                    botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
+                                    botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
+                                    botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
+                                    botonesEnDadosInactivos.remove(unBoton);
+
+                                    verifyDicesInDadosActivos();
+
+                                    seleccionDado = 3;
+                                    break;
+                                }
+                            } else if ((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6) {
+                                verifyDicesInDadosActivos();
+                                seleccionDado = 3;
+                            } else {
+                                verifyDicesInDadosActivos();
+                                seleccionDado = 3;
+                            }
+                        }
+                    }
+                } else if (seleccionDado == 3) {
+                    seleccionDado = 1;
+                } else if (seleccionDado == 4) {
+                    seleccionDado = 2;
+                } else {
+                    seleccionDado = 1;
                 }
             }
-            else if(seleccionDado==3)
-            {
-                seleccionDado=1;
-            }
-            else if(seleccionDado==4)
-            {
-                seleccionDado=2;
-            }
-            else
-            {
-                seleccionDado=1;
-            }
+            rePaintDadosInactivos();
+            rePaintDadosUtilizados();
+            rePaintDadosActivos();
         }
     }
 }
-
-
-
-

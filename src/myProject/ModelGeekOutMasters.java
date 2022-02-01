@@ -11,8 +11,7 @@ import java.util.ArrayList;
  * @version v.1.0.0 date:11/01/2022
  */
 
-public class ModelGeekOutMasters
-{
+public class ModelGeekOutMasters {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
     private int puntos, puntaje, ronda, unDado, dados42;
     private boolean terminar;
@@ -22,8 +21,7 @@ public class ModelGeekOutMasters
      * Class Constructor
      */
 
-    public ModelGeekOutMasters()
-    {
+    public ModelGeekOutMasters() {
         dado1 = new Dados();
         dado2 = new Dados();
         dado3 = new Dados();
@@ -35,9 +33,9 @@ public class ModelGeekOutMasters
         dado9 = new Dados();
         dado10 = new Dados();
 
-        ronda=0;
-        puntaje=0;
-        puntos=0;
+        ronda = 0;
+        puntaje = 0;
+        puntos = 0;
 
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
@@ -48,8 +46,7 @@ public class ModelGeekOutMasters
         determinateDadosInactivos();
     }
 
-    public void determinateDadosActivos()
-    {
+    public void determinateDadosActivos() {
         dadosActivosArray.add(dado1);
         dadosActivosArray.add(dado2);
         dadosActivosArray.add(dado3);
@@ -57,10 +54,18 @@ public class ModelGeekOutMasters
         dadosActivosArray.add(dado5);
         dadosActivosArray.add(dado6);
         dadosActivosArray.add(dado7);
+
+        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
+        {
+            dadosActivosArray.get(unDado).newCara();
+        }
+        for(int i=0;i<dadosActivosArray.size();i++)
+        {
+            JOptionPane.showMessageDialog(null, "posición "+i+": "+dadosActivosArray.get(i).getCara());
+        }
     }
 
-    public void determinateDadosInactivos()
-    {
+    public void determinateDadosInactivos() {
         dadosInactivosArray.add(dado8);
         dadosInactivosArray.add(dado9);
         dadosInactivosArray.add(dado10);
@@ -78,93 +83,60 @@ public class ModelGeekOutMasters
         return dadosActivosArray;
     }
 
-    public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array)
-    {
+    public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array) {
         array.remove(posicionDado);
     }
 
-    public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion)
-    {
+    public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion) {
         array.add(posicion, dado);
     }
 
-    public void addDiceFromArray(ArrayList<Dados> array, Dados dado)
-    {
+    public void addDiceFromArray(ArrayList<Dados> array, Dados dado) {
         array.add(dado);
     }
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void determinateScore()
-    {
-        if(puntos==0)
-        {
-            puntaje=0;
-        }
-        else if(puntos==1)
-        {
-            puntaje=1;
-        }
-        else if(puntos==2)
-        {
-            puntaje=3;
-        }
-        else if(puntos==3)
-        {
-            puntaje=6;
-        }
-        else if(puntos==4)
-        {
-            puntaje=10;
-        }
-        else if(puntos==5)
-        {
-            puntaje=15;
-        }
-        else if(puntos==6)
-        {
-            puntaje=21;
-        }
-        else if(puntos==7)
-        {
-            puntaje=28;
-        }
-        else if(puntos==8)
-        {
-            puntaje=36;
-        }
-        else if(puntos==9)
-        {
-            puntaje=45;
-        }
-        else if(puntos==10)
-        {
-            puntaje=55;
-        }
-        else
-        {
-            puntaje=puntaje;
+    public void determinateScore() {
+        if (puntos == 0) {
+            puntaje = 0;
+        } else if (puntos == 1) {
+            puntaje = 1;
+        } else if (puntos == 2) {
+            puntaje = 3;
+        } else if (puntos == 3) {
+            puntaje = 6;
+        } else if (puntos == 4) {
+            puntaje = 10;
+        } else if (puntos == 5) {
+            puntaje = 15;
+        } else if (puntos == 6) {
+            puntaje = 21;
+        } else if (puntos == 7) {
+            puntaje = 28;
+        } else if (puntos == 8) {
+            puntaje = 36;
+        } else if (puntos == 9) {
+            puntaje = 45;
+        } else if (puntos == 10) {
+            puntaje = 55;
+        } else {
+            puntaje = puntaje;
         }
     }
 
-    public void roundPoints()
-    {
+    public void roundPoints() {
         dados42 = 0;
-        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
-        {
-            if (dadosActivosArray.get(unDado).getCara() == 6)
-            {
+        for (unDado = 0; unDado < dadosActivosArray.size(); unDado++) {
+            if (dadosActivosArray.get(unDado).getCara() == 6) {
                 dados42++;
             }
         }
-        puntos = puntos+dados42;
+        puntos = puntos + dados42;
     }
 
-    public void drakeDices()
-    {
-        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
-        {
-            if(dadosActivosArray.get(unDado).getCara() == 5)
-            {
+    public void drakeDices() {
+        for (unDado = 0; unDado < dadosActivosArray.size(); unDado++) {
+            if (dadosActivosArray.get(unDado).getCara() == 5) {
                 puntos = 0;
                 puntaje = 0;
             }
@@ -173,32 +145,20 @@ public class ModelGeekOutMasters
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void nextRound()
-    {
-        if(ronda==5)
-        {
-            puntaje=0;
-            ronda=1;
+    public void nextRound() {
+        if (dadosActivosArray.size() != 0) {
+            dadosActivosArray.clear();
         }
-        else
-        {
-            if(dadosActivosArray.size()!=0)
-            {
-                dadosActivosArray.clear();
-            }
-            if(dadosInactivosArray.size()!=0)
-            {
-                dadosInactivosArray.clear();
-            }
-            if(dadosUtilizadosArray.size()!=0)
-            {
-                dadosUtilizadosArray.clear();
-            }
-            determinateDadosActivos();
-            determinateDadosInactivos();
+        if (dadosInactivosArray.size() != 0) {
+            dadosInactivosArray.clear();
+        }
+        if (dadosUtilizadosArray.size() != 0) {
+            dadosUtilizadosArray.clear();
+        }
+        determinateDadosActivos();
+        determinateDadosInactivos();
 
-            ronda++;
-        }
+        ronda++;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
@@ -215,6 +175,8 @@ public class ModelGeekOutMasters
             {
                 terminar=false;//perdió
             }
+            puntaje=0;
+            ronda=0;
         }
         return terminar;
     }
@@ -230,29 +192,26 @@ public class ModelGeekOutMasters
     public void meeple(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).newCara();
-
         for(int i=0;i<dadosActivosArray.size();i++)
         {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+            JOptionPane.showMessageDialog(null, "posición "+i+": "+dadosActivosArray.get(i).getCara());
         }
     }
     public void spaceship(int posicionDadoActivo)
     {
         addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
         removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-
         for(int i=0;i<dadosActivosArray.size();i++)
         {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+            JOptionPane.showMessageDialog(null, "posición "+i+": "+dadosActivosArray.get(i).getCara());
         }
     }
     public void superhero(int posicionDadoActivo)
     {
         dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
-
         for(int i=0;i<dadosActivosArray.size();i++)
         {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+            JOptionPane.showMessageDialog(null, "posición "+i+": "+dadosActivosArray.get(i).getCara());
         }
     }
     public void heart(int posicionDadoActivo)
@@ -260,10 +219,9 @@ public class ModelGeekOutMasters
         dadosInactivosArray.get(0).newCara();
         addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
         removeDiceFromArray(0,dadosInactivosArray);
-
         for(int i=0;i<dadosActivosArray.size();i++)
         {
-            JOptionPane.showMessageDialog(null, dadosActivosArray.get(i).getCara());
+            JOptionPane.showMessageDialog(null, "posición "+i+": "+dadosActivosArray.get(i).getCara());
         }
     }
 
