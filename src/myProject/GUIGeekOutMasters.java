@@ -1149,7 +1149,6 @@ public class GUIGeekOutMasters extends JFrame {
                 seleccionDado=1;
             }
         }
-
     }
 }
 
