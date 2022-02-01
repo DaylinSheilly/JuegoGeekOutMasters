@@ -13,9 +13,10 @@ import java.util.ArrayList;
 
 public class ModelGeekOutMasters {
     private Dados dado1, dado2, dado3, dado4, dado5, dado6, dado7, dado8, dado9, dado10;
-    private int puntos, puntaje, ronda, unDado, dados42;
+    private int puntos, puntaje, ronda, unDado, dados42, estado;
     private boolean terminar;
     public ArrayList<Dados> dadosUtilizadosArray, dadosInactivosArray, dadosActivosArray, unArray;
+    private String[] estadoToString;
 
     /**
      * Class Constructor
@@ -36,6 +37,7 @@ public class ModelGeekOutMasters {
         ronda = 0;
         puntaje = 0;
         puntos = 0;
+        estado = 0;
 
         dadosActivosArray = new ArrayList<Dados>();
         dadosInactivosArray = new ArrayList<Dados>();
@@ -44,7 +46,14 @@ public class ModelGeekOutMasters {
 
         determinateDadosActivos();
         determinateDadosInactivos();
+        estadoToString = new String[7];
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function addes the active dices an DadosActivos array.
+     */
 
     public void determinateDadosActivos() {
         dadosActivosArray.add(dado1);
@@ -54,12 +63,13 @@ public class ModelGeekOutMasters {
         dadosActivosArray.add(dado5);
         dadosActivosArray.add(dado6);
         dadosActivosArray.add(dado7);
-
-        for(unDado=0;unDado<dadosActivosArray.size();unDado++)
-        {
-            dadosActivosArray.get(unDado).newCara();
-        }
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function addes the active dices an DadosActivos array.
+     */
 
     public void determinateDadosInactivos() {
         dadosInactivosArray.add(dado8);
@@ -67,30 +77,85 @@ public class ModelGeekOutMasters {
         dadosInactivosArray.add(dado10);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function gets DadosUtilizados.
+     *
+     * @return an DadosUtilizados array
+     */
+
     public ArrayList<Dados> getDadosUtilizadosArray() {
         return dadosUtilizadosArray;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function gets DadosInactivos.
+     *
+     * @return an DadosInactivos array
+     */
 
     public ArrayList<Dados> getDadosInactivosArray() {
         return dadosInactivosArray;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function gets DadosActivos.
+     *
+     * @return an DadosActivos array
+     */
+
     public ArrayList<Dados> getDadosActivosArray() {
         return dadosActivosArray;
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function erases dices from array.
+     *
+     * @param posicionDado
+     * @param array
+     */
     public void removeDiceFromArray(int posicionDado, ArrayList<Dados> array) {
         array.remove(posicionDado);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function adds dice to the array at a given position.
+     *
+     * @param array
+     * @param dado
+     * @param posicion
+     */
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado, int posicion) {
         array.add(posicion, dado);
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function adds dices to array.
+     *
+     * @param array
+     * @param dado
+     */
+
     public void addDiceFromArray(ArrayList<Dados> array, Dados dado) {
         array.add(dado);
     }
+
     //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function determinates round score.
+     */
 
     public void determinateScore() {
         if (puntos == 0) {
@@ -120,6 +185,11 @@ public class ModelGeekOutMasters {
         }
     }
 
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function determines how many 42 dices got were in the round.
+     */
     public void roundPoints() {
         dados42 = 0;
         for (unDado = 0; unDado < dadosActivosArray.size(); unDado++) {
@@ -129,6 +199,12 @@ public class ModelGeekOutMasters {
         }
         puntos = puntos + dados42;
     }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the dragon.
+     */
 
     public void drakeDices() {
         for (unDado = 0; unDado < dadosActivosArray.size(); unDado++) {
@@ -141,78 +217,136 @@ public class ModelGeekOutMasters {
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void nextRound() {
-        if (dadosActivosArray.size() != 0) {
-            dadosActivosArray.clear();
-        }
-        if (dadosInactivosArray.size() != 0) {
-            dadosInactivosArray.clear();
-        }
-        if (dadosUtilizadosArray.size() != 0) {
-            dadosUtilizadosArray.clear();
-        }
-        determinateDadosActivos();
-        determinateDadosInactivos();
+    /**
+     * This function goes to the next round.
+     */
 
-        ronda++;
+    public void nextRound() {
+        if (ronda == 5) {
+            puntaje = 0;
+            ronda = 1;
+        } else {
+            if (dadosActivosArray.size() != 0) {
+                dadosActivosArray.clear();
+            }
+            if (dadosInactivosArray.size() != 0) {
+                dadosInactivosArray.clear();
+            }
+            if (dadosUtilizadosArray.size() != 0) {
+                dadosUtilizadosArray.clear();
+            }
+            determinateDadosActivos();
+            determinateDadosInactivos();
+
+            ronda++;
+        }
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public boolean endGame()
-    {
-        if(ronda==5)
-        {
-            if(puntaje >= 30)
-            {
-                terminar=true;//ganó
+    /**
+     * This function ends the game.
+     *
+     * @return if you won or lost
+     */
+
+    public boolean endGame() {
+        if (ronda == 5) {
+            if (puntaje >= 30) {
+                terminar = true;//ganó
+            } else {
+                terminar = false;//perdió
             }
-            else
-            {
-                terminar=false;//perdió
-            }
-            puntaje=0;
-            ronda=0;
         }
         return terminar;
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public void powers(int posicionDadoActivo)
-    {
-        addDiceFromArray(dadosUtilizadosArray,dadosActivosArray.get(posicionDadoActivo));
-        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-    }
+    /**
+     * This function moves the dice that is activated to the DadosUtilizados panel.
+     *
+     * @param posicionDadoActivo
+     */
 
-    public void meeple(int posicionDadoActivo)
-    {
-        dadosActivosArray.get(posicionDadoActivo).newCara();
-    }
-    public void spaceship(int posicionDadoActivo)
-    {
-        addDiceFromArray(dadosInactivosArray,dadosActivosArray.get(posicionDadoActivo));
-        removeDiceFromArray(posicionDadoActivo,dadosActivosArray);
-    }
-    public void superhero(int posicionDadoActivo)
-    {
-        dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
-    }
-    public void heart(int posicionDadoActivo)
-    {
-        dadosInactivosArray.get(0).newCara();
-        addDiceFromArray(dadosActivosArray,dadosInactivosArray.get(0),posicionDadoActivo);
-        removeDiceFromArray(0,dadosInactivosArray);
+    public void powers(int posicionDadoActivo) {
+        addDiceFromArray(dadosUtilizadosArray, dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo, dadosActivosArray);
     }
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
-    public int getPuntaje()
-    {
+    /**
+     * This function runs the power of the meeple.
+     *
+     * @param posicionDadoActivo
+     */
+
+    public void meeple(int posicionDadoActivo) {
+        dadosActivosArray.get(posicionDadoActivo).newCara();
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the spaceship.
+     *
+     * @param posicionDadoActivo
+     */
+
+    public void spaceship(int posicionDadoActivo) {
+        addDiceFromArray(dadosInactivosArray, dadosActivosArray.get(posicionDadoActivo));
+        removeDiceFromArray(posicionDadoActivo, dadosActivosArray);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the superhero.
+     *
+     * @param posicionDadoActivo
+     */
+
+    public void superhero(int posicionDadoActivo) {
+        dadosActivosArray.get(posicionDadoActivo).getCaraOpuesta();
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This function runs the power of the heart.
+     *
+     * @param posicionDadoActivo
+     */
+
+    public void heart(int posicionDadoActivo) {
+        dadosInactivosArray.get(0).newCara();
+        addDiceFromArray(dadosActivosArray, dadosInactivosArray.get(0), posicionDadoActivo);
+        removeDiceFromArray(0, dadosInactivosArray);
+    }
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This method gets Puntaje.
+     *
+     * @return cumulative score
+     */
+
+    public int getPuntaje() {
         return puntaje;
     }
-    public int getRonda()
-    {
+
+    //------------------------------------------------------------------------------------------------------------------------------------------
+
+    /**
+     * This method gets the round.
+     *
+     * @return number round
+     */
+
+    public int getRonda() {
         return ronda;
     }
+
 }
