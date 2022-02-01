@@ -755,7 +755,7 @@ public class GUIGeekOutMasters extends JFrame {
                     } else {
                         mensajeFinal = "Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
                     }
-                    JOptionPane.showMessageDialog(null, "game over");
+                    JOptionPane.showMessageDialog(null, mensajeFinal);
                 } else {
                     if (ronda > 0) {
                         game.roundPoints();
@@ -765,14 +765,7 @@ public class GUIGeekOutMasters extends JFrame {
                         remove(panelDadosActivos);
                         remove(panelDadosInactivos);
                         remove(panelDadosUtilizados);
-
-                        JOptionPane.showMessageDialog(null, "nueva ronda");
                     }
-                }
-                JOptionPane.showMessageDialog(null, "cantidad de dados: "+botonesEnDadosActivos.size());
-                for(int i=0;i<botonesEnDadosActivos.size();i++)
-                {
-                    JOptionPane.showMessageDialog(null, "dado "+i+1+": "+botonesEnDadosActivos.get(i));
                 }
 
                 game.nextRound();
@@ -815,7 +808,6 @@ public class GUIGeekOutMasters extends JFrame {
 
                 seleccionDado = 1;
 
-                JOptionPane.showMessageDialog(null, "panel restablecido con éxito");
             } else if (e.getSource() == ayuda) {
                 JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
             } else if (e.getSource() == salir) {
