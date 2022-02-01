@@ -328,7 +328,7 @@ public class ModelGeekOutMasters {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function gets Puntaje.
+     * This method gets Puntaje.
      *
      * @return cumulative score
      */
@@ -340,7 +340,7 @@ public class ModelGeekOutMasters {
     //------------------------------------------------------------------------------------------------------------------------------------------
 
     /**
-     * This function gets the round.
+     * This method gets the round.
      *
      * @return number round
      */

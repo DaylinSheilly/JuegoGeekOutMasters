@@ -32,7 +32,8 @@ public class GUIGeekOutMasters extends JFrame {
                     + "\nRecuerda leer las instrucciones, en el botón azul, para entender cómo jugar.";
     private  static final String INSTRUCCIONES =
                     "Lo primero que debes saber es que los dados aparecen aleatoriamente"
-                    + " después de presionar \"Nueva ronda.\"\n"
+                    + " después de presionar \"Nueva ronda.\" y para que puedas ver los dados inactivos y utilizados"
+                    + "debes pasar el mouse por dichas secciones\n"
                     + "\nDe los 10 dados que trae el juego se toman 3 y se colocan en el sector de \"Dados\""
                     + "Inactivos\". Los otros 7 dados se tiran y pasan a ser los \"Dados Activos\".\n"
                     + "\nSe van eligiendo los dados a utilizar según las habilidades de sus caras y se pasan"
