@@ -222,25 +222,21 @@ public class ModelGeekOutMasters {
      */
 
     public void nextRound() {
-        if (ronda == 5) {
-            puntaje = 0;
-            ronda = 1;
-        } else {
-            if (dadosActivosArray.size() != 0) {
-                dadosActivosArray.clear();
-            }
-            if (dadosInactivosArray.size() != 0) {
-                dadosInactivosArray.clear();
-            }
-            if (dadosUtilizadosArray.size() != 0) {
-                dadosUtilizadosArray.clear();
-            }
-            determinateDadosActivos();
-            determinateDadosInactivos();
+        if (dadosActivosArray.size() != 0) {
+            dadosActivosArray.clear();
+        }
+        if (dadosInactivosArray.size() != 0) {
+            dadosInactivosArray.clear();
+        }
+        if (dadosUtilizadosArray.size() != 0) {
+            dadosUtilizadosArray.clear();
+        }
+        determinateDadosActivos();
+        determinateDadosInactivos();
 
             ronda++;
         }
-    }
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -325,7 +321,7 @@ public class ModelGeekOutMasters {
         removeDiceFromArray(0, dadosInactivosArray);
     }
 
-    //------------------------------------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------------------------------
 
     /**
      * This method gets Puntaje.
@@ -348,5 +344,4 @@ public class ModelGeekOutMasters {
     public int getRonda() {
         return ronda;
     }
-
 }
