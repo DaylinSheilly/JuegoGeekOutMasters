@@ -330,6 +330,7 @@ public class GUIGeekOutMasters extends JFrame {
         panelDadosUtilizados.setMinimumSize(new Dimension(500, 200));
         panelDadosUtilizados.setBorder(BorderFactory.createTitledBorder("Dados utilizados"));
         panelDadosUtilizados.setBackground(Color.WHITE);
+        panelDadosUtilizados.removeMouseListener(escucha);
         rePaintDadosUtilizados();
 
         constraints.gridx = 0;
@@ -482,6 +483,7 @@ public class GUIGeekOutMasters extends JFrame {
     {
         for(boton=0;boton<botonesEnDadosActivos.size();boton++)
         {
+            botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
             if(ronda==0)
             {
                 imageDado = new ImageIcon(getClass().getResource("/resources/7.png"));
@@ -1058,7 +1060,7 @@ public class GUIGeekOutMasters extends JFrame {
                         panelAccionesDados.add(mensajesAccionesDados);
                     }
                     game.powers(boton);
-                    seleccionDado = 4;
+                    seleccionDado = 2;
 
                 } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
                     botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
@@ -1082,14 +1084,14 @@ public class GUIGeekOutMasters extends JFrame {
 
                         verifyDicesInDadosActivos();
 
-                        seleccionDado = 3;
+                        seleccionDado = 1;
                     }
                 } else if ((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6) {
                     verifyDicesInDadosActivos();
-                    seleccionDado = 3;
+                    seleccionDado = 1;
                 } else {
                     verifyDicesInDadosActivos();
-                    seleccionDado = 3;
+                    seleccionDado = 1;
                 }
             }
             else
@@ -1145,7 +1147,8 @@ public class GUIGeekOutMasters extends JFrame {
             }
         }
 
-        public void mousePressed(MouseEvent e) {
+        public void mouseClicked(MouseEvent e) {
+            System.out.println("ESCUCHAS?");
             if (e.getSource() == nuevaRonda) {
                 estado = 9;
                 mensajesAccionesDados.setText(getEstadoToString()[0]);
@@ -1238,23 +1241,13 @@ public class GUIGeekOutMasters extends JFrame {
                                 secondSelecction(boton);
                         }
                     }
-                    seleccionDado = 3;
+                    seleccionDado = 1;
                 } else {
                     if (seleccionDado == 1) {
                         for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                             if (e.getSource() == botonesEnDadosActivos.get(boton)) {
                                 firstSelection(boton);
                             }
-                        }
-                    } else {
-                        if (seleccionDado == 3) {
-                            seleccionDado = 1;
-                        } else if (seleccionDado == 4) {
-                            seleccionDado = 2;
-                        } else {
-                            estado = 11;
-                            mensajesAccionesDados.setText(getEstadoToString()[0]);
-                            panelAccionesDados.add(mensajesAccionesDados);
                         }
                     }
                 }
