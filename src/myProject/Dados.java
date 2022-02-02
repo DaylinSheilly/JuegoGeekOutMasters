@@ -24,14 +24,29 @@ public class Dados
     private int cara;
     private int caraOpuesta;
 
+    /**
+     * Method gets the face of the dice.
+     * @return face of the dice
+     */
+
     public int getCara() {
         return cara;
     }
+
+    /**
+     * Method gives a new face to the dice randomly.
+     * @return face of the dice
+     */
 
     public void setCara(int newCara)
     {
         this.cara = newCara;
     }
+
+    /**
+     * Method that generate a random value to cara.
+     * @return number between (1,6)
+     */
 
     public int newCara()
     {
@@ -40,6 +55,11 @@ public class Dados
         setCara(cara);
         return cara;
     }
+
+    /**
+     * Method gives the opposite face of the dice.
+     * @return opposite face of the dice
+     */
 
     public int getCaraOpuesta()
     {
