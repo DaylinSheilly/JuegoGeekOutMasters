@@ -838,7 +838,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     private void verifyDicesInDadosActivos() {
         GridBagConstraints constraints = new GridBagConstraints();
-        if (botonesEnDadosActivos == null) {
+        if (botonesEnDadosActivos.size()==0) {
             nuevaRonda.addMouseListener(escucha);
             nuevaRonda.setBackground(Color.green);
             estado=8;
@@ -1037,6 +1037,7 @@ public class GUIGeekOutMasters extends JFrame {
 
     private class Escucha extends MouseAdapter {
 
+        private String kk;
         public void firstSelection(int boton) {
             if (seleccionDado == 1) {
                 if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
@@ -1148,7 +1149,6 @@ public class GUIGeekOutMasters extends JFrame {
         }
 
         public void mouseClicked(MouseEvent e) {
-            System.out.println("ESCUCHAS?");
             if (e.getSource() == nuevaRonda) {
                 estado = 9;
                 mensajesAccionesDados.setText(getEstadoToString()[0]);
@@ -1156,6 +1156,9 @@ public class GUIGeekOutMasters extends JFrame {
                 nuevaRonda.removeMouseListener(escucha);
                 nuevaRonda.setBackground(Color.darkGray);
                 if (ronda == 5) {
+                    game.roundPoints();
+                    game.drakeDices();
+                    game.determinateScore();
                     if (game.endGame()) {
                         mensajeFinal = "¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
                     } else {
@@ -1243,11 +1246,9 @@ public class GUIGeekOutMasters extends JFrame {
                     }
                     seleccionDado = 1;
                 } else {
-                    if (seleccionDado == 1) {
-                        for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
-                            if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                                firstSelection(boton);
-                            }
+                    for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                        if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                            firstSelection(boton);
                         }
                     }
                 }
@@ -1255,6 +1256,11 @@ public class GUIGeekOutMasters extends JFrame {
             rePaintDadosInactivos();
             rePaintDadosUtilizados();
             rePaintDadosActivos();
+            /*for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                kk = kk + game.dadosActivosArray.get(boton).getCara()+" ";
+            }
+            System.out.println(kk);
+            kk = "";*/
         }
     }
 }
