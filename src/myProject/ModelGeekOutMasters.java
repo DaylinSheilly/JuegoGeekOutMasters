@@ -253,6 +253,9 @@ public class ModelGeekOutMasters {
             } else {
                 terminar = false;//perdió
             }
+            ronda=0;
+            puntaje=0;
+            puntos=0;
         }
         return terminar;
     }

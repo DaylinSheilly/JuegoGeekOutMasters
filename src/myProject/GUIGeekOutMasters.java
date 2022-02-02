@@ -24,6 +24,7 @@ public class GUIGeekOutMasters extends JFrame {
     private String mensajeFinal = "";
     private String poder = "";
     private String[] estadoToString;
+    private JScrollPane scroll;
     private int ronda, puntos, seleccionDado, boton, unBoton, estado;
     private ArrayList<JButton> botonesEnDadosUtilizados, botonesEnDadosInactivos, botonesEnDadosActivos;
     private static final String MENSAJE_INICIO =
@@ -111,11 +112,25 @@ public class GUIGeekOutMasters extends JFrame {
         botonesEnDadosInactivos = new ArrayList<JButton>();
         botonesEnDadosUtilizados = new ArrayList<JButton>();
 
-        seleccionDado = 1;
+        seleccionDado = 0;
         unBoton=0;
-        estado=0;
+        estado=10;
 
         estadoToString = new String[1];
+
+        panelInstrucciones = new JPanel();
+        panelInstrucciones.setPreferredSize(new Dimension(410,1005));
+        panelInstrucciones.setBackground(Color.WHITE);
+        panelInstrucciones.setBorder(BorderFactory.createTitledBorder("Instrucciones del juego."));
+        panelInstrucciones.setLayout(new BorderLayout());
+
+        instrucciones = new JTextArea();
+        instrucciones.setText(INSTRUCCIONES);
+        instrucciones.setLineWrap(true);
+        instrucciones.setPreferredSize(new Dimension(408, 1000));
+        instrucciones.setWrapStyleWord(true);
+        instrucciones.setLineWrap(true);
+        instrucciones.setEditable(false);
 
         imageDado =new ImageIcon(getClass().getResource("/resources/7.png"));
         imagenOtroTamanho =imageDado.getImage().getScaledInstance(60,60,Image.SCALE_SMOOTH);
@@ -408,7 +423,7 @@ public class GUIGeekOutMasters extends JFrame {
         panelAccionesDados.setBackground(Color.WHITE);
 
         mensajesAccionesDados = new JTextArea(20,30);
-        mensajesAccionesDados.setFont(new Font("SansSerif", Font.PLAIN, 12));
+        mensajesAccionesDados.setFont(new Font("SansSerif", Font.BOLD, 12));
         mensajesAccionesDados.setWrapStyleWord(true);
         mensajesAccionesDados.setLineWrap(true);
         mensajesAccionesDados.setEditable(false);
@@ -419,6 +434,8 @@ public class GUIGeekOutMasters extends JFrame {
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.LINE_START;
 
+        mensajesAccionesDados.setText(getEstadoToString()[0]);
+        panelAccionesDados.add(mensajesAccionesDados);
         this.add(panelAccionesDados, constraints);
     }
 
@@ -474,7 +491,7 @@ public class GUIGeekOutMasters extends JFrame {
             }
             else
             {
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).newCara() + ".png"));
                 imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
                 imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
             }
@@ -485,6 +502,7 @@ public class GUIGeekOutMasters extends JFrame {
         }
         rePaintDadosActivos();
     }
+
 
     //------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -822,13 +840,22 @@ public class GUIGeekOutMasters extends JFrame {
         if (botonesEnDadosActivos == null) {
             nuevaRonda.addMouseListener(escucha);
             nuevaRonda.setBackground(Color.green);
+            estado=8;
+            mensajesAccionesDados.setText(getEstadoToString()[0]);
+            panelAccionesDados.add(mensajesAccionesDados);
         } else if (botonesEnDadosActivos.size() == 1) {
             if (game.dadosActivosArray.get(0).getCara() == 1 | game.dadosActivosArray.get(0).getCara() == 2 | game.dadosActivosArray.get(0).getCara() == 3) {
                 nuevaRonda.addMouseListener(escucha);
                 nuevaRonda.setBackground(Color.green);
+                estado=8;
+                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                panelAccionesDados.add(mensajesAccionesDados);
             } else if (game.dadosActivosArray.get(0).getCara() == 5 | game.dadosActivosArray.get(0).getCara() == 6) {
                 nuevaRonda.addMouseListener(escucha);
                 nuevaRonda.setBackground(Color.green);
+                estado=8;
+                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                panelAccionesDados.add(mensajesAccionesDados);
             }
         } else {
             switch (botonesEnDadosActivos.size()) {
@@ -837,6 +864,9 @@ public class GUIGeekOutMasters extends JFrame {
                         if (game.dadosActivosArray.get(1).getCara() == 5 | game.dadosActivosArray.get(1).getCara() == 6) {
                             nuevaRonda.addMouseListener(escucha);
                             nuevaRonda.setBackground(Color.green);
+                            estado=8;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
                         }
                     }
                     break;
@@ -846,6 +876,9 @@ public class GUIGeekOutMasters extends JFrame {
                             if (game.dadosActivosArray.get(2).getCara() == 5 | game.dadosActivosArray.get(2).getCara() == 6) {
                                 nuevaRonda.addMouseListener(escucha);
                                 nuevaRonda.setBackground(Color.green);
+                                estado=8;
+                                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                panelAccionesDados.add(mensajesAccionesDados);
                             }
                         }
                     }
@@ -857,6 +890,9 @@ public class GUIGeekOutMasters extends JFrame {
                                 if (game.dadosActivosArray.get(3).getCara() == 5 | game.dadosActivosArray.get(3).getCara() == 6) {
                                     nuevaRonda.addMouseListener(escucha);
                                     nuevaRonda.setBackground(Color.green);
+                                    estado=8;
+                                    mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                    panelAccionesDados.add(mensajesAccionesDados);
                                 }
                             }
                         }
@@ -870,6 +906,9 @@ public class GUIGeekOutMasters extends JFrame {
                                     if (game.dadosActivosArray.get(4).getCara() == 5 | game.dadosActivosArray.get(4).getCara() == 6) {
                                         nuevaRonda.addMouseListener(escucha);
                                         nuevaRonda.setBackground(Color.green);
+                                        estado=8;
+                                        mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                        panelAccionesDados.add(mensajesAccionesDados);
                                     }
                                 }
                             }
@@ -885,6 +924,9 @@ public class GUIGeekOutMasters extends JFrame {
                                         if (game.dadosActivosArray.get(5).getCara() == 5 | game.dadosActivosArray.get(5).getCara() == 6) {
                                             nuevaRonda.addMouseListener(escucha);
                                             nuevaRonda.setBackground(Color.green);
+                                            estado=8;
+                                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                            panelAccionesDados.add(mensajesAccionesDados);
                                         }
                                     }
                                 }
@@ -902,6 +944,9 @@ public class GUIGeekOutMasters extends JFrame {
                                             if (game.dadosActivosArray.get(6).getCara() == 5 | game.dadosActivosArray.get(6).getCara() == 6) {
                                                 nuevaRonda.addMouseListener(escucha);
                                                 nuevaRonda.setBackground(Color.green);
+                                                estado=8;
+                                                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                                                panelAccionesDados.add(mensajesAccionesDados);
                                             }
                                         }
                                     }
@@ -952,6 +997,14 @@ public class GUIGeekOutMasters extends JFrame {
                 case 8:
                     estadoToString[0] = "Puedes pasar a la siguiente ronda.";
                     break;
+                case 9:
+                    estadoToString[0] = "Has iniciado una nueva ronda. Buena suerte.";
+                    break;
+                case 10:
+                    estadoToString[0] = MENSAJE_INICIO;
+                    break;
+                case 11:
+                    estadoToString[0] = "Lo sentimos. Hubo un problema :/ Por favor intenta de nuevo.";
             }
             return estadoToString;
         }
@@ -968,7 +1021,7 @@ public class GUIGeekOutMasters extends JFrame {
 
             //------------------------------------------------------------------------------------------------------------------------------------------
 
-            JOptionPane.showMessageDialog(null, MENSAJE_INICIO);
+            JOptionPane.showMessageDialog(null, MENSAJE_INICIO, "BIENVENIDO", JOptionPane.INFORMATION_MESSAGE);
         });
     }
 
@@ -979,105 +1032,121 @@ public class GUIGeekOutMasters extends JFrame {
 
     private class Escucha extends MouseAdapter {
 
-        public void firstSelection(int boton)
-        {
-            if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
-                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                botonesEnDadosActivos.remove(boton);
-                if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
-                    poder = "meeple";
-                    estado = 2;
-                    mensajesAccionesDados.setText(getEstadoToString()[0]);
-                    panelAccionesDados.add(mensajesAccionesDados);
-
-                } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
-                    poder = "cohete";
-                    estado = 4;
-                    mensajesAccionesDados.setText(getEstadoToString()[0]);
-                    panelAccionesDados.add(mensajesAccionesDados);
-
-                } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
-                    poder = "superheroe";
-                    estado = 6;
-                    mensajesAccionesDados.setText(getEstadoToString()[0]);
-                    panelAccionesDados.add(mensajesAccionesDados);
-                }
-                game.powers(boton);
-                seleccionDado = 4;
-
-            } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
-                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
-                botonesEnDadosActivos.remove(boton);
-
-                if (botonesEnDadosInactivos.size() != 0) {
+        public void firstSelection(int boton) {
+            if (seleccionDado == 1) {
+                if ((game.dadosActivosArray.get(boton).getCara()) == 1 | (game.dadosActivosArray.get(boton).getCara()) == 2 | (game.dadosActivosArray.get(boton).getCara()) == 3) {
+                    botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                    botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                    botonesEnDadosActivos.remove(boton);
+                    if ((game.dadosActivosArray.get(boton).getCara()) == 1) {
+                        poder = "meeple";
+                        estado = 1;
+                        mensajesAccionesDados.setText(getEstadoToString()[0]);
+                        panelAccionesDados.add(mensajesAccionesDados);
+                    } else if ((game.dadosActivosArray.get(boton).getCara()) == 2) {
+                        poder = "cohete";
+                        estado = 3;
+                        mensajesAccionesDados.setText(getEstadoToString()[0]);
+                        panelAccionesDados.add(mensajesAccionesDados);
+                    } else if ((game.dadosActivosArray.get(boton).getCara()) == 3) {
+                        poder = "superheroe";
+                        estado = 5;
+                        mensajesAccionesDados.setText(getEstadoToString()[0]);
+                        panelAccionesDados.add(mensajesAccionesDados);
+                    }
                     game.powers(boton);
-                    game.heart(boton);
-                    estado = 7;
-                    mensajesAccionesDados.setText(getEstadoToString()[0]);
-                    panelAccionesDados.add(mensajesAccionesDados);
+                    seleccionDado = 4;
 
-                    imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
-                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                    botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
-                    botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
-                    botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
-                    botonesEnDadosInactivos.remove(unBoton);
+                } else if ((game.dadosActivosArray.get(boton).getCara()) == 4) {
+                    botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                    botonesEnDadosUtilizados.add(botonesEnDadosActivos.get(boton));
+                    botonesEnDadosActivos.remove(boton);
 
+                    if (botonesEnDadosInactivos.size() != 0) {
+                        game.powers(boton);
+                        game.heart(boton);
+                        estado = 7;
+                        mensajesAccionesDados.setText(getEstadoToString()[0]);
+                        panelAccionesDados.add(mensajesAccionesDados);
+
+                        imageDado = new ImageIcon(getClass().getResource("/resources/" + game.dadosActivosArray.get(boton).getCara() + ".png"));
+                        imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                        imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                        botonesEnDadosInactivos.get(unBoton).setIcon(imagenNuevoTamanho);
+                        botonesEnDadosInactivos.get(unBoton).addMouseListener(escucha);
+                        botonesEnDadosActivos.add(boton, botonesEnDadosInactivos.get(unBoton));
+                        botonesEnDadosInactivos.remove(unBoton);
+
+                        verifyDicesInDadosActivos();
+
+                        seleccionDado = 3;
+                    }
+                } else if ((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6) {
                     verifyDicesInDadosActivos();
-
+                    seleccionDado = 3;
+                } else {
+                    verifyDicesInDadosActivos();
                     seleccionDado = 3;
                 }
-            } else if ((game.dadosActivosArray.get(boton).getCara()) == 5 | (game.dadosActivosArray.get(boton).getCara()) == 6) {
-                verifyDicesInDadosActivos();
-                seleccionDado = 3;
-            } else {
-                verifyDicesInDadosActivos();
-                seleccionDado = 3;
+            }
+            else
+            {
+                estado = 11;
+                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                panelAccionesDados.add(mensajesAccionesDados);
+
             }
         }
 
         public void secondSelecction(int boton)
         {
-            if (poder == "meeple") {
-                game.meeple(boton);
-                estado = 1;
-                mensajesAccionesDados.setText(getEstadoToString()[0]);
-                panelAccionesDados.add(mensajesAccionesDados);
+            if(seleccionDado==2) {
+                if (poder == "meeple") {
+                    game.meeple(boton);
+                    estado = 2;
+                    mensajesAccionesDados.setText(getEstadoToString()[0]);
+                    panelAccionesDados.add(mensajesAccionesDados);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
-            } else if (poder == "cohete") {
-                game.spaceship(boton);
-                estado = 3;
-                mensajesAccionesDados.setText(getEstadoToString()[0]);
-                panelAccionesDados.add(mensajesAccionesDados);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                } else if (poder == "cohete") {
+                    game.spaceship(boton);
+                    estado = 4;
+                    mensajesAccionesDados.setText(getEstadoToString()[0]);
+                    panelAccionesDados.add(mensajesAccionesDados);
 
-                botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
-                botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
-                botonesEnDadosActivos.remove(boton);
-            } else if (poder == "superheroe") {
-                game.superhero(boton);
-                estado = 5;
-                mensajesAccionesDados.setText(getEstadoToString()[0]);
-                panelAccionesDados.add(mensajesAccionesDados);
+                    botonesEnDadosActivos.get(boton).removeMouseListener(escucha);
+                    botonesEnDadosInactivos.add(botonesEnDadosActivos.get(boton));
+                    botonesEnDadosActivos.remove(boton);
+                } else if (poder == "superheroe") {
+                    game.superhero(boton);
+                    estado = 6;
+                    mensajesAccionesDados.setText(getEstadoToString()[0]);
+                    panelAccionesDados.add(mensajesAccionesDados);
 
-                imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
-                imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
-                imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
-                botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                    imageDado = new ImageIcon(getClass().getResource("/resources/" + ((game.dadosActivosArray).get(boton)).getCara() + ".png"));
+                    imagenOtroTamanho = imageDado.getImage().getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+                    imagenNuevoTamanho = new ImageIcon(imagenOtroTamanho);
+                    botonesEnDadosActivos.get(boton).setIcon(imagenNuevoTamanho);
+                }
+                verifyDicesInDadosActivos();
+                poder = "";
             }
-            verifyDicesInDadosActivos();
-            seleccionDado = 3;
-            poder = "";
+            else
+            {
+                estado = 11;
+                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                panelAccionesDados.add(mensajesAccionesDados);
+            }
         }
 
         public void mousePressed(MouseEvent e) {
             if (e.getSource() == nuevaRonda) {
+                estado=9;
+                mensajesAccionesDados.setText(getEstadoToString()[0]);
+                panelAccionesDados.add(mensajesAccionesDados);
                 nuevaRonda.removeMouseListener(escucha);
                 nuevaRonda.setBackground(Color.darkGray);
                 if (ronda == 5) {
@@ -1086,7 +1155,8 @@ public class GUIGeekOutMasters extends JFrame {
                     } else {
                         mensajeFinal = "Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
                     }
-                    //JOptionPane.showMessageDialog(null, mensajeFinal);
+                    ronda = 0;
+                    JOptionPane.showMessageDialog(null, mensajeFinal);
                 } else {
                     if (ronda > 0) {
                         game.roundPoints();
@@ -1102,7 +1172,6 @@ public class GUIGeekOutMasters extends JFrame {
                         remove(panelDadosUtilizados);
                     }
                 }
-
                 game.nextRound();
 
                 ronda = game.getRonda();
@@ -1140,6 +1209,8 @@ public class GUIGeekOutMasters extends JFrame {
 
                 verifyDicesInDadosActivos();
 
+                seleccionDado=1;
+
                 revalidate();
                 repaint();
             }
@@ -1150,40 +1221,39 @@ public class GUIGeekOutMasters extends JFrame {
             else if (e.getSource() == ayuda)
             {
                 panelInstrucciones.add(instrucciones, BorderLayout.LINE_START);
-                seleccionDado = 1;
 
                 JScrollPane scroll = new JScrollPane(panelInstrucciones);
-                scroll.setPreferredSize(new Dimension(435, 400));
+                scroll.setPreferredSize(new Dimension(440, 455));
 
-                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego",
-                                              JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, scroll, "Instrucciones del juego", JOptionPane.INFORMATION_MESSAGE);
             }
             else
             {
-                rePaintDadosInactivos();
-                rePaintDadosUtilizados();
-                rePaintDadosActivos();
-
                 if (seleccionDado == 2) {
-
                     for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
                         if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                            secondSelecction(boton);
+                                secondSelecction(boton);
                         }
                     }
                     seleccionDado = 3;
-                } else if (seleccionDado == 1) {
-                    for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
-                        if (e.getSource() == botonesEnDadosActivos.get(boton)) {
-                            firstSelection(boton);
+                } else {
+                    if (seleccionDado == 1) {
+                        for (boton = 0; boton < botonesEnDadosActivos.size(); boton++) {
+                            if (e.getSource() == botonesEnDadosActivos.get(boton)) {
+                                firstSelection(boton);
+                            }
+                        }
+                    } else {
+                        if (seleccionDado == 3) {
+                            seleccionDado = 1;
+                        } else if (seleccionDado == 4) {
+                            seleccionDado = 2;
+                        } else {
+                            estado = 11;
+                            mensajesAccionesDados.setText(getEstadoToString()[0]);
+                            panelAccionesDados.add(mensajesAccionesDados);
                         }
                     }
-                } else if (seleccionDado == 3) {
-                    seleccionDado = 1;
-                } else if (seleccionDado == 4) {
-                    seleccionDado = 2;
-                } else {
-                    seleccionDado = 1;
                 }
             }
             rePaintDadosInactivos();
