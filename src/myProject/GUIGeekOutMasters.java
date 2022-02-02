@@ -33,8 +33,7 @@ public class GUIGeekOutMasters extends JFrame {
                     + "\nRecuerda leer las instrucciones, en el botón azul, para entender cómo jugar.";
     private  static final String INSTRUCCIONES =
                     "Lo primero que debes saber es que los dados aparecen aleatoriamente"
-                    + " después de presionar \"Nueva ronda.\" y para que puedas ver los dados inactivos y utilizados"
-                    + "debes pasar el mouse por dichas secciones\n"
+                    + " después de presionar \"Nueva ronda.\"\n"
                     + "\nDe los 10 dados que trae el juego se toman 3 y se colocan en el sector de \"Dados\""
                     + "Inactivos\". Los otros 7 dados se tiran y pasan a ser los \"Dados Activos\".\n"
                     + "\nSe van eligiendo los dados a utilizar según las habilidades de sus caras y se pasan"
@@ -973,21 +972,25 @@ public class GUIGeekOutMasters extends JFrame {
                     estadoToString[0] = "Has seleccionado el Meeple: puedes relanzar otro dado de la sección dados activos";
                     break;
                 case 2:
-                    estadoToString[0] = "Has ejecutado el poder del Meeple. Continúa jugando.";
+                    estadoToString[0] = "Has ejecutado el poder del Meeple. Continúa jugando.\n" + "\nRecuerda pasar el"
+                            + " mouse por las secciones dados inactivos y dados utilizados para ver los dados que estén allí.";
                     break;
                 case 3:
                     estadoToString[0] = "Has seleccionado la Nave Espacial: puedes enviar un dado no usado (de la sección"
                             + " dados activos) a la sección de dados inactivos";
                     break;
                 case 4:
-                    estadoToString[0] = "Has ejecutado el poder de la Nave Espacial. Continúa jugando.";
+                    estadoToString[0] = "Has ejecutado el poder de la Nave Espacial. Continúa jugando.\n"
+                            + "\nRecuerda pasar el mouse por las secciones dados inactivos y dados utilizados para ver los"
+                            + " dados que estén allí.";;
                     break;
                 case 5:
                     estadoToString[0] = "Has seleccionado el Superheroe: puedes hacer que cualquier dado no usado (sección"
                             + " dados activos) sea volteado y colocado en su cara opuesta.";
                     break;
                 case 6:
-                    estadoToString[0] = "Has ejecutado el poder del Superhéroe. Continúa jugando.";
+                    estadoToString[0] = "Has ejecutado el poder del Superhéroe. Continúa jugando.\n" + "\nRecuerda pasar el"
+                            + " mouse por las secciones dados inactivos y dados utilizados para ver los dados que estén allí.";;
                     break;
 
                 case 7:
@@ -1144,7 +1147,7 @@ public class GUIGeekOutMasters extends JFrame {
 
         public void mousePressed(MouseEvent e) {
             if (e.getSource() == nuevaRonda) {
-                estado=9;
+                estado = 9;
                 mensajesAccionesDados.setText(getEstadoToString()[0]);
                 panelAccionesDados.add(mensajesAccionesDados);
                 nuevaRonda.removeMouseListener(escucha);
