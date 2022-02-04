@@ -1160,9 +1160,10 @@ public class GUIGeekOutMasters extends JFrame {
                     game.drakeDices();
                     game.determinateScore();
                     if (game.endGame()) {
-                        mensajeFinal = "¡¡Felicidades!! Has ganado.\nPuedes volver a jugar empezando una nueva ronda.";
+                        mensajeFinal = "¡¡Felicidades!! Has ganado con: " + puntos + " puntos"
+                                     + "\nPuedes volver a jugar empezando una nueva ronda.";
                     } else {
-                        mensajeFinal = "Has perdido.\nPuedes volver a jugar empezando una nueva ronda.";
+                        mensajeFinal = "Has perdido con: " + puntos + " puntos" + "\nPuedes volver a jugar empezando una nueva ronda.";
                     }
                     ronda = 0;
                     JOptionPane.showMessageDialog(null, mensajeFinal);
